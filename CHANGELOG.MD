@@ -10,3 +10,4 @@
 - Chessman::Rook class
 - Chessplayer::Player class
 - Chessboard::Board class
+- Game::GameController class
