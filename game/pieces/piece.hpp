@@ -58,7 +58,7 @@ namespace Chessman
     public:
         /**
         * @brief Constructor.
-        * @param owner (color of the player) of the piece.
+        * @param owner (Chessman::OWNER) of the piece.
         * @param coords Starting coordinates.
         */
         Piece(int, pair<int, int>);
@@ -117,7 +117,7 @@ namespace Chessman
 
     private:
         /**
-        * @brief Holds owner id (Chessman::PieceColor).
+        * @brief Holds owner id (Chessman::OWNER).
         */
         int i_owner;
         /**
@@ -132,7 +132,7 @@ namespace Chessman
         */
         const char* c_unicode;
         /**
-        * @brief Holds piece type (Chessman::PieceType).
+        * @brief Holds piece type (Chessman::TYPE).
         */
         int i_type;
         /**
