@@ -2,3 +2,4 @@
 #include "automated/pieces/king_test.hpp"
 #include "automated/pieces/knight_test.hpp"
 #include "automated/pieces/pawn_test.hpp"
+#include "automated/pieces/queen_test.hpp"
