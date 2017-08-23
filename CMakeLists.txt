@@ -11,7 +11,8 @@ add_library(chessman-game
     ./game/pieces/knight.cpp
     ./game/pieces/pawn.cpp
     ./game/pieces/queen.cpp
-    ./game/pieces/rook.cpp)
+    ./game/pieces/rook.cpp
+    ./game/player/player.cpp)
 
 #Testing build
 project(tests)

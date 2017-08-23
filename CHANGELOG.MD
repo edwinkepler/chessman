@@ -8,3 +8,4 @@
 - Chessman::Pawn class
 - Chessman::Queen class
 - Chessman::Rook class
+- Chessplayer::Player class

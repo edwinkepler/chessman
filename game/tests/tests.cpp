@@ -4,3 +4,5 @@
 #include "automated/pieces/pawn_test.hpp"
 #include "automated/pieces/queen_test.hpp"
 #include "automated/pieces/rook_test.hpp"
+
+#include "automated/player_test.hpp"
