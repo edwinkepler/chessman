@@ -7,7 +7,8 @@ include_directories(./game)
 add_library(chessman-game 
     ./game/pieces/piece.cpp 
     ./game/pieces/bishop.cpp 
-    ./game/pieces/king.cpp)
+    ./game/pieces/king.cpp
+    ./game/pieces/knight.cpp)
 
 #Testing build
 project(tests)
