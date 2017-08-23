@@ -4,7 +4,10 @@ set(CMAKE_CXX_FLAGS "-std=c++14")
 
 include_directories(./game)
 
-add_library(chessman-game ./game/pieces/piece.cpp ./game/pieces/bishop.cpp)
+add_library(chessman-game 
+    ./game/pieces/piece.cpp 
+    ./game/pieces/bishop.cpp 
+    ./game/pieces/king.cpp)
 
 #Testing build
 project(tests)
