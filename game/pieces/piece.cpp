@@ -22,7 +22,7 @@ namespace Chessman
 
     const void Piece::add_move(const pair<int, int>& c) {
         v_history.push_back(c);
-        if(v_history.back() != v_history.at(v_history.size() - 2)){
+        if(v_history.back() != v_history.at(v_history.size() - 2)) {
             f_moved = true;
         }
     }
