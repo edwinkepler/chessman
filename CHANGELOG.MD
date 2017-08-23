@@ -7,3 +7,4 @@
 - Chessman::Knight class
 - Chessman::Pawn class
 - Chessman::Queen class
+- Chessman::Rook class

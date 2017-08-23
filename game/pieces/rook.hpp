@@ -1,0 +1,41 @@
+/*
+ * @copyright 2017 Edwin Kepler
+ * @license MIT
+ */
+
+#ifndef ROOK_HPP
+#define ROOK_HPP
+
+#include "piece.hpp"
+
+/**
+ * @brief This namespace contains all chess pieces related classes.
+ */
+namespace Chessman
+{
+    /**
+     * @brief   Rook piece class.
+     */
+    class Rook : public Piece {
+    public:
+        /**
+        * @brief Constructor
+        * @param Chessman::OWNER of the piece.
+        * @param initial pair of coordinates of piece.
+        */
+        Rook(int, pair<int, int>);
+
+        /**
+        * @brief Checks if move is valid and if it is it will identify what kind
+        *        of move it is (like capturing, castling etc).
+        * @param pair of coordinates of destination.
+        * @param pointer to the Chessboard::Board.
+        * @return Chessman::MOVES ID of a move.
+        */
+        const int identify_move(
+            const pair<int, int>&,
+            const vector<vector<Chessman::Piece*> >&);
+    };
+}
+
+#endif // ROOK_HPP

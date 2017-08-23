@@ -3,3 +3,4 @@
 #include "automated/pieces/knight_test.hpp"
 #include "automated/pieces/pawn_test.hpp"
 #include "automated/pieces/queen_test.hpp"
+#include "automated/pieces/rook_test.hpp"
