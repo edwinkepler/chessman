@@ -6,3 +6,4 @@
 #include "automated/pieces/rook_test.hpp"
 
 #include "automated/player_test.hpp"
+#include "automated/board_test.hpp"
