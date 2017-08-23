@@ -5,3 +5,4 @@
 - Chessman::Bishop class
 - Chessman::King class
 - Chessman::Knight class
+- Chessman::Pawn class
