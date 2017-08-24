@@ -16,9 +16,9 @@ namespace Chessboard
         }
     }
 
-    Chessman::Piece* Board::ptr_piece(const pair<int, int> &c) {
+    Chessman::Piece* Board::point_piece(const pair<int, int> &c) {
         if(!is_within_limit(c)) {
-            throw invalid_argument("Board::ptr_piece(): Coords out of range.");
+            throw invalid_argument("Board::point_piece(): Coords out of range.");
         } else if(v_board[c.second - 1][v_board.size() - c.first] == nullptr) {
             throw invalid_argument("Board::getOwner(): Square is empty.");
         } else {
@@ -35,7 +35,7 @@ namespace Chessboard
         } else if(!is_sqr_empty(to)) {
             throw invalid_argument("Board::move_piece(): Square not empty.");
         } else {
-            place_piece(to, ptr_piece(from));
+            place_piece(to, point_piece(from));
             nullify(from);
         }
     }
