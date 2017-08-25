@@ -9,7 +9,10 @@
 
 using namespace std;
 
-void TEST_VECTORS_OF_TUPLES_3(vector<tuple<int, int, int> > lh, vector<tuple<int, int, int> > rh) {
+void TEST_VECTORS_OF_TUPLES_3(
+    vector<tuple<int, int, int> > lh,
+    vector<tuple<int, int, int> > rh)
+{
     BOOST_REQUIRE_EQUAL(lh.size(), rh.size());
     sort(lh.begin(), lh.end());
     sort(rh.begin(), rh.end());
