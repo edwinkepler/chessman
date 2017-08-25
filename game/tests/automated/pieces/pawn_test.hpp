@@ -97,7 +97,8 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_1_rank)
     Pawn* test_piece_2 = new Pawn(Chessman::WHITE, make_pair(1, 3));
     test_board->place_piece(make_pair(1, 2), test_piece);
     test_board->place_piece(make_pair(1, 3), test_piece_2);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID, test_piece->identify_move(make_pair(1, 3), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID,
+        test_piece->identify_move(make_pair(1, 3), test_board->board()));
     delete test_board;
     delete test_piece;
     delete test_piece_2;
@@ -110,7 +111,8 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_ranks)
     Pawn* test_piece_2 = new Pawn(Chessman::WHITE, make_pair(1, 4));
     test_board->place_piece(make_pair(1, 2), test_piece);
     test_board->place_piece(make_pair(1, 4), test_piece_2);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID, test_piece->identify_move(make_pair(1, 4), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID,
+        test_piece->identify_move(make_pair(1, 4), test_board->board()));
     delete test_board;
     delete test_piece;
     delete test_piece_2;
@@ -123,7 +125,8 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_ranks_2)
     Pawn* test_piece_2 = new Pawn(Chessman::WHITE, make_pair(1, 3));
     test_board->place_piece(make_pair(1, 2), test_piece);
     test_board->place_piece(make_pair(1, 3), test_piece_2);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID, test_piece->identify_move(make_pair(1, 4), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID,
+        test_piece->identify_move(make_pair(1, 4), test_board->board()));
     delete test_board;
     delete test_piece;
     delete test_piece_2;
@@ -135,7 +138,8 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_after_moved)
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     test_board->place_piece(make_pair(1, 2), test_piece);
     test_piece->add_move(make_pair(1, 3));
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID, test_piece->identify_move(make_pair(1, 5), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID,
+        test_piece->identify_move(make_pair(1, 5), test_board->board()));
     delete test_board;
     delete test_piece;
 }
@@ -147,7 +151,8 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_1_rank_black)
     Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(1, 6));
     test_board->place_piece(make_pair(1, 7), test_piece);
     test_board->place_piece(make_pair(1, 6), test_piece_2);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID, test_piece->identify_move(make_pair(1, 6), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID,
+        test_piece->identify_move(make_pair(1, 6), test_board->board()));
     delete test_board;
     delete test_piece;
     delete test_piece_2;
@@ -160,7 +165,8 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_ranks_black)
     Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(1, 5));
     test_board->place_piece(make_pair(1, 7), test_piece);
     test_board->place_piece(make_pair(1, 5), test_piece_2);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID, test_piece->identify_move(make_pair(1, 5), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID,
+        test_piece->identify_move(make_pair(1, 5), test_board->board()));
     delete test_board;
     delete test_piece;
     delete test_piece_2;
@@ -173,7 +179,8 @@ BOOST_AUTO_TEST_CASE(pawn_capture)
     Pawn* test_piece_black = new Pawn(Chessman::BLACK, make_pair(6, 3));
     test_board->place_piece(make_pair(5, 2), test_piece);
     test_board->place_piece(make_pair(6, 3), test_piece_black);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CAPTURE, test_piece->identify_move(make_pair(6, 3), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CAPTURE,
+        test_piece->identify_move(make_pair(6, 3), test_board->board()));
     delete test_board;
     delete test_piece;
     delete test_piece_black;
@@ -186,7 +193,8 @@ BOOST_AUTO_TEST_CASE(pawn_capture_2)
     Pawn* test_piece_black = new Pawn(Chessman::BLACK, make_pair(4, 3));
     test_board->place_piece(make_pair(5, 2), test_piece);
     test_board->place_piece(make_pair(4, 3), test_piece_black);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CAPTURE, test_piece->identify_move(make_pair(4, 3), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CAPTURE,
+        test_piece->identify_move(make_pair(4, 3), test_board->board()));
     delete test_board;
     delete test_piece;
     delete test_piece_black;
@@ -199,7 +207,8 @@ BOOST_AUTO_TEST_CASE(pawn_capture_black)
     Pawn* test_piece_black = new Pawn(Chessman::WHITE, make_pair(6, 6));
     test_board->place_piece(make_pair(5, 7), test_piece);
     test_board->place_piece(make_pair(6, 6), test_piece_black);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CAPTURE, test_piece->identify_move(make_pair(6, 6), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CAPTURE,
+        test_piece->identify_move(make_pair(6, 6), test_board->board()));
     delete test_board;
     delete test_piece;
     delete test_piece_black;
@@ -212,7 +221,8 @@ BOOST_AUTO_TEST_CASE(pawn_capture_black_2)
     Pawn* test_piece_black = new Pawn(Chessman::WHITE, make_pair(4, 6));
     test_board->place_piece(make_pair(5, 7), test_piece);
     test_board->place_piece(make_pair(4, 6), test_piece_black);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CAPTURE, test_piece->identify_move(make_pair(4, 6), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CAPTURE,
+        test_piece->identify_move(make_pair(4, 6), test_board->board()));
     delete test_board;
     delete test_piece;
     delete test_piece_black;
@@ -223,7 +233,8 @@ BOOST_AUTO_TEST_CASE(pawn_promotion)
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 7));
     test_board->place_piece(make_pair(1, 7), test_piece);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::PROMOTION, test_piece->identify_move(make_pair(1, 8), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::PROMOTION,
+        test_piece->identify_move(make_pair(1, 8), test_board->board()));
     delete test_board;
     delete test_piece;
 }
@@ -235,7 +246,8 @@ BOOST_AUTO_TEST_CASE(pawn_promotion_with_capture)
     Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(2, 8));
     test_board->place_piece(make_pair(1, 7), test_piece);
     test_board->place_piece(make_pair(2, 8), test_piece_2);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::PROCAPT, test_piece->identify_move(make_pair(2, 8), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::PROCAPT,
+        test_piece->identify_move(make_pair(2, 8), test_board->board()));
     delete test_board;
     delete test_piece;
     delete test_piece_2;
@@ -246,7 +258,8 @@ BOOST_AUTO_TEST_CASE(pawn_promotion_black)
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(1, 2));
     test_board->place_piece(make_pair(1, 2), test_piece);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::PROMOTION, test_piece->identify_move(make_pair(1, 1), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::PROMOTION,
+        test_piece->identify_move(make_pair(1, 1), test_board->board()));
     delete test_board;
     delete test_piece;
 }
