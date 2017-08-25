@@ -125,7 +125,6 @@ namespace Chessman
         */
         bool f_moved;
 
-        const pair<int, int> to_coords(int, int, int);
     protected:
         /**
         * @brief Hold unicode char.
