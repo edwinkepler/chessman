@@ -55,7 +55,8 @@ BOOST_AUTO_TEST_CASE(pawn_valid_move_1_rank)
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     test_board->place_piece(make_pair(1, 2), test_piece);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID, test_piece->identify_move(make_pair(1, 3), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID,
+        test_piece->identify_move(make_pair(1, 3), test_board->board()));
     delete test_board;
     delete test_piece;
 }
@@ -65,7 +66,8 @@ BOOST_AUTO_TEST_CASE(pawn_valid_move_2_ranks)
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     test_board->place_piece(make_pair(1, 2), test_piece);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID, test_piece->identify_move(make_pair(1, 4), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID,
+        test_piece->identify_move(make_pair(1, 4), test_board->board()));
     delete test_board;
     delete test_piece;
 }
@@ -75,7 +77,8 @@ BOOST_AUTO_TEST_CASE(pawn_valid_move_1_rank_black)
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(1, 7));
     test_board->place_piece(make_pair(1, 7), test_piece);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID, test_piece->identify_move(make_pair(1, 6), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID,
+        test_piece->identify_move(make_pair(1, 6), test_board->board()));
     delete test_board;
     delete test_piece;
 }
@@ -85,7 +88,8 @@ BOOST_AUTO_TEST_CASE(pawn_valid_move_2_ranks_black)
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(1, 7));
     test_board->place_piece(make_pair(1, 7), test_piece);
-    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID, test_piece->identify_move(make_pair(1, 5), test_board->board()));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID,
+        test_piece->identify_move(make_pair(1, 5), test_board->board()));
     delete test_board;
     delete test_piece;
 }
