@@ -4,7 +4,7 @@ Chess game.
 
 ## Requirements
 
-- C++14 compilator
+- C++11 compilator
 - CMake >= 3.5.1
 - Boost >= 1.55 (for test cases)
 
