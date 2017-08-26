@@ -11,16 +11,23 @@
 #include <tuple>
 
 #include "pieces/bishop.hpp"
+#include "pieces/rook.hpp"
+#include "board/board.hpp"
 
 #define BOOST_TEST_MAIN
 
+#include "../includes/vectors_of_tuples.hpp"
 #include <boost/test/unit_test.hpp>
 
 using namespace std;
+using namespace Chessman;
+using namespace Chessboard;
+
+#define VTUPLE vector<tuple<int, int, int> >
 
 BOOST_AUTO_TEST_CASE(bishop_white)
 {
-    Chessman::Bishop* bishop = new Chessman::Bishop(Chessman::WHITE, make_pair(1, 1));
+    Bishop* bishop = new Bishop(Chessman::WHITE, make_pair(1, 1));
     BOOST_REQUIRE_EQUAL(Chessman::BISHOP, bishop->type());
     BOOST_REQUIRE_EQUAL(Chessman::WHITE, bishop->owner());
     delete bishop;
@@ -28,7 +35,7 @@ BOOST_AUTO_TEST_CASE(bishop_white)
 
 BOOST_AUTO_TEST_CASE(bishop_black)
 {
-    Chessman::Bishop* bishop = new Chessman::Bishop(Chessman::BLACK, make_pair(1, 1));
+    Bishop* bishop = new Bishop(Chessman::BLACK, make_pair(1, 1));
     BOOST_REQUIRE_EQUAL(Chessman::BISHOP, bishop->type());
     BOOST_REQUIRE_EQUAL(Chessman::BLACK, bishop->owner());
     delete bishop;
@@ -36,12 +43,156 @@ BOOST_AUTO_TEST_CASE(bishop_black)
 
 BOOST_AUTO_TEST_CASE(bishop_archive_move)
 {
-    Chessman::Bishop* bishop = new Chessman::Bishop(Chessman::WHITE, make_pair(1, 1));
+    Bishop* bishop = new Bishop(Chessman::WHITE, make_pair(1, 1));
     bishop->add_move(make_pair(1, 2));
     BOOST_REQUIRE_EQUAL(1, bishop->last_move().first);
     BOOST_REQUIRE_EQUAL(2, bishop->last_move().second);
     BOOST_REQUIRE_EQUAL(true, bishop->moved());
     delete bishop;
+}
+
+BOOST_AUTO_TEST_CASE(bishop_valid_move)
+{
+    Board* test_board = new Board;
+    Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
+    test_board->place_piece(make_pair(4, 4), test_piece);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID,
+        test_piece->identify_move(make_pair(5, 5), test_board->board()));
+    delete test_board;
+    delete test_piece;
+}
+
+BOOST_AUTO_TEST_CASE(bishop_valid_move_2)
+{
+    Board* test_board = new Board;
+    Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
+    test_board->place_piece(make_pair(4, 4), test_piece);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID,
+        test_piece->identify_move(make_pair(8, 8), test_board->board()));
+    delete test_board;
+    delete test_piece;
+}
+
+BOOST_AUTO_TEST_CASE(bishop_valid_move_3)
+{
+    Board* test_board = new Board;
+    Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
+    test_board->place_piece(make_pair(4, 4), test_piece);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID,
+        test_piece->identify_move(make_pair(1, 1), test_board->board()));
+    delete test_board;
+    delete test_piece;
+}
+
+BOOST_AUTO_TEST_CASE(bishop_valid_move_4)
+{
+    Board* test_board = new Board;
+    Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
+    test_board->place_piece(make_pair(4, 4), test_piece);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID,
+        test_piece->identify_move(make_pair(1, 7), test_board->board()));
+    delete test_board;
+    delete test_piece;
+}
+
+BOOST_AUTO_TEST_CASE(bishop_valid_move_5)
+{
+    Board* test_board = new Board;
+    Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
+    test_board->place_piece(make_pair(4, 4), test_piece);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::VALID,
+        test_piece->identify_move(make_pair(7, 1), test_board->board()));
+    delete test_board;
+    delete test_piece;
+}
+
+BOOST_AUTO_TEST_CASE(bishop_capture)
+{
+    Board* test_board = new Board;
+    Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
+    Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(6, 6));
+    test_board->place_piece(make_pair(4, 4), test_piece);
+    test_board->place_piece(make_pair(6, 6), test_piece_2);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CAPTURE,
+        test_piece->identify_move(make_pair(6, 6), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+}
+
+BOOST_AUTO_TEST_CASE(bishop_capture_2)
+{
+    Board* test_board = new Board;
+    Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
+    Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(3, 5));
+    test_board->place_piece(make_pair(4, 4), test_piece);
+    test_board->place_piece(make_pair(3, 5), test_piece_2);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CAPTURE,
+        test_piece->identify_move(make_pair(3, 5), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+}
+
+BOOST_AUTO_TEST_CASE(bishop_capture_3)
+{
+    Board* test_board = new Board;
+    Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
+    Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(1, 1));
+    test_board->place_piece(make_pair(4, 4), test_piece);
+    test_board->place_piece(make_pair(1, 1), test_piece_2);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CAPTURE,
+        test_piece->identify_move(make_pair(1, 1), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+}
+
+BOOST_AUTO_TEST_CASE(bishop_invalid_move)
+{
+    Board* test_board = new Board;
+    Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
+    test_board->place_piece(make_pair(4, 4), test_piece);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID,
+        test_piece->identify_move(make_pair(4, 1), test_board->board()));
+    delete test_board;
+    delete test_piece;
+}
+
+BOOST_AUTO_TEST_CASE(bishop_list_legal_moves)
+{
+    Board* test_board = new Board;
+    Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(5, 5));
+    test_board->place_piece(make_pair(5, 5), test_piece);
+    VTUPLE v = {make_tuple(4, 4, 1), make_tuple(3, 3, 1), make_tuple(2, 2, 1),
+                make_tuple(1, 1, 1), make_tuple(6, 4, 1), make_tuple(7, 3, 1),
+                make_tuple(8, 2, 1), make_tuple(6, 6, 1), make_tuple(7, 7, 1),
+                make_tuple(8, 8, 1), make_tuple(4, 6, 1), make_tuple(3, 7, 1),
+                make_tuple(2, 8, 1)};
+    VTUPLE t = test_piece->list_moves(test_board->board());
+    TEST_VECTORS_OF_TUPLES_3(v, t);
+    delete test_board;
+    delete test_piece;
+}
+
+BOOST_AUTO_TEST_CASE(bishop_list_legal_moves_2)
+{
+    Board* test_board = new Board;
+    Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(5, 5));
+    Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(4, 4));
+    Rook* test_piece_3 = new Rook(Chessman::WHITE, make_pair(6, 6));
+    test_board->place_piece(make_pair(5, 5), test_piece);
+    test_board->place_piece(make_pair(4, 4), test_piece_2);
+    test_board->place_piece(make_pair(6, 6), test_piece_3);
+    VTUPLE v = {make_tuple(4, 4, 2), make_tuple(6, 4, 1), make_tuple(7, 3, 1),
+                make_tuple(8, 2, 1), make_tuple(4, 6, 1), make_tuple(3, 7, 1),
+                make_tuple(2, 8, 1)};
+    VTUPLE t = test_piece->list_moves(test_board->board());
+    TEST_VECTORS_OF_TUPLES_3(v, t);
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+    delete test_piece_3;
 }
 
 #endif // BISHOP_TEST_HPP
