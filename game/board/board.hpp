@@ -43,7 +43,7 @@ namespace Chessboard
         * @param Pair of coordinates (x, y).
         * @return Pointer to Chessman::Piece.
         */
-        Chessman::Piece* ptr_piece(const pair<int, int>&);
+        Chessman::Piece* point_piece(const pair<int, int>&);
 
         /**
         * @brief   Will move piece.

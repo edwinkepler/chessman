@@ -11,24 +11,25 @@ namespace Chessman
 
     const int Knight::identify_move(
         const pair<int, int>& to,
-        const vector<vector<Chessman::Piece*> >&)
+        const vector<vector<Chessman::Piece*> >& vb)
     {
-        // if(
-        //     (abs(getLastMove().first - to.first) == 2 &&
-        //     abs(getLastMove().second - to.second) == 1) ||
-        //         (abs(getLastMove().second - to.second) == 2 &&
-        //         abs(getLastMove().first - to.first) == 1))
-        // {
-        //     if(!b->isSquareEmpty(to)) {
-        //         if(b->getPiece(to)->getOwner() != getOwner()) {
-        //             return Chessman::MOVES::CAPTURE;
-        //         } else {
-        //             return Chessman::MOVES::INVALID;
-        //         }
-        //     } else {
-        //         return Chessman::MOVES::VALID;
-        //     }
-        // }
-        // return Chessman::MOVES::INVALID;
+        int x1 = last_move().first;
+        int y1 = last_move().second;
+        int x2 = to.first;
+        int y2 = to.second;
+        if((abs(x1 - x2) == 2 && abs(y1 - y2) == 1) ||
+            (abs(y1 - y2) == 2 && abs(x1 - x2) == 1))
+        {
+            if(vb[y2 - 1][vb.size() - x2] != nullptr) {
+                if(vb[y2 - 1][vb.size() - x2]->owner() != owner()) {
+                    return Chessman::MOVES::CAPTURE;
+                } else {
+                    return Chessman::MOVES::INVALID;
+                }
+            } else {
+                return Chessman::MOVES::VALID;
+            }
+        }
+        return Chessman::MOVES::INVALID;
     }
 }

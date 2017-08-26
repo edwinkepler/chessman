@@ -12,30 +12,30 @@ namespace Chessman
     // https://math.stackexchange.com/a/1566144
     const int Bishop::identify_move(
         const pair<int, int>& to,
-        const vector<vector<Chessman::Piece*> >&)
+        const vector<vector<Chessman::Piece*> >& vb)
     {
-        // if(
-        //     abs(to.first - getLastMove().first) == abs(to.second - getLastMove().second) &&
-        //     abs(to.first - getLastMove().first) > 0 &&
-        //     abs(to.second - getLastMove().second) > 0)
-        // {
-        //     int n = abs(to.first - getLastMove().first);
-        //     int xd = (to.first - getLastMove().first) / abs(to.first - getLastMove().first);
-        //     int yd = (to.second - getLastMove().second) / abs(to.second - getLastMove().second);
-        //     for(int i = 1; i <= n; i++) {
-        //         int ixd = getLastMove().first + (i * xd);
-        //         int iyd = getLastMove().second + (i * yd);
-        //         if(!b->isSquareEmpty(make_pair(ixd, iyd))) {
-        //             if(i == n && b->getPiece(make_pair(ixd, iyd))->getOwner() != getOwner()) {
-        //                 return Chessman::MOVES::CAPTURE;
-        //             } else {
-        //                 return Chessman::MOVES::INVALID;
-        //             }
-        //         }
-        //     }
-        //     return Chessman::MOVES::VALID;
-        // } else {
-        //     Chessman::MOVES::INVALID;
-        // }
+        int x1 = last_move().first;
+        int y1 = last_move().second;
+        int x2 = to.first;
+        int y2 = to.second;
+        if(abs(x2 - x1) == abs(y2 - y1) && abs(x2 - x1) > 0 && abs(y2 - y1) > 0) {
+            int n = abs(x2 - x1);
+            int xd = (x2 - x1) / abs(x2 - x1);
+            int yd = (y2 - y1) / abs(y2 - y1);
+            for(int i = 1; i <= n; i++) {
+                int ixd = x1 + (i * xd);
+                int iyd = y1 + (i * yd);
+                if(vb[iyd - 1][vb.size() - ixd] != nullptr) {
+                    if(i == n && vb[iyd - 1][vb.size() - ixd]->owner() != owner()) {
+                        return Chessman::MOVES::CAPTURE;
+                    } else {
+                        return Chessman::MOVES::INVALID;
+                    }
+                }
+            }
+            return Chessman::MOVES::VALID;
+        } else {
+            return Chessman::MOVES::INVALID;
+        }
     }
 }

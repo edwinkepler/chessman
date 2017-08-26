@@ -22,7 +22,7 @@ namespace Chessman
 
     const void Piece::add_move(const pair<int, int>& c) {
         v_history.push_back(c);
-        if(v_history.back() != v_history.at(v_history.size() - 2)){
+        if(v_history.back() != v_history.at(v_history.size() - 2)) {
             f_moved = true;
         }
     }
@@ -49,16 +49,12 @@ namespace Chessman
         vector<tuple<int, int, int> > vp;
         for(int i = 1; i <= vb.size(); i++) {
             for(int j = 1; j <= vb.at(0).size(); j++) {
-                int m = identify_move(to_coords(i, j, vb.size()), vb);
+                int m = identify_move(make_pair(i, j), vb);
                 if(m != Chessman::MOVES::INVALID) {
                     vp.push_back(make_tuple(i, j, m));
                 }
             }
         }
         return vp;
-    }
-
-    const pair<int, int> Piece::to_coords(int _x, int _y, int _size) {
-        return make_pair(_y - 1, _size - _x);
     }
 }
