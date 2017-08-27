@@ -4,6 +4,8 @@
 #include <utility>
 #include <vector>
 
+#include <exception>
+
 #include "pieces/pawn.hpp"
 #include "pieces/rook.hpp"
 #include "pieces/knight.hpp"
@@ -27,44 +29,44 @@ namespace Game
         Chessplayer::Player* player(int);
 
     private:
-        Chessboard::Board* board;
+        Chessboard::Board* board = new Chessboard::Board();
 
-        Chessman::Pawn* pawn_w_1;
-        Chessman::Pawn* pawn_w_2;
-        Chessman::Pawn* pawn_w_3;
-        Chessman::Pawn* pawn_w_4;
-        Chessman::Pawn* pawn_w_5;
-        Chessman::Pawn* pawn_w_6;
-        Chessman::Pawn* pawn_w_7;
-        Chessman::Pawn* pawn_w_8;
-        Chessman::Rook* rook_w_1;
-        Chessman::Rook* rook_w_2;
-        Chessman::Knight* knight_w_1;
-        Chessman::Knight* knight_w_2;
-        Chessman::Bishop* bishop_w_1;
-        Chessman::Bishop* bishop_w_2;
-        Chessman::Queen* queen_w;
-        Chessman::King* king_w;
+        Chessplayer::Player* play_white = new Chessplayer::Player("Player1", 0);
+        Chessplayer::Player* play_black = new Chessplayer::Player("Player2", 1);
 
-        Chessman::Pawn* pawn_b_1;
-        Chessman::Pawn* pawn_b_2;
-        Chessman::Pawn* pawn_b_3;
-        Chessman::Pawn* pawn_b_4;
-        Chessman::Pawn* pawn_b_5;
-        Chessman::Pawn* pawn_b_6;
-        Chessman::Pawn* pawn_b_7;
-        Chessman::Pawn* pawn_b_8;
-        Chessman::Rook* rook_b_1;
-        Chessman::Rook* rook_b_2;
-        Chessman::Knight* knight_b_1;
-        Chessman::Knight* knight_b_2;
-        Chessman::Bishop* bishop_b_1;
-        Chessman::Bishop* bishop_b_2;
-        Chessman::Queen* queen_b;
-        Chessman::King* king_b;
+        Chessman::Pawn* pawn_w_1 = new Chessman::Pawn(0, make_pair(1, 2));
+        Chessman::Pawn* pawn_w_2 = new Chessman::Pawn(0, make_pair(2, 2));
+        Chessman::Pawn* pawn_w_3 = new Chessman::Pawn(0, make_pair(3, 2));
+        Chessman::Pawn* pawn_w_4 = new Chessman::Pawn(0, make_pair(4, 2));
+        Chessman::Pawn* pawn_w_5 = new Chessman::Pawn(0, make_pair(5, 2));
+        Chessman::Pawn* pawn_w_6 = new Chessman::Pawn(0, make_pair(6, 2));
+        Chessman::Pawn* pawn_w_7 = new Chessman::Pawn(0, make_pair(7, 2));
+        Chessman::Pawn* pawn_w_8 = new Chessman::Pawn(0, make_pair(8, 2));
+        Chessman::Rook* rook_w_1 = new Chessman::Rook(0, make_pair(1, 1));
+        Chessman::Rook* rook_w_2 = new Chessman::Rook(0, make_pair(8, 1));
+        Chessman::Knight* knight_w_1 = new Chessman::Knight(0, make_pair(2, 1));
+        Chessman::Knight* knight_w_2 = new Chessman::Knight(0, make_pair(7, 1));
+        Chessman::Bishop* bishop_w_1 = new Chessman::Bishop(0, make_pair(3, 1));
+        Chessman::Bishop* bishop_w_2 = new Chessman::Bishop(0, make_pair(6, 1));
+        Chessman::Queen* queen_w = new Chessman::Queen(0, make_pair(4, 1));
+        Chessman::King* king_w = new Chessman::King(0, make_pair(5, 1));
 
-        Chessplayer::Player* player_white;
-        Chessplayer::Player* player_black;
+        Chessman::Pawn* pawn_b_1 = new Chessman::Pawn(1, make_pair(1, 7));
+        Chessman::Pawn* pawn_b_2 = new Chessman::Pawn(1, make_pair(2, 7));
+        Chessman::Pawn* pawn_b_3 = new Chessman::Pawn(1, make_pair(3, 7));
+        Chessman::Pawn* pawn_b_4 = new Chessman::Pawn(1, make_pair(4, 7));
+        Chessman::Pawn* pawn_b_5 = new Chessman::Pawn(1, make_pair(5, 7));
+        Chessman::Pawn* pawn_b_6 = new Chessman::Pawn(1, make_pair(6, 7));
+        Chessman::Pawn* pawn_b_7 = new Chessman::Pawn(1, make_pair(7, 7));
+        Chessman::Pawn* pawn_b_8 = new Chessman::Pawn(1, make_pair(8, 7));
+        Chessman::Rook* rook_b_1 = new Chessman::Rook(1, make_pair(1, 8));
+        Chessman::Rook* rook_b_2 = new Chessman::Rook(1, make_pair(8, 8));
+        Chessman::Knight* knight_b_1 = new Chessman::Knight(1, make_pair(2, 8));
+        Chessman::Knight* knight_b_2 = new Chessman::Knight(1, make_pair(7, 8));
+        Chessman::Bishop* bishop_b_1 = new Chessman::Bishop(1, make_pair(3, 8));
+        Chessman::Bishop* bishop_b_2 = new Chessman::Bishop(1, make_pair(6, 8));
+        Chessman::Queen* queen_b = new Chessman::Queen(1, make_pair(4, 8));
+        Chessman::King* king_b = new Chessman::King(1, make_pair(5, 8));
     };
 }
 
