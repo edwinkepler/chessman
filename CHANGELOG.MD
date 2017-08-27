@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+### Added
+
+- GameController::chessboard method
+- GameController::player method
+
 ### Changed
 
 - Initialisation of pieces, players and board objects moved from constructor to definition of GameController

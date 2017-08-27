@@ -270,4 +270,25 @@ BOOST_AUTO_TEST_CASE(init_standard_piece_b_8_8)
     delete test_game;
 }
 
+BOOST_AUTO_TEST_CASE(return_white_player)
+{
+    Game::GameController* test_game = new Game::GameController;
+    BOOST_REQUIRE_EQUAL(0, test_game->player(0)->side());
+    delete test_game;
+}
+
+BOOST_AUTO_TEST_CASE(return_black_player)
+{
+    Game::GameController* test_game = new Game::GameController;
+    BOOST_REQUIRE_EQUAL(1, test_game->player(1)->side());
+    delete test_game;
+}
+
+BOOST_AUTO_TEST_CASE(return_player_throw_if_argument_out_of_range)
+{
+    Game::GameController* test_game = new Game::GameController;
+    BOOST_CHECK_THROW(test_game->player(5), std::invalid_argument);
+    delete test_game;
+}
+
 #endif // GAMECONTROLLER_TEST_HPP

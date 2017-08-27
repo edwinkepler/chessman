@@ -81,4 +81,15 @@ namespace Game
     Chessboard::Board* GameController::chessboard() {
         return board;
     }
+
+    Chessplayer::Player* GameController::player(int _side) {
+        if(_side > 1 || _side < 0) {
+            throw invalid_argument(
+                "GameController::player(): Argument out of range.");
+        } else if(_side == 0) {
+            return play_white;
+        } else {
+            return play_black;
+        }
+    }
 }
