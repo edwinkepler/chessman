@@ -6,6 +6,8 @@
 #ifndef GAMECONTROLLER_TEST_HPP
 #define GAMECONTROLLER_TEST_HPP
 
+#include <utility>
+
 #include "gamecontroller.hpp"
 
 #define BOOST_TEST_MAIN
@@ -298,12 +300,37 @@ BOOST_AUTO_TEST_CASE(current_player_white)
     delete test_game;
 }
 
-// BOOST_AUTO_TEST_CASE(current_player_black)
-// {
-//     Game::GameController* test_game = new Game::GameController;
-//     test_game->move(blah);
-//     BOOST_REQUIRE_EQUAL(1, test_game->current_player());
-//     delete test_game;
-// }
+BOOST_AUTO_TEST_CASE(make_a_move)
+{
+    Game::GameController* test_game = new Game::GameController;
+    test_game->move(make_pair(1, 2), make_pair(1, 3));
+    BOOST_REQUIRE_EQUAL(false, 
+        test_game->chessboard()->is_sqr_empty(make_pair(1, 3)));
+    delete test_game;
+}
+
+BOOST_AUTO_TEST_CASE(make_a_move_invalid_argument_out_of_limits)
+{
+    Game::GameController* test_game = new Game::GameController;
+    BOOST_CHECK_THROW(test_game->move(make_pair(1, 2), make_pair(1, 9)),
+        std::invalid_argument);
+    delete test_game;
+}
+
+BOOST_AUTO_TEST_CASE(make_a_move_invalid_argument_empty_square)
+{
+    Game::GameController* test_game = new Game::GameController;
+    BOOST_CHECK_THROW(test_game->move(make_pair(1, 3), make_pair(1, 4)),
+        std::invalid_argument);
+    delete test_game;
+}
+
+BOOST_AUTO_TEST_CASE(current_player_black)
+{
+    Game::GameController* test_game = new Game::GameController;
+    test_game->move(make_pair(1, 2), make_pair(1, 3));
+    BOOST_REQUIRE_EQUAL(1, test_game->current_player());
+    delete test_game;
+}
 
 #endif // GAMECONTROLLER_TEST_HPP

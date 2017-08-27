@@ -98,4 +98,9 @@ namespace Game
     int GameController::current_player() {
         return i_curr_player;
     }
+
+    void GameController::move(const pair<int, int>& from, const pair<int, int>& to) {
+        board->move_piece(from, to);
+        i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+    }
 }

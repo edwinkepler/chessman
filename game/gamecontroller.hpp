@@ -24,10 +24,10 @@ namespace Game
         GameController();
         ~GameController();
 
-        void setup(int);
         Chessboard::Board* chessboard();
         Chessplayer::Player* player(int);
         int current_player();
+        void move(const pair<int, int>&, const pair<int, int>&);
 
     private:
         int i_curr_player = 0;
