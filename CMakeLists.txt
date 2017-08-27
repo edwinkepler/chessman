@@ -30,6 +30,9 @@ target_link_libraries(${PROJECT_NAME} chessman_game ${Boost_LIBRARIES})
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${PROJECT_NAME})
 
+add_executable(tests_manual ./game/tests/manual/tests_manual.cpp)
+target_link_libraries(tests_manual chessman_game)
+
 #Game build, no tests
 project(chessman-cli)
 
