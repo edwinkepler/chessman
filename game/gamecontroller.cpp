@@ -35,6 +35,8 @@ namespace Game
         board->place_piece(make_pair(6, 7), pawn_b_6);
         board->place_piece(make_pair(7, 7), pawn_b_7);
         board->place_piece(make_pair(8, 7), pawn_b_8);
+
+        i_curr_player = 0;
     }
 
     GameController::~GameController() {
@@ -91,5 +93,9 @@ namespace Game
         } else {
             return play_black;
         }
+    }
+
+    int GameController::current_player() {
+        return i_curr_player;
     }
 }

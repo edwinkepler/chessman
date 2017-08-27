@@ -27,8 +27,11 @@ namespace Game
         void setup(int);
         Chessboard::Board* chessboard();
         Chessplayer::Player* player(int);
+        int current_player();
 
     private:
+        int i_curr_player = 0;
+
         Chessboard::Board* board = new Chessboard::Board();
 
         Chessplayer::Player* play_white = new Chessplayer::Player("Player1", 0);

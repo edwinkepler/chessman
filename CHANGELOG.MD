@@ -4,6 +4,7 @@
 
 - GameController::chessboard method
 - GameController::player method
+- GameController::current_player method
 
 ### Changed
 

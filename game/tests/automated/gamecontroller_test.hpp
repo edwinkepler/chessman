@@ -291,4 +291,19 @@ BOOST_AUTO_TEST_CASE(return_player_throw_if_argument_out_of_range)
     delete test_game;
 }
 
+BOOST_AUTO_TEST_CASE(current_player_white)
+{
+    Game::GameController* test_game = new Game::GameController;
+    BOOST_REQUIRE_EQUAL(0, test_game->current_player());
+    delete test_game;
+}
+
+// BOOST_AUTO_TEST_CASE(current_player_black)
+// {
+//     Game::GameController* test_game = new Game::GameController;
+//     test_game->move(blah);
+//     BOOST_REQUIRE_EQUAL(1, test_game->current_player());
+//     delete test_game;
+// }
+
 #endif // GAMECONTROLLER_TEST_HPP
