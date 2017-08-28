@@ -13,9 +13,9 @@
 #include "pieces/queen.hpp"
 #include "pieces/king.hpp"
 
-#include "player/player.hpp"
+#include "player.hpp"
 
-#include "board/board.hpp"
+#include "board.hpp"
 
 namespace Game
 {

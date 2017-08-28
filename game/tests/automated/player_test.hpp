@@ -6,7 +6,7 @@
 #ifndef PLAYER_TEST_HPP
 #define PLAYER_TEST_HPP
 
-#include "player/player.hpp"
+#include "player.hpp"
 
 #define BOOST_TEST_MAIN
 

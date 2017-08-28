@@ -6,7 +6,7 @@
 #ifndef BOARD_TEST_HPP
 #define BOARD_TEST_HPP
 
-#include "board/board.hpp"
+#include "board.hpp"
 
 #include "pieces/pawn.hpp"
 #include "pieces/rook.hpp"
@@ -15,7 +15,7 @@
 #include "pieces/queen.hpp"
 #include "pieces/king.hpp"
 
-#include "player/player.hpp"
+#include "player.hpp"
 
 #define BOOST_TEST_MAIN
 

@@ -10,7 +10,7 @@
 #include <utility>
 #include <tuple>
 
-#include "board/board.hpp"
+#include "board.hpp"
 #include "pieces/king.hpp"
 #include "pieces/rook.hpp"
 

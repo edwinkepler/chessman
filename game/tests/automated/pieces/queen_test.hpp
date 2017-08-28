@@ -16,7 +16,7 @@
 
 #include "pieces/queen.hpp"
 #include "pieces/rook.hpp"
-#include "board/board.hpp"
+#include "board.hpp"
 
 #define BOOST_TEST_MAIN
 

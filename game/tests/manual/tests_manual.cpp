@@ -11,7 +11,7 @@
 #include <tuple>
 #include <algorithm>
 
-#include "board/board.hpp"
+#include "board.hpp"
 #include "pieces/pawn.hpp"
 #include "pieces/bishop.hpp"
 #include "pieces/king.hpp"

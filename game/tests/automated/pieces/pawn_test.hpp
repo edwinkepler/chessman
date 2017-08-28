@@ -11,7 +11,7 @@
 #include <tuple>
 
 #include "pieces/pawn.hpp"
-#include "board/board.hpp"
+#include "board.hpp"
 
 #define BOOST_TEST_MAIN
 
