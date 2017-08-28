@@ -1,3 +1,8 @@
+/*
+ * @copyright 2017 Edwin Kepler
+ * @license MIT
+ */
+
 #ifndef GAMECONTROLLER_HPP
 #define GAMECONTROLLER_HPP
 
@@ -17,20 +22,73 @@
 
 #include "board.hpp"
 
+/**
+ * @brief This namespace contains main interface for game of chess.
+ */
 namespace Game
 {
+    /**
+     * @brief   Main inteerface for game of chess.
+     * @details This class is a main interface, way of controlling game. It is
+     *          keeping track of movement, state of current match and plays.
+     */
     class GameController {
     public:
+        /**
+        * @brief   Constructor
+        * @details Prepare all pieces by placing them on board.
+        */
         GameController();
+        /**
+        * @brief   Decnstructor
+        * @details Delete all pieces, board, players and any other objects
+        *          created during playing the game.
+        */
         ~GameController();
 
+        /**
+        * @brief Returns pointer to Chessman::Board.
+        * @return Pointer to Chessman::Board.
+        */
         Chessboard::Board* chessboard();
+        /**
+        * @brief Returns pointer to Chessplayer::Player of a given side.
+        * @param Enum Chessplayer::SIDE.
+        * @return Pointer to Chessplayer::Player.
+        * @throw invalid_argument if argument is not one of Chessplayer::SIDE.
+        */
         Chessplayer::Player* player(int);
+        /**
+        * @brief Returns Chessplayer::SIDE of a player that turn is currently in
+        *        play.
+        * @return Chessplayer::SIDE.
+        */
         int current_player();
+        /**
+        * @brief   Will move piece.
+        * @details Move will be identified and if anything but invalid move will
+        *          happen. Pieces are moved on Chessboard::Board and board will
+        *          check if arguments are valid (exception will be thrown if 
+        *          not).
+        * @param Pair of coordinates (x, y) as a integers of moved piece.
+        * @param Pair of destination (x, y) as a integers of a destination.
+        */
         void move(const pair<int, int>&, const pair<int, int>&);
+        /**
+        * @brief   Will move piece.
+        * @details Move will be identified and if anything but invalid move will
+        *          happen. Pieces are moved on Chessboard::Board and board will
+        *          check if arguments are valid (exception will be thrown if 
+        *          not).
+        * @param Pair of coordinates (x, y) as a char and int of moved piece.
+        * @param Pair of destination (x, y) as a char and int of a destination.
+        */
         void move(const pair<char, int>&, const pair<char, int>&);
 
     private:
+        /**
+        * @brief Player currently playing his turn.
+        */
         int i_curr_player = 0;
 
         Chessboard::Board* board = new Chessboard::Board();
@@ -72,6 +130,11 @@ namespace Game
         Chessman::Queen* queen_b = new Chessman::Queen(1, make_pair(4, 8));
         Chessman::King* king_b = new Chessman::King(1, make_pair(5, 8));
 
+        /**
+        * @brief Helper method to convert characters to integers.
+        * @param Character you want to convert.
+        * @return Integer converted from given character.
+        */
         int ctoi(char);
     };
 }
