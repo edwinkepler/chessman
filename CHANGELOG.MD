@@ -5,7 +5,7 @@
 - GameController::chessboard method
 - GameController::player method
 - GameController::current_player method
-- GameController::move method
+- GameController::move method (for numbers and char+number - Portable Game Notation)
 
 ### Changed
 

@@ -28,6 +28,7 @@ namespace Game
         Chessplayer::Player* player(int);
         int current_player();
         void move(const pair<int, int>&, const pair<int, int>&);
+        void move(const pair<char, int>&, const pair<char, int>&);
 
     private:
         int i_curr_player = 0;
@@ -70,6 +71,8 @@ namespace Game
         Chessman::Bishop* bishop_b_2 = new Chessman::Bishop(1, make_pair(6, 8));
         Chessman::Queen* queen_b = new Chessman::Queen(1, make_pair(4, 8));
         Chessman::King* king_b = new Chessman::King(1, make_pair(5, 8));
+
+        int ctoi(char);
     };
 }
 

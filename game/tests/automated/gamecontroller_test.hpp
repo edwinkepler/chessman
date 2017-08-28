@@ -309,6 +309,15 @@ BOOST_AUTO_TEST_CASE(make_a_move)
     delete test_game;
 }
 
+BOOST_AUTO_TEST_CASE(make_a_char_int)
+{
+    Game::GameController* test_game = new Game::GameController;
+    test_game->move(make_pair('a', 2), make_pair('a', 3));
+    BOOST_REQUIRE_EQUAL(false, 
+        test_game->chessboard()->is_sqr_empty(make_pair(1, 3)));
+    delete test_game;
+}
+
 BOOST_AUTO_TEST_CASE(make_a_move_invalid_argument_out_of_limits)
 {
     Game::GameController* test_game = new Game::GameController;

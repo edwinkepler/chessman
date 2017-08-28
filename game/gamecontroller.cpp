@@ -106,4 +106,23 @@ namespace Game
         board->move_piece(from, to);
         i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
     }
+
+    void GameController::move(
+        const pair<char, int>& from,
+        const pair<char, int>& to)
+    {
+        int x1 = ctoi(get<0>(from));
+        int x2 = ctoi(get<0>(to));
+        move(make_pair(x1, get<1>(from)), make_pair(x2, get<1>(to)));
+    }
+
+    int GameController::ctoi(char _c) {
+        char arr[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+        for(int i = 0; i < 8; ++i) {
+            if(arr[i] == _c) {
+                return i + 1;
+            }
+        }
+        return 0;
+    }
 }
