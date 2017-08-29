@@ -17,9 +17,9 @@ void TEST_VECTORS_OF_TUPLES_3(
     sort(lh.begin(), lh.end());
     sort(rh.begin(), rh.end());
     for(int i = 0; i < lh.size(); i++) {
-        BOOST_REQUIRE_EQUAL(get<0>(lh.at(i)), get<0>(lh.at(i)));
-        BOOST_REQUIRE_EQUAL(get<1>(lh.at(i)), get<1>(lh.at(i)));
-        BOOST_REQUIRE_EQUAL(get<2>(lh.at(i)), get<2>(lh.at(i)));
+        BOOST_REQUIRE_EQUAL(get<0>(lh.at(i)), get<0>(rh.at(i)));
+        BOOST_REQUIRE_EQUAL(get<1>(lh.at(i)), get<1>(rh.at(i)));
+        BOOST_REQUIRE_EQUAL(get<2>(lh.at(i)), get<2>(rh.at(i)));
     }
 }
 
