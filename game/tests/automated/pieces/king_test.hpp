@@ -84,6 +84,130 @@ BOOST_AUTO_TEST_CASE(king_invalid_move)
     delete test_piece;
 }
 
+BOOST_AUTO_TEST_CASE(king_castling_right)
+{
+    Chessboard::Board* test_board = new Chessboard::Board;
+    King* test_piece = new King(Chessman::WHITE, make_pair(5, 1));
+    Rook* test_piece_2 = new Rook(Chessman::WHITE, make_pair(8, 1));
+    test_board->place_piece(make_pair(5, 1), test_piece);
+    test_board->place_piece(make_pair(8, 1), test_piece_2);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CASTLING,
+        test_piece->identify_move(make_pair(7, 1), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+}
+
+BOOST_AUTO_TEST_CASE(king_castling_left)
+{
+    Chessboard::Board* test_board = new Chessboard::Board;
+    King* test_piece = new King(Chessman::WHITE, make_pair(5, 1));
+    Rook* test_piece_2 = new Rook(Chessman::WHITE, make_pair(1, 1));
+    test_board->place_piece(make_pair(5, 1), test_piece);
+    test_board->place_piece(make_pair(1, 1), test_piece_2);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CASTLING,
+        test_piece->identify_move(make_pair(3, 1), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+}
+
+BOOST_AUTO_TEST_CASE(king_castling_left_blocked)
+{
+    Chessboard::Board* test_board = new Chessboard::Board;
+    King* test_piece = new King(Chessman::WHITE, make_pair(5, 1));
+    Rook* test_piece_2 = new Rook(Chessman::WHITE, make_pair(1, 1));
+    Rook* test_piece_3 = new Rook(Chessman::BLACK, make_pair(4, 4));
+    test_board->place_piece(make_pair(5, 1), test_piece);
+    test_board->place_piece(make_pair(1, 1), test_piece_2);
+    test_board->place_piece(make_pair(4, 4), test_piece_3);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID,
+        test_piece->identify_move(make_pair(3, 1), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+    delete test_piece_3;
+}
+
+BOOST_AUTO_TEST_CASE(king_castling_right_blocked)
+{
+    Chessboard::Board* test_board = new Chessboard::Board;
+    King* test_piece = new King(Chessman::WHITE, make_pair(5, 1));
+    Rook* test_piece_2 = new Rook(Chessman::WHITE, make_pair(8, 1));
+    Rook* test_piece_3 = new Rook(Chessman::BLACK, make_pair(7, 4));
+    test_board->place_piece(make_pair(5, 1), test_piece);
+    test_board->place_piece(make_pair(8, 1), test_piece_2);
+    test_board->place_piece(make_pair(7, 4), test_piece_3);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID,
+        test_piece->identify_move(make_pair(7, 1), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+    delete test_piece_3;
+}
+
+BOOST_AUTO_TEST_CASE(king_castling_right_black)
+{
+    Chessboard::Board* test_board = new Chessboard::Board;
+    King* test_piece = new King(Chessman::BLACK, make_pair(5, 8));
+    Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(8, 8));
+    test_board->place_piece(make_pair(5, 8), test_piece);
+    test_board->place_piece(make_pair(8, 8), test_piece_2);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CASTLING,
+        test_piece->identify_move(make_pair(7, 8), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+}
+
+BOOST_AUTO_TEST_CASE(king_castling_left_black)
+{
+    Chessboard::Board* test_board = new Chessboard::Board;
+    King* test_piece = new King(Chessman::BLACK, make_pair(5, 8));
+    Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(1, 8));
+    test_board->place_piece(make_pair(5, 8), test_piece);
+    test_board->place_piece(make_pair(1, 8), test_piece_2);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::CASTLING,
+        test_piece->identify_move(make_pair(3, 8), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+}
+
+BOOST_AUTO_TEST_CASE(king_castling_right_black_blocked)
+{
+    Chessboard::Board* test_board = new Chessboard::Board;
+    King* test_piece = new King(Chessman::BLACK, make_pair(5, 8));
+    Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(8, 8));
+    Rook* test_piece_3 = new Rook(Chessman::WHITE, make_pair(6, 3));
+    test_board->place_piece(make_pair(5, 8), test_piece);
+    test_board->place_piece(make_pair(8, 8), test_piece_2);
+    test_board->place_piece(make_pair(6, 3), test_piece_3);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID,
+        test_piece->identify_move(make_pair(7, 8), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+    delete test_piece_3;
+}
+
+BOOST_AUTO_TEST_CASE(king_castling_left_black_blocked)
+{
+    Chessboard::Board* test_board = new Chessboard::Board;
+    King* test_piece = new King(Chessman::BLACK, make_pair(5, 8));
+    Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(1, 8));
+    Rook* test_piece_3 = new Rook(Chessman::WHITE, make_pair(3, 3));
+    test_board->place_piece(make_pair(5, 8), test_piece);
+    test_board->place_piece(make_pair(1, 8), test_piece_2);
+    test_board->place_piece(make_pair(3, 3), test_piece_3);
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::INVALID,
+        test_piece->identify_move(make_pair(3, 8), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+    delete test_piece_3;
+}
+
 BOOST_AUTO_TEST_CASE(king_list_legal_moves)
 {
     Board* test_board = new Board;
