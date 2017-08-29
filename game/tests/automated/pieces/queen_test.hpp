@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE(queen_list_legal_moves)
                 make_tuple(5, 7, 1), make_tuple(4, 8, 1), make_tuple(6, 5, 1),
                 make_tuple(1, 6, 1), make_tuple(2, 6, 1), make_tuple(3, 6, 1),
                 make_tuple(4, 6, 1), make_tuple(5, 6, 1), make_tuple(5, 5, 2),
-                make_tuple(7, 6, 1), make_tuple(8, 4, 1)};
+                make_tuple(7, 5, 1), make_tuple(8, 4, 1)};
     VTUPLE t = test_piece->list_moves(test_board->board());
     TEST_VECTORS_OF_TUPLES_3(v, t);
     delete test_board;
