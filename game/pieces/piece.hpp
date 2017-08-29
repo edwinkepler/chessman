@@ -104,7 +104,7 @@ namespace Chessman
         */
         virtual const int identify_move(
             const pair<int, int>&,
-            const vector<vector<Chessman::Piece*> >&) {};
+            const vector<vector<Chessman::Piece*> >&) = 0;
         /**
         * @brief Finds all legal moves for this piece.
         * @param pointer to the Chessboard::Board.
