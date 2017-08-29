@@ -36,6 +36,7 @@ namespace Chessboard
             throw invalid_argument("Board::move_piece(): Square not empty.");
         } else {
             place_piece(to, point_piece(from));
+            point_piece(from)->add_move(to);
             nullify(from);
         }
     }

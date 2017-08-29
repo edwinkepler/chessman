@@ -3,44 +3,6 @@
 namespace Game
 {
     GameController::GameController() {
-        board = new Chessboard::Board();
-
-        player_white = new Chessplayer::Player("Player1", Chessplayer::SIDE::WHITE);
-        player_black = new Chessplayer::Player("Player2", Chessplayer::SIDE::BLACK);
-
-        pawn_w_1    = new Chessman::Pawn(   Chessplayer::WHITE, make_pair(1, 2));
-        pawn_w_2    = new Chessman::Pawn(   Chessplayer::WHITE, make_pair(2, 2));
-        pawn_w_3    = new Chessman::Pawn(   Chessplayer::WHITE, make_pair(3, 2));
-        pawn_w_4    = new Chessman::Pawn(   Chessplayer::WHITE, make_pair(4, 2));
-        pawn_w_5    = new Chessman::Pawn(   Chessplayer::WHITE, make_pair(5, 2));
-        pawn_w_6    = new Chessman::Pawn(   Chessplayer::WHITE, make_pair(6, 2));
-        pawn_w_7    = new Chessman::Pawn(   Chessplayer::WHITE, make_pair(7, 2));
-        pawn_w_8    = new Chessman::Pawn(   Chessplayer::WHITE, make_pair(8, 2));
-        rook_w_1    = new Chessman::Rook(   Chessplayer::WHITE, make_pair(1, 1));
-        rook_w_2    = new Chessman::Rook(   Chessplayer::WHITE, make_pair(8, 1));
-        knight_w_1  = new Chessman::Knight( Chessplayer::WHITE, make_pair(2, 1));
-        knight_w_2  = new Chessman::Knight( Chessplayer::WHITE, make_pair(7, 1));
-        bishop_w_1  = new Chessman::Bishop( Chessplayer::WHITE, make_pair(3, 1));
-        bishop_w_2  = new Chessman::Bishop( Chessplayer::WHITE, make_pair(6, 1));
-        queen_w     = new Chessman::Queen(  Chessplayer::WHITE, make_pair(4, 1));
-        king_w      = new Chessman::King(   Chessplayer::WHITE, make_pair(5, 1));
-        pawn_b_1    = new Chessman::Pawn(   Chessplayer::BLACK, make_pair(1, 7));
-        pawn_b_2    = new Chessman::Pawn(   Chessplayer::BLACK, make_pair(2, 7));
-        pawn_b_3    = new Chessman::Pawn(   Chessplayer::BLACK, make_pair(3, 7));
-        pawn_b_4    = new Chessman::Pawn(   Chessplayer::BLACK, make_pair(4, 7));
-        pawn_b_5    = new Chessman::Pawn(   Chessplayer::BLACK, make_pair(5, 7));
-        pawn_b_6    = new Chessman::Pawn(   Chessplayer::BLACK, make_pair(6, 7));
-        pawn_b_7    = new Chessman::Pawn(   Chessplayer::BLACK, make_pair(7, 7));
-        pawn_b_8    = new Chessman::Pawn(   Chessplayer::BLACK, make_pair(8, 7));
-        rook_b_1    = new Chessman::Rook(   Chessplayer::BLACK, make_pair(1, 8));
-        rook_b_2    = new Chessman::Rook(   Chessplayer::BLACK, make_pair(8, 8));
-        knight_b_1  = new Chessman::Knight( Chessplayer::BLACK, make_pair(2, 8));
-        knight_b_2  = new Chessman::Knight( Chessplayer::BLACK, make_pair(7, 8));
-        bishop_b_1  = new Chessman::Bishop( Chessplayer::BLACK, make_pair(3, 8));
-        bishop_b_2  = new Chessman::Bishop( Chessplayer::BLACK, make_pair(6, 8));
-        queen_b =   new Chessman::Queen(    Chessplayer::BLACK, make_pair(4, 8));
-        king_b =    new Chessman::King(     Chessplayer::BLACK, make_pair(5, 8));
-
         board->place_piece(make_pair(1, 1), rook_w_1);
         board->place_piece(make_pair(2, 1), knight_w_1);
         board->place_piece(make_pair(3, 1), bishop_w_1);
@@ -73,13 +35,15 @@ namespace Game
         board->place_piece(make_pair(6, 7), pawn_b_6);
         board->place_piece(make_pair(7, 7), pawn_b_7);
         board->place_piece(make_pair(8, 7), pawn_b_8);
+
+        i_curr_player = 0;
     }
 
     GameController::~GameController() {
         delete board;
 
-        delete player_white;
-        delete player_black;
+        delete play_white;
+        delete play_black;
 
         delete pawn_w_1;
         delete pawn_w_2;
@@ -118,5 +82,47 @@ namespace Game
 
     Chessboard::Board* GameController::chessboard() {
         return board;
+    }
+
+    Chessplayer::Player* GameController::player(int _side) {
+        if(_side > 1 || _side < 0) {
+            throw invalid_argument(
+                "GameController::player(): Argument out of range.");
+        } else if(_side == 0) {
+            return play_white;
+        } else {
+            return play_black;
+        }
+    }
+
+    int GameController::current_player() {
+        return i_curr_player;
+    }
+
+    void GameController::move(
+            const pair<int, int>& from,
+            const pair<int, int>& to)
+    {
+        board->move_piece(from, to);
+        i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+    }
+
+    void GameController::move(
+        const pair<char, int>& from,
+        const pair<char, int>& to)
+    {
+        int x1 = ctoi(get<0>(from));
+        int x2 = ctoi(get<0>(to));
+        move(make_pair(x1, get<1>(from)), make_pair(x2, get<1>(to)));
+    }
+
+    int GameController::ctoi(char _c) {
+        char arr[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+        for(int i = 0; i < 8; ++i) {
+            if(arr[i] == _c) {
+                return i + 1;
+            }
+        }
+        return 0;
     }
 }

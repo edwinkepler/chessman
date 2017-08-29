@@ -1,3 +1,16 @@
+## [Unreleased]
+
+### Added
+
+- GameController::chessboard method
+- GameController::player method
+- GameController::current_player method
+- GameController::move method (for numbers and char+number - Portable Game Notation)
+
+### Changed
+
+- Initialisation of pieces, players and board objects moved from constructor to definition of GameController
+
 ## [0.1.0] 2017-08-27
 
 ### Added

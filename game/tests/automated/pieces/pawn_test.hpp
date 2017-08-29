@@ -11,7 +11,7 @@
 #include <tuple>
 
 #include "pieces/pawn.hpp"
-#include "board/board.hpp"
+#include "board.hpp"
 
 #define BOOST_TEST_MAIN
 
@@ -268,6 +268,36 @@ BOOST_AUTO_TEST_CASE(pawn_promotion_black)
     delete test_piece;
 }
 
+BOOST_AUTO_TEST_CASE(pawn_en_passant)
+{
+    Board* test_board = new Board;
+    Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(2, 5));
+    Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(1, 7));
+    test_board->place_piece(make_pair(2, 5), test_piece);
+    test_board->place_piece(make_pair(1, 7), test_piece_2);
+    test_board->move_piece(make_pair(1, 7), make_pair(1, 5));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::EN_PASSANT,
+        test_piece->identify_move(make_pair(1, 6), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+}
+
+BOOST_AUTO_TEST_CASE(pawn_en_passant_black)
+{
+    Board* test_board = new Board;
+    Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(2, 4));
+    Pawn* test_piece_2 = new Pawn(Chessman::WHITE, make_pair(1, 2));
+    test_board->place_piece(make_pair(2, 4), test_piece);
+    test_board->place_piece(make_pair(1, 2), test_piece_2);
+    test_board->move_piece(make_pair(1, 2), make_pair(1, 4));
+    BOOST_REQUIRE_EQUAL(Chessman::MOVES::EN_PASSANT,
+        test_piece->identify_move(make_pair(1, 3), test_board->board()));
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+}
+
 BOOST_AUTO_TEST_CASE(pawn_list_legal_moves)
 {
     Board* test_board = new Board;
@@ -318,6 +348,40 @@ BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_4)
     test_board->place_piece(make_pair(1, 7), test_piece);
     test_board->place_piece(make_pair(2, 8), test_piece_2);
     VTUPLE v = {make_tuple(1, 8, 5), make_tuple(2, 8, 6)};
+    VTUPLE t = test_piece->list_moves(test_board->board());
+    TEST_VECTORS_OF_TUPLES_3(v, t);
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+}
+
+BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_5)
+{
+    Board* test_board = new Board;
+    Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(2, 5));
+    Pawn* test_piece_2 = new Pawn(Chessman::WHITE, make_pair(1, 2));
+    test_board->place_piece(make_pair(2, 5), test_piece);
+    test_board->place_piece(make_pair(1, 2), test_piece_2);
+    test_board->move_piece(make_pair(1, 2), make_pair(1, 4));
+    test_board->move_piece(make_pair(2, 5), make_pair(2, 4));
+    VTUPLE v = {make_tuple(1, 3, 3), make_tuple(2, 3, 1)};
+    VTUPLE t = test_piece->list_moves(test_board->board());
+    TEST_VECTORS_OF_TUPLES_3(v, t);
+    delete test_board;
+    delete test_piece;
+    delete test_piece_2;
+}
+
+BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_6)
+{
+    Board* test_board = new Board;
+    Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(5, 4));
+    Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(4, 7));
+    test_board->place_piece(make_pair(5, 4), test_piece);
+    test_board->place_piece(make_pair(4, 7), test_piece_2);
+    test_board->move_piece(make_pair(4, 7), make_pair(4, 5));
+    test_board->move_piece(make_pair(5, 4), make_pair(5, 5));
+    VTUPLE v = {make_tuple(4, 6, 3), make_tuple(5, 6, 1)};
     VTUPLE t = test_piece->list_moves(test_board->board());
     TEST_VECTORS_OF_TUPLES_3(v, t);
     delete test_board;
