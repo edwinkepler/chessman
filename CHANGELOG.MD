@@ -1,3 +1,9 @@
+## [Unreleased]
+
+### Added
+
+- Add Debug::Log class
+
 ## [0.1.1] 2017-08-30
 
 ### Added
