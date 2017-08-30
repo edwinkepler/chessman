@@ -2,7 +2,7 @@
 
 ### Added
 
-- Add Debug::Log class
+- Debug::Log class
 
 ## [0.1.1] 2017-08-30
 
@@ -19,7 +19,7 @@
 
 - Initialisation of pieces, players and board objects moved from constructor to definition of GameController
 
-### Fix
+### Fixed
 
 - Vector of tuples is testing LH with LH ending with auto pass in automated tests
 - queen_list_legal_moves test fails
