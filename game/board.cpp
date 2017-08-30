@@ -73,7 +73,7 @@ namespace Chessboard
         }
     }
 
-    const vector<vector<Chessman::Piece*> > Board::board() {
+    const vector<vector<Chessman::Piece*>> Board::board() {
         return v_board;
     }
 

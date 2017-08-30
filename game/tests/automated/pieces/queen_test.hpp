@@ -30,7 +30,7 @@ using namespace std;
 using namespace Chessman;
 using namespace Chessboard;
 
-#define VTUPLE vector<tuple<int, int, int> >
+#define VTUPLE vector<tuple<int, int, int>>
 
 BOOST_AUTO_TEST_CASE(queen_white)
 {

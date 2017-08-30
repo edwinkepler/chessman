@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void print_vector_of_tuples_3(vector<tuple<int, int, int> > vot) {
+void print_vector_of_tuples_3(vector<tuple<int, int, int>> vot) {
     for(int i = 0; i < vot.size(); i++) {
         cout << "(" << get<0>(vot.at(i)) << ", " << get<1>(vot.at(i)) 
              << ", " << get<2>(vot.at(i)) << ")" << endl;
@@ -18,8 +18,8 @@ void print_vector_of_tuples_3(vector<tuple<int, int, int> > vot) {
 }
 
 void TEST_VECTORS_OF_TUPLES_3(
-    vector<tuple<int, int, int> > lh,
-    vector<tuple<int, int, int> > rh)
+    vector<tuple<int, int, int>> lh,
+    vector<tuple<int, int, int>> rh)
 {
     sort(lh.begin(), lh.end());
     sort(rh.begin(), rh.end());

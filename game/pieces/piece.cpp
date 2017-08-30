@@ -39,14 +39,14 @@ namespace Chessman
         return f_moved;
     }
 
-    const vector<pair<int, int> > Piece::history() {
+    const vector<pair<int, int>> Piece::history() {
         return v_history;
     }
 
-    const vector<tuple<int, int, int> > Piece::list_moves(
-        const vector<vector<Chessman::Piece*> >& vb) 
+    const vector<tuple<int, int, int>> Piece::list_moves(
+        const vector<vector<Chessman::Piece*>>& vb) 
     {
-        vector<tuple<int, int, int> > vp;
+        vector<tuple<int, int, int>> vp;
         for(int i = 1; i <= vb.size(); i++) {
             for(int j = 1; j <= vb.at(0).size(); j++) {
                 int m = identify_move(make_pair(i, j), vb);

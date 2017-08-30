@@ -12,7 +12,7 @@ namespace Chessman
 
     const int King::identify_move(
         const pair<int, int>& to,
-        const vector<vector<Chessman::Piece*> >& vb)
+        const vector<vector<Chessman::Piece*>>& vb)
     {
         int x1 = last_move().first;
         int y1 = last_move().second;
@@ -22,7 +22,7 @@ namespace Chessman
            (abs(y1 - y2) == 1 && abs(x1 - x2) < 1) ||
            (abs(x1 - x2) == 1 && abs(y1 - y2) == 1))
         {
-            vector<tuple<int, int, int> > vp;
+            vector<tuple<int, int, int>> vp;
             // Prevent moving into capturing zone. First we need to find all
             // moves of enemy pieces.
             for(int i = 1; i <= vb.size(); i++) {
@@ -49,7 +49,7 @@ namespace Chessman
         // Check for castling
         //
         } else if(y1 == y2 && abs(x1 - x2) == 2 && !moved()) {
-            vector<tuple<int, int, int> > vp;
+            vector<tuple<int, int, int>> vp;
             // Prevent moving into capturing zone. First we need to find all
             // moves of enemy pieces.
             for(int i = 1; i <= vb.size(); i++) {
