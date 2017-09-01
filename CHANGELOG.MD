@@ -5,6 +5,9 @@
 - Add Debug::Log class
 - Add Game::History class
 
+### Fixed
+
+- king_castling_right_black_blocked test fails #9
 
 ## [0.1.1] 2017-08-30
 
