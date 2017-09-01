@@ -99,30 +99,65 @@ namespace Game
         return i_curr_player;
     }
 
-    void GameController::move(
+    int GameController::move(
             const pair<int, int>& from,
             const pair<int, int>& to)
     {
-        board->move_piece(from, to);
-        i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+        auto piece = board->point_piece(from);
+        auto move_type = piece->identify_move(to, board->board());
+        // Valid move, not effecting other pieces
+        if(move_type == 1) {
+            board->move_piece(from, to);
+
+            hist.add_move(
+                Move(move_type, 
+                    from.first, 
+                    from.second, 
+                    to.first, 
+                    to.second, 
+                    piece->type(), 
+                    0, 0));
+
+            i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+            return move_type;
+        // Valid move, effecting other pieces
+        } else if(move_type == 2 || move_type == 3 || move_type == 4) {
+            board->move_piece(from, to);
+
+            auto piece_to = board->point_piece(to);
+            hist.add_move(
+                Move(move_type, 
+                    from.first, 
+                    from.second, 
+                    to.first, 
+                    to.second, 
+                    piece->type(), 
+                    piece_to->type(), 
+                    0));
+
+            i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+            return move_type;
+        } else if(move_type == 5 || move_type == 6) {
+            return move_type;
+        } else {
+            // Just to trigger exception throw from board
+            board->move_piece(from, to);
+        }
+
+        return move_type;
     }
 
-    void GameController::move(
+    int GameController::move(
         const pair<char, int>& from,
         const pair<char, int>& to)
     {
-        int x1 = ctoi(get<0>(from));
-        int x2 = ctoi(get<0>(to));
-        move(make_pair(x1, get<1>(from)), make_pair(x2, get<1>(to)));
+        int x1 = Helper::ctoi(get<0>(from));
+        int x2 = Helper::ctoi(get<0>(to));
+        return move(make_pair(x1, get<1>(from)), make_pair(x2, get<1>(to)));
     }
 
-    int GameController::ctoi(char _c) {
-        char arr[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
-        for(int i = 0; i < 8; ++i) {
-            if(arr[i] == _c) {
-                return i + 1;
-            }
-        }
-        return 0;
+    int GameController::promotion() {
+        // todo
+        i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
     }
 }

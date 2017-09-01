@@ -19,8 +19,10 @@
 #include "pieces/king.hpp"
 
 #include "player.hpp"
-
+#include "history.hpp"
 #include "board.hpp"
+
+#include "helpers/conversion.hpp"
 
 /**
  * @brief This namespace contains main interface for game of chess.
@@ -72,8 +74,9 @@ namespace Game
         *          not).
         * @param Pair of coordinates (x, y) as a integers of moved piece.
         * @param Pair of destination (x, y) as a integers of a destination.
+        * @return Chessman::MOVE type of the move.
         */
-        void move(const pair<int, int>&, const pair<int, int>&);
+        int move(const pair<int, int>&, const pair<int, int>&);
         /**
         * @brief   Will move piece.
         * @details Move will be identified and if anything but invalid move will
@@ -82,14 +85,19 @@ namespace Game
         *          not).
         * @param Pair of coordinates (x, y) as a char and int of moved piece.
         * @param Pair of destination (x, y) as a char and int of a destination.
+        * @return Chessman::MOVE type of the move.
         */
-        void move(const pair<char, int>&, const pair<char, int>&);
+        int move(const pair<char, int>&, const pair<char, int>&);
+
+        int promotion();
 
     private:
         /**
         * @brief Player currently playing his turn.
         */
         int i_curr_player = 0;
+
+        History hist;
 
         Chessboard::Board* board = new Chessboard::Board();
 
@@ -129,13 +137,6 @@ namespace Game
         Chessman::Bishop* bishop_b_2 = new Chessman::Bishop(1, make_pair(6, 8));
         Chessman::Queen* queen_b = new Chessman::Queen(1, make_pair(4, 8));
         Chessman::King* king_b = new Chessman::King(1, make_pair(5, 8));
-
-        /**
-        * @brief Helper method to convert characters to integers.
-        * @param Character you want to convert.
-        * @return Integer converted from given character.
-        */
-        int ctoi(char);
     };
 }
 
