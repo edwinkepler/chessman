@@ -26,32 +26,39 @@ using namespace Chessboard;
 
 BOOST_AUTO_TEST_CASE(pawn_white)
 {
+    Debug::Log::test_func_head("pawn_white");
     Pawn* pawn = new Pawn(Chessman::WHITE, make_pair(1, 1));
     BOOST_REQUIRE_EQUAL(Chessman::TYPE::PAWN, pawn->type());
     BOOST_REQUIRE_EQUAL(Chessman::WHITE, pawn->owner());
     delete pawn;
+    Debug::Log::test_func_foot("pawn_white");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_black)
 {
+    Debug::Log::test_func_head("pawn_black");
     Pawn* pawn = new Pawn(Chessman::BLACK, make_pair(1, 1));
     BOOST_REQUIRE_EQUAL(Chessman::TYPE::PAWN, pawn->type());
     BOOST_REQUIRE_EQUAL(Chessman::BLACK, pawn->owner());
     delete pawn;
+    Debug::Log::test_func_foot("pawn_black");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_archive_move)
 {
+    Debug::Log::test_func_head("pawn_archive_move");
     Pawn* pawn = new Pawn(Chessman::WHITE, make_pair(1, 1));
     pawn->add_move(make_pair(1, 2));
     BOOST_REQUIRE_EQUAL(1, pawn->last_move().first);
     BOOST_REQUIRE_EQUAL(2, pawn->last_move().second);
     BOOST_REQUIRE_EQUAL(true, pawn->moved());
     delete pawn;
+    Debug::Log::test_func_foot("pawn_archive_move");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_valid_move_1_rank)
 {
+    Debug::Log::test_func_head("pawn_valid_move_1_rank");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     test_board->place_piece(make_pair(1, 2), test_piece);
@@ -59,10 +66,12 @@ BOOST_AUTO_TEST_CASE(pawn_valid_move_1_rank)
         test_piece->identify_move(make_pair(1, 3), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("pawn_valid_move_1_rank");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_valid_move_2_ranks)
 {
+    Debug::Log::test_func_head("pawn_valid_move_2_ranks");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     test_board->place_piece(make_pair(1, 2), test_piece);
@@ -70,10 +79,12 @@ BOOST_AUTO_TEST_CASE(pawn_valid_move_2_ranks)
         test_piece->identify_move(make_pair(1, 4), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("pawn_valid_move_2_ranks");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_valid_move_1_rank_black)
 {
+    Debug::Log::test_func_head("pawn_valid_move_1_rank_black");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(1, 7));
     test_board->place_piece(make_pair(1, 7), test_piece);
@@ -81,10 +92,12 @@ BOOST_AUTO_TEST_CASE(pawn_valid_move_1_rank_black)
         test_piece->identify_move(make_pair(1, 6), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("pawn_valid_move_1_rank_black");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_valid_move_2_ranks_black)
 {
+    Debug::Log::test_func_head("pawn_valid_move_2_ranks_black");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(1, 7));
     test_board->place_piece(make_pair(1, 7), test_piece);
@@ -92,10 +105,12 @@ BOOST_AUTO_TEST_CASE(pawn_valid_move_2_ranks_black)
         test_piece->identify_move(make_pair(1, 5), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("pawn_valid_move_2_ranks_black");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_invalid_move_1_rank)
 {
+    Debug::Log::test_func_head("pawn_invalid_move_1_rank");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     Pawn* test_piece_2 = new Pawn(Chessman::WHITE, make_pair(1, 3));
@@ -106,10 +121,12 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_1_rank)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_invalid_move_1_rank");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_ranks)
 {
+    Debug::Log::test_func_head("pawn_invalid_move_2_ranks");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     Pawn* test_piece_2 = new Pawn(Chessman::WHITE, make_pair(1, 4));
@@ -120,10 +137,12 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_ranks)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_invalid_move_2_ranks");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_ranks_2)
 {
+    Debug::Log::test_func_head("pawn_invalid_move_2_ranks_2");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     Pawn* test_piece_2 = new Pawn(Chessman::WHITE, make_pair(1, 3));
@@ -134,10 +153,12 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_ranks_2)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_invalid_move_2_ranks_2");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_after_moved)
 {
+    Debug::Log::test_func_head("pawn_invalid_move_2_after_moved");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     test_board->place_piece(make_pair(1, 2), test_piece);
@@ -146,10 +167,12 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_after_moved)
         test_piece->identify_move(make_pair(1, 5), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("pawn_invalid_move_2_after_moved");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_invalid_move_1_rank_black)
 {
+    Debug::Log::test_func_head("pawn_invalid_move_1_rank_black");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(1, 7));
     Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(1, 6));
@@ -160,10 +183,12 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_1_rank_black)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_invalid_move_1_rank_black");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_ranks_black)
 {
+    Debug::Log::test_func_head("pawn_invalid_move_2_ranks_black");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(1, 7));
     Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(1, 5));
@@ -174,10 +199,12 @@ BOOST_AUTO_TEST_CASE(pawn_invalid_move_2_ranks_black)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_invalid_move_2_ranks_black");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_capture)
 {
+    Debug::Log::test_func_head("pawn_capture");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(5, 2));
     Pawn* test_piece_black = new Pawn(Chessman::BLACK, make_pair(6, 3));
@@ -188,10 +215,12 @@ BOOST_AUTO_TEST_CASE(pawn_capture)
     delete test_board;
     delete test_piece;
     delete test_piece_black;
+    Debug::Log::test_func_foot("pawn_capture");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_capture_2)
 {
+    Debug::Log::test_func_head("pawn_capture_2");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(5, 2));
     Pawn* test_piece_black = new Pawn(Chessman::BLACK, make_pair(4, 3));
@@ -202,10 +231,12 @@ BOOST_AUTO_TEST_CASE(pawn_capture_2)
     delete test_board;
     delete test_piece;
     delete test_piece_black;
+    Debug::Log::test_func_foot("pawn_capture_2");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_capture_black)
 {
+    Debug::Log::test_func_head("pawn_capture_black");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(5, 7));
     Pawn* test_piece_black = new Pawn(Chessman::WHITE, make_pair(6, 6));
@@ -216,10 +247,12 @@ BOOST_AUTO_TEST_CASE(pawn_capture_black)
     delete test_board;
     delete test_piece;
     delete test_piece_black;
+    Debug::Log::test_func_foot("pawn_capture_black");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_capture_black_2)
 {
+    Debug::Log::test_func_head("pawn_capture_black_2");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(5, 7));
     Pawn* test_piece_black = new Pawn(Chessman::WHITE, make_pair(4, 6));
@@ -230,10 +263,12 @@ BOOST_AUTO_TEST_CASE(pawn_capture_black_2)
     delete test_board;
     delete test_piece;
     delete test_piece_black;
+    Debug::Log::test_func_foot("pawn_capture_black_2");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_promotion)
 {
+    Debug::Log::test_func_head("pawn_promotion");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 7));
     test_board->place_piece(make_pair(1, 7), test_piece);
@@ -241,10 +276,12 @@ BOOST_AUTO_TEST_CASE(pawn_promotion)
         test_piece->identify_move(make_pair(1, 8), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("pawn_promotion");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_promotion_with_capture)
 {
+    Debug::Log::test_func_head("pawn_promotion_with_capture");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 7));
     Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(2, 8));
@@ -255,10 +292,12 @@ BOOST_AUTO_TEST_CASE(pawn_promotion_with_capture)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_promotion_with_capture");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_promotion_black)
 {
+    Debug::Log::test_func_head("pawn_promotion_black");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(1, 2));
     test_board->place_piece(make_pair(1, 2), test_piece);
@@ -266,10 +305,12 @@ BOOST_AUTO_TEST_CASE(pawn_promotion_black)
         test_piece->identify_move(make_pair(1, 1), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("pawn_promotion_black");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_en_passant)
 {
+    Debug::Log::test_func_head("pawn_en_passant");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(2, 5));
     Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(1, 7));
@@ -281,10 +322,12 @@ BOOST_AUTO_TEST_CASE(pawn_en_passant)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_en_passant");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_en_passant_black)
 {
+    Debug::Log::test_func_head("pawn_en_passant_black");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(2, 4));
     Pawn* test_piece_2 = new Pawn(Chessman::WHITE, make_pair(1, 2));
@@ -296,10 +339,12 @@ BOOST_AUTO_TEST_CASE(pawn_en_passant_black)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_en_passant_black");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_list_legal_moves)
 {
+    Debug::Log::test_func_head("pawn_list_legal_moves");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     test_board->place_piece(make_pair(1, 2), test_piece);
@@ -308,10 +353,12 @@ BOOST_AUTO_TEST_CASE(pawn_list_legal_moves)
     TEST_VECTORS_OF_TUPLES_3(v, t);
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("pawn_list_legal_moves");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_2)
 {
+    Debug::Log::test_func_head("pawn_list_legal_moves_2");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     Pawn* test_piece_2 = new Pawn(Chessman::WHITE, make_pair(1, 3));
@@ -323,10 +370,12 @@ BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_2)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_list_legal_moves_2");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_3)
 {
+    Debug::Log::test_func_head("pawn_list_legal_moves_3");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 2));
     Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(2, 3));
@@ -338,10 +387,12 @@ BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_3)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_list_legal_moves_3");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_4)
 {
+    Debug::Log::test_func_head("pawn_list_legal_moves_4");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(1, 7));
     Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(2, 8));
@@ -353,10 +404,12 @@ BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_4)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_list_legal_moves_4");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_5)
 {
+    Debug::Log::test_func_head("pawn_list_legal_moves_5");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::BLACK, make_pair(2, 5));
     Pawn* test_piece_2 = new Pawn(Chessman::WHITE, make_pair(1, 2));
@@ -370,10 +423,12 @@ BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_5)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_list_legal_moves_5");
 }
 
 BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_6)
 {
+    Debug::Log::test_func_head("pawn_list_legal_moves_6");
     Board* test_board = new Board;
     Pawn* test_piece = new Pawn(Chessman::WHITE, make_pair(5, 4));
     Pawn* test_piece_2 = new Pawn(Chessman::BLACK, make_pair(4, 7));
@@ -387,6 +442,7 @@ BOOST_AUTO_TEST_CASE(pawn_list_legal_moves_6)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("pawn_list_legal_moves_6");
 }
 
 #endif // PAWN_TEST_HPP

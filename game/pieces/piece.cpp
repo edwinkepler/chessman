@@ -21,6 +21,10 @@ namespace Chessman
     }
 
     const void Piece::add_move(const pair<int, int>& c) {
+        log.piece_func_head("Piece::add_move()",
+            type(), owner(), v_history.back());
+        log.t().info("return ").coords(c).n();
+
         v_history.push_back(c);
         if(v_history.back() != v_history.at(v_history.size() - 2)) {
             f_moved = true;
@@ -28,9 +32,15 @@ namespace Chessman
     }
 
     const pair<int, int> Piece::last_move() {
+        log.piece_func_head("Piece::last_move()", 
+            type(), owner(), v_history.back());
+
         if(v_history.size() > 0) {
+            log.t().info("return ").coords(v_history.back()).n();
             return v_history.back();
         } else {
+            // This should never happen.
+            // First coords are created when constructing.
             return make_pair(0, 0);
         }
     }
@@ -46,11 +56,16 @@ namespace Chessman
     const vector<tuple<int, int, int>> Piece::list_moves(
         const vector<vector<Chessman::Piece*>>& vb) 
     {
+        log.piece_func_head("Piece::list_moves()", 
+            type(), owner(), v_history.back());
+
         vector<tuple<int, int, int>> vp;
         for(int i = 1; i <= vb.size(); i++) {
             for(int j = 1; j <= vb.at(0).size(); j++) {
                 int m = identify_move(make_pair(i, j), vb);
                 if(m != Chessman::MOVES::INVALID) {
+                    log << "\t" << "found move type " << m << " at " 
+                        << "(" << i << ", " << j << ")\n";
                     vp.push_back(make_tuple(i, j, m));
                 }
             }

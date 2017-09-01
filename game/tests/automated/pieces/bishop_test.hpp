@@ -27,32 +27,39 @@ using namespace Chessboard;
 
 BOOST_AUTO_TEST_CASE(bishop_white)
 {
+    Debug::Log::test_func_head("bishop_white");
     Bishop* bishop = new Bishop(Chessman::WHITE, make_pair(1, 1));
     BOOST_REQUIRE_EQUAL(Chessman::BISHOP, bishop->type());
     BOOST_REQUIRE_EQUAL(Chessman::WHITE, bishop->owner());
     delete bishop;
+    Debug::Log::test_func_foot("bishop_white");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_black)
 {
+    Debug::Log::test_func_head("bishop_black");
     Bishop* bishop = new Bishop(Chessman::BLACK, make_pair(1, 1));
     BOOST_REQUIRE_EQUAL(Chessman::BISHOP, bishop->type());
     BOOST_REQUIRE_EQUAL(Chessman::BLACK, bishop->owner());
     delete bishop;
+    Debug::Log::test_func_foot("bishop_black");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_archive_move)
 {
+    Debug::Log::test_func_head("bishop_archive_move");
     Bishop* bishop = new Bishop(Chessman::WHITE, make_pair(1, 1));
     bishop->add_move(make_pair(1, 2));
     BOOST_REQUIRE_EQUAL(1, bishop->last_move().first);
     BOOST_REQUIRE_EQUAL(2, bishop->last_move().second);
     BOOST_REQUIRE_EQUAL(true, bishop->moved());
     delete bishop;
+    Debug::Log::test_func_foot("bishop_archive_move");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_valid_move)
 {
+    Debug::Log::test_func_head("bishop_valid_move");
     Board* test_board = new Board;
     Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -60,10 +67,12 @@ BOOST_AUTO_TEST_CASE(bishop_valid_move)
         test_piece->identify_move(make_pair(5, 5), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("bishop_valid_move");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_valid_move_2)
 {
+    Debug::Log::test_func_head("bishop_valid_move_2");
     Board* test_board = new Board;
     Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -71,10 +80,12 @@ BOOST_AUTO_TEST_CASE(bishop_valid_move_2)
         test_piece->identify_move(make_pair(8, 8), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("bishop_valid_move_2");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_valid_move_3)
 {
+    Debug::Log::test_func_head("bishop_valid_move_3");
     Board* test_board = new Board;
     Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -82,10 +93,12 @@ BOOST_AUTO_TEST_CASE(bishop_valid_move_3)
         test_piece->identify_move(make_pair(1, 1), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("bishop_valid_move_3");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_valid_move_4)
 {
+    Debug::Log::test_func_head("bishop_valid_move_4");
     Board* test_board = new Board;
     Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -93,10 +106,12 @@ BOOST_AUTO_TEST_CASE(bishop_valid_move_4)
         test_piece->identify_move(make_pair(1, 7), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("bishop_valid_move_4");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_valid_move_5)
 {
+    Debug::Log::test_func_head("bishop_valid_move_5");
     Board* test_board = new Board;
     Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -104,10 +119,12 @@ BOOST_AUTO_TEST_CASE(bishop_valid_move_5)
         test_piece->identify_move(make_pair(7, 1), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("bishop_valid_move_5");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_capture)
 {
+    Debug::Log::test_func_head("bishop_capture");
     Board* test_board = new Board;
     Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
     Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(6, 6));
@@ -118,10 +135,12 @@ BOOST_AUTO_TEST_CASE(bishop_capture)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("bishop_capture");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_capture_2)
 {
+    Debug::Log::test_func_head("bishop_capture_2");
     Board* test_board = new Board;
     Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
     Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(3, 5));
@@ -132,10 +151,12 @@ BOOST_AUTO_TEST_CASE(bishop_capture_2)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("bishop_capture_2");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_capture_3)
 {
+    Debug::Log::test_func_head("bishop_capture_3");
     Board* test_board = new Board;
     Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
     Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(1, 1));
@@ -146,10 +167,12 @@ BOOST_AUTO_TEST_CASE(bishop_capture_3)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("bishop_capture_3");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_invalid_move)
 {
+    Debug::Log::test_func_head("bishop_invalid_move");
     Board* test_board = new Board;
     Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -157,10 +180,12 @@ BOOST_AUTO_TEST_CASE(bishop_invalid_move)
         test_piece->identify_move(make_pair(4, 1), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("bishop_invalid_move");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_list_legal_moves)
 {
+    Debug::Log::test_func_head("bishop_list_legal_moves");
     Board* test_board = new Board;
     Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(5, 5));
     test_board->place_piece(make_pair(5, 5), test_piece);
@@ -173,10 +198,12 @@ BOOST_AUTO_TEST_CASE(bishop_list_legal_moves)
     TEST_VECTORS_OF_TUPLES_3(v, t);
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("bishop_list_legal_moves");
 }
 
 BOOST_AUTO_TEST_CASE(bishop_list_legal_moves_2)
 {
+    Debug::Log::test_func_head("bishop_list_legal_moves_2");
     Board* test_board = new Board;
     Bishop* test_piece = new Bishop(Chessman::WHITE, make_pair(5, 5));
     Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(4, 4));
@@ -193,6 +220,7 @@ BOOST_AUTO_TEST_CASE(bishop_list_legal_moves_2)
     delete test_piece;
     delete test_piece_2;
     delete test_piece_3;
+    Debug::Log::test_func_foot("bishop_list_legal_moves_2");
 }
 
 #endif // BISHOP_TEST_HPP

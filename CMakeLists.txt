@@ -16,7 +16,9 @@ add_library(chessman_game
     ./game/player.cpp
     ./game/board.cpp
     ./game/gamecontroller.cpp
-    ./game/history.cpp)
+    ./game/history.cpp
+    ./game/debug/log.cpp
+    ./game/debug/dump.cpp)
 
 #Testing build
 project(tests)

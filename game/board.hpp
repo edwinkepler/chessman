@@ -12,6 +12,8 @@
 
 #include <exception>
 
+#include "debug/log.hpp"
+
 #include "pieces/piece.hpp"
 
 using namespace std;
@@ -103,6 +105,8 @@ namespace Chessboard
         * @brief 2d vector that holds all pointers for chess pieces.
         */
         vector<vector<Chessman::Piece*>> v_board;
+
+        Debug::Log log;
     };
 }
 

@@ -17,6 +17,8 @@ namespace Chessboard
     }
 
     Chessman::Piece* Board::point_piece(const pair<int, int> &c) {
+        log.board_func_head("Board::point_piece", c);
+
         if(!is_within_limit(c)) {
             throw invalid_argument("Board::point_piece(): Coords out of range.");
         } else if(v_board[c.second - 1][v_board.size() - c.first] == nullptr) {
@@ -30,6 +32,8 @@ namespace Chessboard
         const pair<int, int>& from,
         const pair<int, int>& to)
     {
+        log.board_func_head("Board::move_piece", from, to);
+
         if(is_sqr_empty(from)) {
             throw invalid_argument("Board::move_piece(): Square is empty.");
         } else if(!is_sqr_empty(to)) {
@@ -42,6 +46,8 @@ namespace Chessboard
     }
 
     void Board::place_piece(const pair<int, int>& c, Chessman::Piece* piece) {
+        log.board_func_head("Board::place_piece", c);
+
         if(!is_within_limit(c)) {
             throw invalid_argument("Board::place_piece(): Coords out of range.");
         } else {
@@ -50,6 +56,8 @@ namespace Chessboard
     }
 
     bool Board::is_sqr_empty(const pair<int, int>& c) {
+        log.board_func_head("Board::is_sqr_empty", c);
+
         if(!is_within_limit(c)) {
             throw invalid_argument(
                 "Board::is_sqr_empty(): Coords out of range.");
@@ -61,6 +69,8 @@ namespace Chessboard
     }
 
     bool Board::is_within_limit(const pair<int, int> &c) {
+        log.board_func_head("Board::is_within_limit", c);
+
         if(
             c.first >= 1 &&
             c.first <= v_board.size() &&
@@ -78,6 +88,8 @@ namespace Chessboard
     }
 
     void Board::nullify(const pair<int, int> &c) {
+        log.board_func_head("Board::nullify", c);
+
         if(!is_within_limit(c)) {
             throw invalid_argument(
                 "Board::nullifySquare(): Coords out of range.");

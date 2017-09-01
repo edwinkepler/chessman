@@ -11,6 +11,8 @@
 #include <vector>
 #include <tuple>
 
+#include "debug/log.hpp"
+
 using namespace std;
 
 /**
@@ -62,6 +64,10 @@ namespace Chessman
         * @param coords Starting coordinates.
         */
         Piece(int, pair<int, int>);
+        /**
+        * @brief Deconstructor.
+        */
+        virtual ~Piece() {};
 
         /**
         * @brief Returns owner id (Chessman::OWNER).
@@ -82,7 +88,8 @@ namespace Chessman
         */
         const void add_move(const pair<int, int>&);
         /**
-        * @brief Adds move coordinates to Piece::history vector.
+        * @brief Returns last move coordinates.
+        * @return Last move coordinates.
         */
         const pair<int, int> last_move();
         /**
@@ -138,6 +145,8 @@ namespace Chessman
         * @brief Vector of moves stored in FILO fashion.
         */
         vector<pair<int, int>> v_history;
+
+        Debug::Log log;
     };
 }
 
