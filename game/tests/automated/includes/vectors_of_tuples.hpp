@@ -1,3 +1,8 @@
+/**
+ * @copyright 2017 Edwin Kepler
+ * @license MIT
+ */
+
 #ifndef VECTORS_OF_TUPLES_HPP
 #define VECTORS_OF_TUPLES_HPP
 
@@ -70,4 +75,4 @@ void TEST_VECTORS_OF_TUPLES_7(
     }
 }
 
-#endif
+#endif // VECTORS_OF_TUPLES_HPP
