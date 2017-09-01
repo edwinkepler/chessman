@@ -6,6 +6,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 include_directories(./game)
 
 add_library(chessman_game 
+    ./game/helpers/conversion.cpp
     ./game/pieces/piece.cpp 
     ./game/pieces/bishop.cpp 
     ./game/pieces/king.cpp
