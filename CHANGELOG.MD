@@ -3,6 +3,8 @@
 ### Added
 
 - Add Debug::Log class
+- Add Game::History class
+
 
 ## [0.1.1] 2017-08-30
 

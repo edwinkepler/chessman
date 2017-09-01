@@ -15,9 +15,8 @@ add_library(chessman_game
     ./game/pieces/rook.cpp
     ./game/player.cpp
     ./game/board.cpp
-    ./game/gamecontroller.cpp)
-
-add_library(log ./game/debug/log.cpp)
+    ./game/gamecontroller.cpp
+    ./game/history.cpp)
 
 #Testing build
 project(tests)
@@ -29,7 +28,7 @@ find_package(Boost 1.55 REQUIRED COMPONENTS unit_test_framework)
 
 add_executable(${PROJECT_NAME} ./game/tests/tests.cpp)
 target_include_directories(${PROJECT_NAME} PRIVATE ${Boost_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} chessman_game log ${Boost_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} chessman_game ${Boost_LIBRARIES})
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${PROJECT_NAME})
 
@@ -40,4 +39,4 @@ target_link_libraries(tests_manual chessman_game)
 project(chessman-cli)
 
 add_executable(${PROJECT_NAME} chessman-cli/chessman-cli.cpp)
-target_link_libraries(${PROJECT_NAME} chessman_game log)
+target_link_libraries(${PROJECT_NAME} chessman_game)
