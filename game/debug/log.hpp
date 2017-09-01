@@ -18,6 +18,8 @@ using namespace std;
  */
 namespace Debug
 {
+    static bool verbose = false;
+
     /**
      * @brief Logging to stdout and dumping info about objects.
      */
