@@ -34,7 +34,7 @@ namespace Chessman
         */
         const int identify_move(
             const pair<int, int>&,
-            const vector<vector<Chessman::Piece*> >&);
+            const vector<vector<Chessman::Piece*>>&);
 
     private:
         bool f_promoted;

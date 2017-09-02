@@ -11,6 +11,8 @@
 #include <vector>
 #include <tuple>
 
+#include "debug/log.hpp"
+
 using namespace std;
 
 /**
@@ -62,6 +64,10 @@ namespace Chessman
         * @param coords Starting coordinates.
         */
         Piece(int, pair<int, int>);
+        /**
+        * @brief Deconstructor.
+        */
+        virtual ~Piece() {};
 
         /**
         * @brief Returns owner id (Chessman::OWNER).
@@ -82,7 +88,8 @@ namespace Chessman
         */
         const void add_move(const pair<int, int>&);
         /**
-        * @brief Adds move coordinates to Piece::history vector.
+        * @brief Returns last move coordinates.
+        * @return Last move coordinates.
         */
         const pair<int, int> last_move();
         /**
@@ -93,7 +100,7 @@ namespace Chessman
         /**
         * @brief Returns Piece::v_history vector of pairs.
         */
-        const vector<pair<int, int> > history();
+        const vector<pair<int, int>> history();
 
         /**
         * @brief Checks if move is valid and if it is it will identify what kind
@@ -104,7 +111,7 @@ namespace Chessman
         */
         virtual const int identify_move(
             const pair<int, int>&,
-            const vector<vector<Chessman::Piece*> >&) = 0;
+            const vector<vector<Chessman::Piece*>>&) = 0;
         /**
         * @brief Finds all legal moves for this piece.
         * @param pointer to the Chessboard::Board.
@@ -112,8 +119,8 @@ namespace Chessman
         *         tuple contains coordinates (x, y) as a first pair of ints and
         *         type of a move (Chessman::MOVES) as a third int.
         */
-        const vector<tuple<int, int, int> > list_moves(
-            const vector<vector<Chessman::Piece*> >&);
+        const vector<tuple<int, int, int>> list_moves(
+            const vector<vector<Chessman::Piece*>>&);
 
     private:
         /**
@@ -137,7 +144,9 @@ namespace Chessman
         /**
         * @brief Vector of moves stored in FILO fashion.
         */
-        vector<pair<int, int> > v_history;
+        vector<pair<int, int>> v_history;
+
+        Debug::Log log;
     };
 }
 

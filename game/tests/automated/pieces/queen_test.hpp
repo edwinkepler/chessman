@@ -30,36 +30,43 @@ using namespace std;
 using namespace Chessman;
 using namespace Chessboard;
 
-#define VTUPLE vector<tuple<int, int, int> >
+#define VTUPLE vector<tuple<int, int, int>>
 
 BOOST_AUTO_TEST_CASE(queen_white)
 {
+    Debug::Log::test_func_head("queen_white");
     Queen* queen = new Queen(Chessman::WHITE, make_pair(1, 1));
     BOOST_REQUIRE_EQUAL(Chessman::QUEEN, queen->type());
     BOOST_REQUIRE_EQUAL(Chessman::WHITE, queen->owner());
     delete queen;
+    Debug::Log::test_func_foot("queen_white");
 }
 
 BOOST_AUTO_TEST_CASE(queen_black)
 {
+    Debug::Log::test_func_head("queen_black");
     Queen* queen = new Queen(Chessman::BLACK, make_pair(1, 1));
     BOOST_REQUIRE_EQUAL(Chessman::QUEEN, queen->type());
     BOOST_REQUIRE_EQUAL(Chessman::BLACK, queen->owner());
     delete queen;
+    Debug::Log::test_func_foot("queen_black");
 }
 
 BOOST_AUTO_TEST_CASE(queen_archive_move)
 {
+    Debug::Log::test_func_head("queen_archive_move");
     Queen* queen = new Queen(Chessman::WHITE, make_pair(1, 1));
     queen->add_move(make_pair(1, 2));
     BOOST_REQUIRE_EQUAL(1, queen->last_move().first);
     BOOST_REQUIRE_EQUAL(2, queen->last_move().second);
     BOOST_REQUIRE_EQUAL(true, queen->moved());
     delete queen;
+    Debug::Log::test_func_foot("queen_archive_move");
 }
 
 BOOST_AUTO_TEST_CASE(queen_valid_move)
 {
+    Debug::Log::test_func_head("queen_valid_move");
     Board* test_board = new Board;
     Queen* test_piece = new Queen(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -67,10 +74,12 @@ BOOST_AUTO_TEST_CASE(queen_valid_move)
         test_piece->identify_move(make_pair(7, 7), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("queen_valid_move");
 }
 
 BOOST_AUTO_TEST_CASE(queen_valid_move_2)
 {
+    Debug::Log::test_func_head("queen_valid_move_2");
     Board* test_board = new Board;
     Queen* test_piece = new Queen(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -78,10 +87,12 @@ BOOST_AUTO_TEST_CASE(queen_valid_move_2)
         test_piece->identify_move(make_pair(3, 3), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("queen_valid_move_2");
 }
 
 BOOST_AUTO_TEST_CASE(queen_valid_move_3)
 {
+    Debug::Log::test_func_head("queen_valid_move_3");
     Board* test_board = new Board;
     Queen* test_piece = new Queen(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -89,10 +100,12 @@ BOOST_AUTO_TEST_CASE(queen_valid_move_3)
         test_piece->identify_move(make_pair(1, 7), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("queen_valid_move_3");
 }
 
 BOOST_AUTO_TEST_CASE(queen_valid_move_4)
 {
+    Debug::Log::test_func_head("queen_valid_move_4");
     Board* test_board = new Board;
     Queen* test_piece = new Queen(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -100,10 +113,12 @@ BOOST_AUTO_TEST_CASE(queen_valid_move_4)
         test_piece->identify_move(make_pair(6, 2), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("queen_valid_move_4");
 }
 
 BOOST_AUTO_TEST_CASE(queen_valid_move_5)
 {
+    Debug::Log::test_func_head("queen_valid_move_5");
     Board* test_board = new Board;
     Queen* test_piece = new Queen(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -111,10 +126,12 @@ BOOST_AUTO_TEST_CASE(queen_valid_move_5)
         test_piece->identify_move(make_pair(1, 4), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("queen_valid_move_5");
 }
 
 BOOST_AUTO_TEST_CASE(queen_valid_move_6)
 {
+    Debug::Log::test_func_head("queen_valid_move_6");
     Board* test_board = new Board;
     Queen* test_piece = new Queen(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -122,10 +139,12 @@ BOOST_AUTO_TEST_CASE(queen_valid_move_6)
         test_piece->identify_move(make_pair(5, 4), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("queen_valid_move_6");
 }
 
 BOOST_AUTO_TEST_CASE(queen_valid_move_7)
 {
+    Debug::Log::test_func_head("queen_valid_move_7");
     Board* test_board = new Board;
     Queen* test_piece = new Queen(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -133,10 +152,12 @@ BOOST_AUTO_TEST_CASE(queen_valid_move_7)
         test_piece->identify_move(make_pair(4, 1), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("queen_valid_move_7");
 }
 
 BOOST_AUTO_TEST_CASE(queen_valid_move_8)
 {
+    Debug::Log::test_func_head("queen_valid_move_8");
     Board* test_board = new Board;
     Queen* test_piece = new Queen(Chessman::WHITE, make_pair(4, 4));
     test_board->place_piece(make_pair(4, 4), test_piece);
@@ -144,10 +165,12 @@ BOOST_AUTO_TEST_CASE(queen_valid_move_8)
         test_piece->identify_move(make_pair(4, 8), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("queen_valid_move_8");
 }
 
 BOOST_AUTO_TEST_CASE(queen_invalid_move)
 {
+    Debug::Log::test_func_head("queen_invalid_move");
     Board* test_board = new Board;
     Queen* test_piece = new Queen(Chessman::WHITE, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -155,10 +178,12 @@ BOOST_AUTO_TEST_CASE(queen_invalid_move)
         test_piece->identify_move(make_pair(2, 4), test_board->board()));
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("queen_invalid_move");
 }
 
 BOOST_AUTO_TEST_CASE(queen_valid_move_capture)
 {
+    Debug::Log::test_func_head("queen_valid_move_capture");
     Board* test_board = new Board;
     Queen* test_piece = new Queen(Chessman::WHITE, make_pair(4, 4));
     Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(4, 6));
@@ -169,10 +194,12 @@ BOOST_AUTO_TEST_CASE(queen_valid_move_capture)
     delete test_board;
     delete test_piece;
     delete test_piece_2;
+    Debug::Log::test_func_foot("queen_valid_move_capture");
 }
 
 BOOST_AUTO_TEST_CASE(queen_list_legal_moves)
 {
+    Debug::Log::test_func_head("queen_list_legal_moves");
     Board* test_board = new Board;
     Queen* test_piece = new Queen(Chessman::WHITE, make_pair(6, 6));
     Rook* test_piece_2 = new Rook(Chessman::BLACK, make_pair(5, 5));
@@ -192,6 +219,7 @@ BOOST_AUTO_TEST_CASE(queen_list_legal_moves)
     delete test_piece;
     delete test_piece_2;
     delete test_piece_3;
+    Debug::Log::test_func_foot("queen_list_legal_moves");
 }
 
 #endif // QUEEN_TEST_HPP

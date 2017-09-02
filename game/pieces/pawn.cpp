@@ -13,7 +13,7 @@ namespace Chessman
     // Good luck with that X_X
     const int Pawn::identify_move(
         const pair<int, int>& to,
-        const vector<vector<Chessman::Piece*> >& vb)
+        const vector<vector<Chessman::Piece*>>& vb)
     {
         int x1 = last_move().first;
         int y1 = last_move().second;

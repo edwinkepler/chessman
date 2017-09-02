@@ -5,6 +5,7 @@
 #include "automated/pieces/queen_test.hpp"
 #include "automated/pieces/rook_test.hpp"
 
+#include "automated/history_test.hpp"
 #include "automated/player_test.hpp"
 #include "automated/board_test.hpp"
 #include "automated/gamecontroller_test.hpp"

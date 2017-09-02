@@ -25,6 +25,7 @@ using namespace std;
 
 BOOST_AUTO_TEST_CASE(put_white_pawn_at_chessboard)
 {
+    Debug::Log::test_func_head("put_white_pawn_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::Pawn* test_piece = new Chessman::Pawn(Chessplayer::WHITE, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -32,10 +33,12 @@ BOOST_AUTO_TEST_CASE(put_white_pawn_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::WHITE, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_white_pawn_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_black_pawn_at_chessboard)
 {
+    Debug::Log::test_func_head("put_black_pawn_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::Pawn* test_piece = new Chessman::Pawn(Chessplayer::BLACK, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -43,10 +46,12 @@ BOOST_AUTO_TEST_CASE(put_black_pawn_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::BLACK, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_black_pawn_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_white_rook_at_chessboard)
 {
+    Debug::Log::test_func_head("put_white_rook_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::Rook* test_piece = new Chessman::Rook(Chessplayer::WHITE, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -54,10 +59,12 @@ BOOST_AUTO_TEST_CASE(put_white_rook_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::WHITE, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_white_rook_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_black_rook_at_chessboard)
 {
+    Debug::Log::test_func_head("put_black_rook_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::Rook* test_piece = new Chessman::Rook(Chessplayer::BLACK, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -65,10 +72,12 @@ BOOST_AUTO_TEST_CASE(put_black_rook_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::BLACK, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_black_rook_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_white_knight_at_chessboard)
 {
+    Debug::Log::test_func_head("put_white_knight_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::Knight* test_piece = new Chessman::Knight(Chessplayer::WHITE, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -76,10 +85,12 @@ BOOST_AUTO_TEST_CASE(put_white_knight_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::WHITE, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_white_knight_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_black_knight_at_chessboard)
 {
+    Debug::Log::test_func_head("put_black_knight_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::Knight* test_piece = new Chessman::Knight(Chessplayer::BLACK, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -87,10 +98,12 @@ BOOST_AUTO_TEST_CASE(put_black_knight_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::BLACK, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_black_knight_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_white_bishop_at_chessboard)
 {
+    Debug::Log::test_func_head("put_white_bishop_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::Bishop* test_piece = new Chessman::Bishop(Chessplayer::WHITE, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -98,10 +111,12 @@ BOOST_AUTO_TEST_CASE(put_white_bishop_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::WHITE, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_white_bishop_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_black_bishop_at_chessboard)
 {
+    Debug::Log::test_func_head("put_black_bishop_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::Bishop* test_piece = new Chessman::Bishop(Chessplayer::BLACK, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -109,10 +124,12 @@ BOOST_AUTO_TEST_CASE(put_black_bishop_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::BLACK, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_black_bishop_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_white_queen_at_chessboard)
 {
+    Debug::Log::test_func_head("put_white_queen_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::Queen* test_piece = new Chessman::Queen(Chessplayer::WHITE, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -120,10 +137,12 @@ BOOST_AUTO_TEST_CASE(put_white_queen_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::WHITE, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_white_queen_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_black_queen_at_chessboard)
 {
+    Debug::Log::test_func_head("put_black_queen_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::Queen* test_piece = new Chessman::Queen(Chessplayer::BLACK, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -131,10 +150,12 @@ BOOST_AUTO_TEST_CASE(put_black_queen_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::BLACK, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_black_queen_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_white_king_at_chessboard)
 {
+    Debug::Log::test_func_head("put_white_king_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::King* test_piece = new Chessman::King(Chessplayer::WHITE, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -142,10 +163,12 @@ BOOST_AUTO_TEST_CASE(put_white_king_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::WHITE, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_white_king_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_black_king_at_chessboard)
 {
+    Debug::Log::test_func_head("put_black_king_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
     Chessman::King* test_piece = new Chessman::King(Chessplayer::BLACK, make_pair(1, 1));
     test_board->place_piece(make_pair(1, 1), test_piece);
@@ -153,10 +176,12 @@ BOOST_AUTO_TEST_CASE(put_black_king_at_chessboard)
     BOOST_REQUIRE_EQUAL(Chessman::BLACK, test_board->point_piece(make_pair(1, 1))->owner());
     delete test_board;
     delete test_piece;
+    Debug::Log::test_func_foot("put_black_king_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_8_white_pawns_at_chessboard)
 {
+    Debug::Log::test_func_head("put_8_white_pawns_at_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
 
     Chessman::Piece* pawn_w_1    = new Chessman::Pawn(   Chessplayer::WHITE, make_pair(1, 2));
@@ -204,10 +229,12 @@ BOOST_AUTO_TEST_CASE(put_8_white_pawns_at_chessboard)
     delete pawn_w_6;
     delete pawn_w_7;
     delete pawn_w_8;
+    Debug::Log::test_func_foot("put_8_white_pawns_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(put_8_black_pawns_at_chessboard)
 {
+    Debug::Log::test_func_head("put_8_black_pawns_at_chessboard");
     Chessman::Piece* pawn_b_1    = new Chessman::Pawn(   Chessplayer::BLACK, make_pair(1, 2));
     Chessman::Piece* pawn_b_2    = new Chessman::Pawn(   Chessplayer::BLACK, make_pair(2, 2));
     Chessman::Piece* pawn_b_3    = new Chessman::Pawn(   Chessplayer::BLACK, make_pair(3, 2));
@@ -255,10 +282,12 @@ BOOST_AUTO_TEST_CASE(put_8_black_pawns_at_chessboard)
     delete pawn_b_6;
     delete pawn_b_7;
     delete pawn_b_8;
+    Debug::Log::test_func_foot("put_8_black_pawns_at_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(manually_setup_chessboard)
 {
+    Debug::Log::test_func_head("manually_setup_chessboard");
     Chessboard::Board* test_board = new Chessboard::Board;
 
     Chessman::Piece* pawn_w_1    = new Chessman::Pawn(   Chessplayer::WHITE, make_pair(1, 2));
@@ -432,118 +461,151 @@ BOOST_AUTO_TEST_CASE(manually_setup_chessboard)
     delete bishop_b_2;
     delete queen_b;
     delete king_b;
+    Debug::Log::test_func_foot("manually_setup_chessboard");
 }
 
 BOOST_AUTO_TEST_CASE(point_piece_invalid_x_parameterer)
 {
+    Debug::Log::test_func_head("point_piece_invalid_x_parameterer");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(9, 1)), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("point_piece_invalid_x_parameterer");
 }
 
 BOOST_AUTO_TEST_CASE(point_piece_invalid_y_parameterer)
 {
+    Debug::Log::test_func_head("point_piece_invalid_y_parameterer");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(1, 9)), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("point_piece_invalid_y_parameterer");
 }
 
 BOOST_AUTO_TEST_CASE(point_piece_invalid_x_y_parameterers)
 {
+    Debug::Log::test_func_head("point_piece_invalid_x_y_parameterers");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(9, 9)), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("point_piece_invalid_x_y_parameterers");
 }
 
 BOOST_AUTO_TEST_CASE(point_piece_invalid_x_y_parameterers2)
 {
+    Debug::Log::test_func_head("point_piece_invalid_x_y_parameterers2");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(0, 0)), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("point_piece_invalid_x_y_parameterers2");
 }
 
 BOOST_AUTO_TEST_CASE(owner_invalid_x_parameterer)
 {
+    Debug::Log::test_func_head("owner_invalid_x_parameterer");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(9, 1))->owner(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("owner_invalid_x_parameterer");
 }
 
 BOOST_AUTO_TEST_CASE(owner_invalid_y_parameterer)
 {
+    Debug::Log::test_func_head("owner_invalid_y_parameterer");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(1, 9))->owner(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("owner_invalid_y_parameterer");
 }
 
 BOOST_AUTO_TEST_CASE(owner_invalid_x_y_parameterers)
 {
+    Debug::Log::test_func_head("owner_invalid_x_y_parameterers");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(9, 9))->owner(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("owner_invalid_x_y_parameterers");
 }
 
 BOOST_AUTO_TEST_CASE(owner_invalid_x_y_parameterers2)
 {
+    Debug::Log::test_func_head("owner_invalid_x_y_parameterers2");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(0, 0))->owner(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("owner_invalid_x_y_parameterers2");
 }
 
 BOOST_AUTO_TEST_CASE(type_invalid_x_parameterer)
 {
+    Debug::Log::test_func_head("type_invalid_x_parameterer");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(9, 1))->type(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("type_invalid_x_parameterer");
 }
 
 BOOST_AUTO_TEST_CASE(type_invalid_y_parameterer)
 {
+    Debug::Log::test_func_head("type_invalid_y_parameterer");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(1, 9))->type(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("type_invalid_y_parameterer");
 }
 
 BOOST_AUTO_TEST_CASE(type_invalid_x_y_parameterers)
 {
+    Debug::Log::test_func_head("type_invalid_x_y_parameterers");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(9, 9))->type(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("type_invalid_x_y_parameterers");
 }
 
 BOOST_AUTO_TEST_CASE(type_invalid_x_y_parameterers2)
 {
+    Debug::Log::test_func_head("type_invalid_x_y_parameterers2");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(0, 0))->type(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("type_invalid_x_y_parameterers2");
 }
 
 BOOST_AUTO_TEST_CASE(unicode_invalid_x_parameterer)
 {
+    Debug::Log::test_func_head("unicode_invalid_x_parameterer");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(9, 1))->unicode(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("unicode_invalid_x_parameterer");
 }
 
 BOOST_AUTO_TEST_CASE(unicode_invalid_y_parameterer)
 {
+    Debug::Log::test_func_head("unicode_invalid_y_parameterer");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(1, 9))->unicode(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("unicode_invalid_y_parameterer");
 }
 
 BOOST_AUTO_TEST_CASE(unicode_invalid_x_y_parameterers)
 {
+    Debug::Log::test_func_head("unicode_invalid_x_y_parameterers");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(9, 9))->unicode(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("unicode_invalid_x_y_parameterers");
 }
 
 BOOST_AUTO_TEST_CASE(unicode_invalid_x_y_parameterers2)
 {
+    Debug::Log::test_func_head("unicode_invalid_x_y_parameterers2");
     Chessboard::Board* test_board = new Chessboard::Board;
     BOOST_CHECK_THROW(test_board->point_piece(make_pair(0, 0))->unicode(), std::invalid_argument);
     delete test_board;
+    Debug::Log::test_func_foot("unicode_invalid_x_y_parameterers2");
 }
 
 #endif // BOARD_TEST_HPP

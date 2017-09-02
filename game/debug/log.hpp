@@ -11,10 +11,6 @@
 #include <utility>
 #include <vector>
 
-#include "board.hpp"
-#include "player.hpp"
-#include "pieces/piece.hpp"
-
 using namespace std;
 
 /**
@@ -22,6 +18,8 @@ using namespace std;
  */
 namespace Debug
 {
+    static bool verbose = false;
+
     /**
      * @brief Logging to stdout and dumping info about objects.
      */
@@ -32,7 +30,13 @@ namespace Debug
         * @param String to print.
         * @return Log object to enable chaining.
         */
-        Log& log_i(string);
+        Log& info(string);
+        /**
+        * @brief Log standard info to stdout. Can be chained.
+        * @param Integer to print.
+        * @return Log object to enable chaining.
+        */
+        Log& info(int);
         /**
         * @brief Print new line. Can be chained.
         * @return Log object to enable chaining.
@@ -43,47 +47,67 @@ namespace Debug
         * @return Log object to enable chaining.
         */
         Log& t();
+        /**
+        * @brief Print basic info about piece to be logged.
+        * @param Name of the function.
+        * @param Type of the piece.
+        * @param Owner of the piece.
+        * @return Log object to enable chaining.
+        */
+        Log& piece_func_head(string, int, int, const pair<int, int>&);
+        /**
+        * @brief Print basic info about board to be logged.
+        * @param Name of the function.
+        * @param Pair of coordinates passed to function.
+        * @return Log object to enable chaining.
+        */
+        Log& board_func_head(string, const pair<int, int>&);
+        /**
+        * @brief Print basic info about board to be logged.
+        * @param Name of the function.
+        * @param Pair of coordinates passed to function (from).
+        * @param Pair of coordinates passed to function (to).
+        * @return Log object to enable chaining.
+        */
+        Log& board_func_head(string,
+            const pair<int, int>&,
+            const pair<int, int>&);
 
         /**
+        * @brief Print start for test case.
+        * @param Name of test case.
+        */
+        static void test_func_head(const string);
+        /**
+        * @brief Print end for test case.
+        * @param Name of test case.
+        */
+        static void test_func_foot(const string);
+
+        /**v_history.back()
         * @brief Print coordinates. Can be chained.
         * @param Pair of coordinates to print.
         * @return Log object to enable chaining.
         */
-        Log& log_coords(pair<int, int>&);
+        Log& coords(const pair<int, int>&);
         /**
         * @brief Print coordinates. Can be chained.
         * @param Pair of coordinates to print.
         * @param Pair of coordinates to print.
         * @return Log object to enable chaining.
         */
-        Log& log_coords(pair<int, int>&, pair<int, int>&);
-
-        /**
-        * @brief Print all information about Chessboard::Board.
-        * @param Pointer to Chessboard::Board object.
-        */
-        void dump_board(Chessboard::Board*);
-        /**
-        * @brief Print all information about Chessman::Piece.
-        * @param Pointer to Chessman::Piece object.
-        */
-        void dump_piece(Chessman::Piece*);
+        Log& coords(const pair<int, int>&, const pair<int, int>&);
 
         /**
         * @brief Log standard info to stdout.
         * @param String to print.
         */
-        void operator<<(string);
+        Log& operator<<(string);
         /**
-        * @brief Print all information about Chessboard::Board.
-        * @param Pointer to Chessboard::Board object.
+        * @brief Log standard info to stdout.
+        * @param Integer to print.
         */
-        void operator<<(Chessboard::Board*);
-        /**
-        * @brief Print all information about Chessman::Piece.
-        * @param Pointer to Chessman::Piece object.
-        */
-        void operator<<(Chessman::Piece*);
+        Log& operator<<(int);
     };
 }
 

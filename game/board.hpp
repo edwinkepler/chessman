@@ -12,6 +12,8 @@
 
 #include <exception>
 
+#include "debug/log.hpp"
+
 #include "pieces/piece.hpp"
 
 using namespace std;
@@ -79,9 +81,9 @@ namespace Chessboard
         bool is_sqr_empty(const pair<int, int>&);
         /**
         * @brief Returns 2d vector of a board.
-        * @return vector<vector<Chessman::Piece*> > v_board.
+        * @return vector<vector<Chessman::Piece*>> v_board.
         */
-        const vector<vector<Chessman::Piece*> > board();
+        const vector<vector<Chessman::Piece*>> board();
 
     private:
         /**
@@ -102,7 +104,9 @@ namespace Chessboard
         /**
         * @brief 2d vector that holds all pointers for chess pieces.
         */
-        vector<vector<Chessman::Piece*> > v_board;
+        vector<vector<Chessman::Piece*>> v_board;
+
+        Debug::Log log;
     };
 }
 

@@ -2,7 +2,15 @@
 
 ### Added
 
-- Debug::Log class
+- Add Debug::Log class
+- Add Game::History class
+- Add function to get algebraic notation from Game::History class
+- Add state (check, mate, stalemate) to GameController class #4
+
+### Fixed
+
+- king_castling_right_black_blocked test fails #9
+>>>>>>> dev
 
 ## [0.1.1] 2017-08-30
 

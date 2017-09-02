@@ -8,12 +8,18 @@ namespace Chessman
     King::King(int _owner, pair<int, int> _coords) : Piece(_owner, _coords) {
         i_type = Chessman::KING;
         c_unicode = _owner ? "\u265A" : "\u2654";
+
+        log.piece_func_head("King::King()", 
+            type(), owner(), v_history.back());
     }
 
     const int King::identify_move(
         const pair<int, int>& to,
-        const vector<vector<Chessman::Piece*> >& vb)
+        const vector<vector<Chessman::Piece*>>& vb)
     {
+        log.piece_func_head("King::identify_move()", 
+            type(), owner(), last_move());
+
         int x1 = last_move().first;
         int y1 = last_move().second;
         int x2 = to.first;
@@ -22,7 +28,7 @@ namespace Chessman
            (abs(y1 - y2) == 1 && abs(x1 - x2) < 1) ||
            (abs(x1 - x2) == 1 && abs(y1 - y2) == 1))
         {
-            vector<tuple<int, int, int> > vp;
+            vector<tuple<int, int, int>> vp;
             // Prevent moving into capturing zone. First we need to find all
             // moves of enemy pieces.
             for(int i = 1; i <= vb.size(); i++) {
@@ -49,7 +55,7 @@ namespace Chessman
         // Check for castling
         //
         } else if(y1 == y2 && abs(x1 - x2) == 2 && !moved()) {
-            vector<tuple<int, int, int> > vp;
+            vector<tuple<int, int, int>> vp;
             // Prevent moving into capturing zone. First we need to find all
             // moves of enemy pieces.
             for(int i = 1; i <= vb.size(); i++) {
@@ -69,9 +75,13 @@ namespace Chessman
             for(auto const& t : vp) {
                 for(int i = 1; i <= abs(x2 - x1); i++) {
                     int tmp = 0;
+                    int mod = -1;
                     (x2 > x1) ? tmp += i : tmp -= i;
-                    if(vb[y1 - 1 + tmp][vb.size() - x1] != nullptr ||
-                        (get<0>(t) == x2 && get<1>(t) == y2)) 
+                    (x2 > x1) ? tmp *= -1 : mod *= 1;
+                    if(
+                        (get<0>(t) == x2 && get<1>(t) == y2) ||
+                        (get<0>(t) == x2 + (mod * 1) && get<1>(t) == y2 && owner() == 1) ||
+                        (get<0>(t) == x2 + (mod * -1) && get<1>(t) == y2 && owner() == 0)) 
                     {
                         return Chessman::MOVES::INVALID;
                     }
