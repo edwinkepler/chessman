@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+### Added
+
 ## [0.1.2] 2017-09-02
 
 ### Added
