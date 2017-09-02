@@ -1,4 +1,8 @@
 #include "gamecontroller.hpp"
+#include "helpers/conversion.hpp"
+#include "helpers/comparison.hpp"
+
+#include <algorithm>
 
 namespace Game
 {
@@ -111,6 +115,7 @@ namespace Game
 
             hist.add_move(
                 Move(move_type, 
+                    0,
                     from.first, 
                     from.second, 
                     to.first, 
@@ -127,6 +132,7 @@ namespace Game
             auto piece_to = board->point_piece(to);
             hist.add_move(
                 Move(move_type, 
+                    0,
                     from.first, 
                     from.second, 
                     to.first, 
@@ -154,6 +160,60 @@ namespace Game
         int x1 = Helper::ctoi(get<0>(from));
         int x2 = Helper::ctoi(get<0>(to));
         return move(make_pair(x1, get<1>(from)), make_pair(x2, get<1>(to)));
+    }
+
+    const int GameController::checkmate() {        
+        auto vb = chessboard()->board();
+        vector<Chessman::Piece*> vp;
+        bool cant_move = false;
+        int kx, ky;
+        // find king
+        for(int i = 1; i <= vb.size(); i++) {
+            for(int j = 1; j <= vb.at(0).size(); j++) {
+                auto tested = vb[j - 1][vb.size() - i];
+                if(tested != nullptr) {
+                    // add to vector of enemy pieces (needed later)
+                    if(tested->owner() != i_curr_player) {
+                        vp.push_back(tested);
+                    }
+                    if(tested->type() == 5 && tested->owner() == i_curr_player) {
+                        // king can't move
+                        if(tested->list_moves(vb).size() == 0) {
+                            cant_move = true;
+                            kx = tested->last_move().first;
+                            ky = tested->last_move().second;
+                        }                            
+                    }
+                }
+            }
+        }
+
+        vector<tuple<int, int, int>> vm;
+        auto kxy = make_pair(kx, ky);
+        // If cant move find out if any enemy piece can capture, if so then
+        // it's check mate.
+        if(cant_move) {
+            for(const auto& i : vp) {
+                auto temp = i->list_moves(vb);
+                sort(temp.begin(), temp.end());
+                merge(vm.begin(), vm.end(),
+                      temp.begin(), temp.end(),
+                      back_inserter(vm));
+            }
+            if(Helper::contains(vm, kxy)) {}
+                return Game::CHECKMATE;
+        } else {
+            for(const auto& i : vp) {
+                auto temp = i->list_moves(vb);
+                sort(temp.begin(), temp.end());
+                merge(vm.begin(), vm.end(),
+                      temp.begin(), temp.end(),
+                      back_inserter(vm));
+            }
+            if(Helper::contains(vm, kxy)) {}
+                return Game::CHECK;
+        }
+        return Game::NONE;
     }
 
     int GameController::promotion() {

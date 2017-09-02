@@ -5,6 +5,7 @@
 - Add Debug::Log class
 - Add Game::History class
 - Add function to get algebraic notation from Game::History class
+- Add state (check, mate, stalemate) to GameController class #4
 
 ### Fixed
 

@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright 2017 Edwin Kepler
  * @license MIT
  */
@@ -22,13 +22,11 @@
 #include "history.hpp"
 #include "board.hpp"
 
-#include "helpers/conversion.hpp"
-
 /**
  * @brief This namespace contains main interface for game of chess.
  */
 namespace Game
-{
+{    
     /**
      * @brief   Main inteerface for game of chess.
      * @details This class is a main interface, way of controlling game. It is
@@ -89,7 +87,14 @@ namespace Game
         */
         int move(const pair<char, int>&, const pair<char, int>&);
 
+        /**
+        * @brief  Checkmate check.
+        * @return Game::MODIFICATION
+        */
+        const int checkmate();
+        /** TODO */
         int promotion();
+
 
     private:
         /**
