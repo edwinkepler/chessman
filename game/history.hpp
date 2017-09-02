@@ -45,7 +45,7 @@ namespace Game {
     enum MODIFICATION {
         NONE,
         CHECK,
-        MATE,
+        CHECKMATE,
         CASTLING_LONG,
         CASTLING_SHORT,
         STALE,
