@@ -4,6 +4,7 @@
 
 - Add Debug::Log class
 - Add Game::History class
+- Add function to get algebraic notation from Game::History class
 
 ### Fixed
 

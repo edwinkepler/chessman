@@ -37,9 +37,17 @@ namespace Game {
         EN_PASSANT,
         CASTLING,
         PROMOTION,
-        PROCAPT, // promotion and capturing at once
+        PROCAPT // promotion and capturing at once
+    };
+    /**
+     * @brief Modifications for moves.
+     */
+    enum MODIFICATION {
+        NONE,
         CHECK,
         MATE,
+        CASTLING_LONG,
+        CASTLING_SHORT,
         STALE,
         WHITE_WIN,
         BLACK_WIN,
@@ -53,38 +61,47 @@ namespace Game {
     public:
         /**
          * @brief Constructor.
+         * @details Takes all needed informations in predefined fashion in order
+         *          to be able to convert these information to more advanced
+         *          notations. Positions of arguments is very important.
          * @param Game::STATE.
-         * @param X coord of a moved piece.
-         * @param Y coord of a moved piece.
+         * @param Starting X coord of a moved piece.
+         * @param Starting Y coord of a moved piece.
+         * @param Ending X coord of a moved piece.
+         * @param Ending Y coord of a moved piece.
          * @param Game::TYPE (same as Chessman::TYPE) of a moved piece.
          * @param X coord of a piece effected by moved piece.
          * @param Y coord of a piece effected by moved piece.
          * @param Game::TYPE (same as Chessman::TYPE) of a piece effected by 
          *        moved piece.
          */
-        Move(int, int, int, int, int, int, int);
+        Move(int, int, int, int, int, int, int, int, int);
         /**
          * @brief Deconstructor.
          */
         ~Move();
 
-        /** Game::STATE */
+        /** Game::STATE - what kind of a move is this. */
         int state;
-        /** X coord of a moved piece */
+        /** Game::MOD - modification to move like check, kind of castling.*/
+        int mod;
+        /** Starting X coord of a moved piece. */
         int x1;
-        /** Y coord of a moved piece */
+        /** Starting Y coord of a moved piece. */
         int y1;
-        /** Game::TYPE (same as Chessman::TYPE) of a moved piece */
-        int type1;
-        /** X coord of a piece effected by moved piece */
+        /** Ending X coord of a moved piece. */
         int x2;
-        /** Y coord of a piece effected by moved piece */
+        /** Ending Y coord of a moved piece. */
         int y2;
+        /** Game::TYPE (same as Chessman::TYPE) of a moved piece. */
+        int type1;
         /** 
          * @brief Game::TYPE (same as Chessman::TYPE) of a piece effected by 
          *        moved piece.
          */
         int type2;
+        /** Game::TYPE (same as Chessman::TYPE) piece promoted to. */
+        int promo;
     };
 
     /**
@@ -107,17 +124,27 @@ namespace Game {
          * @brief Returns list of moves in a form of tuples of integers.
          * @return List of moves in a form of tuples of integers.
          */
-        vector<tuple<int, int, int, int, int, int, int>> moves_list();
+        vector<Move> moves_list();
 
-        /** TODO */
+        /**
+         * @brief Creates Algebraic Notation of moves stored in 
+         *        vector<Move> mv_list.
+         * @return Vector of string with AN moves.
+         */
+        vector<string> moves_list_an();
+
+        /**
+         * @brief Returns how many plays (tourns when white and black player
+         *        already moved) passed.
+         * @return Number of plays.
+         */
         int n_of_plays();
-        /** TODO */
-        vector<string> to_an();
+
     private:
         /** Y coord of a piece effected by moved piece */
         vector<Move> mv_list;
         /** Number of turns (plays) passed. */
-        int play = 1;
+        int plays = 1;
     };
 }
 
