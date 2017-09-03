@@ -65,6 +65,11 @@ namespace Game
         */
         int current_player();
         /**
+        * @brief Return history of moves.
+        * @return Vector of strings containing history of moves.
+        */
+        vector<string> moves_history();
+        /**
         * @brief   Will move piece.
         * @details Move will be identified and if anything but invalid move will
         *          happen. Pieces are moved on Chessboard::Board and board will
@@ -86,7 +91,6 @@ namespace Game
         * @return Chessman::MOVE type of the move.
         */
         int move(const pair<char, int>&, const pair<char, int>&);
-
         /**
         * @brief  Checkmate check.
         * @return Game::MODIFICATION
@@ -97,6 +101,7 @@ namespace Game
 
 
     private:
+        const void add_moves_to_pieces(Chessboard::Board*, const Chessman::Piece*);
         /**
         * @brief Player currently playing his turn.
         */
