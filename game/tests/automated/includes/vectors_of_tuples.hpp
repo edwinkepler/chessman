@@ -31,6 +31,11 @@ void print_vector_of_tuples_7(
     }
 }
 
+void TEST_PAIRS(pair<int, int> lh, pair<int, int> rh) {
+    BOOST_REQUIRE_EQUAL(get<0>(lh), get<0>(rh));
+    BOOST_REQUIRE_EQUAL(get<1>(lh), get<1>(rh));
+}
+
 void TEST_VECTORS_OF_TUPLES_3(
     vector<tuple<int, int, int>> lh,
     vector<tuple<int, int, int>> rh)
