@@ -39,6 +39,10 @@ namespace Chessboard
         * @details This will prepare 2d vector for holding pieces.
         */
         Board();
+        /**
+        * @brief Destructor.
+        */
+        ~Board();
 
         /**
         * @brief Returns pointer to Chessman::Piece at given square.
@@ -80,6 +84,13 @@ namespace Chessboard
         */
         bool is_sqr_empty(const pair<int, int>&);
         /**
+        * @brief Will set a pointer at given square to NULL (empty it).
+        * @param &c is a pair of coordinates (x, y) as a integers.
+        * @throw invalid_argument if given coordinates are out of board border
+        *        or when pointer at given square is already NULL.
+        */
+        void nullify(const pair<int, int>&);
+        /**
         * @brief Returns 2d vector of a board.
         * @return vector<vector<Chessman::Piece*>> v_board.
         */
@@ -93,14 +104,6 @@ namespace Chessboard
         *         otherwise.
         */
         bool is_within_limit(const pair<int, int>&);
-        /**
-        * @brief Will set a pointer at given square to NULL (empty it).
-        * @param &c is a pair of coordinates (x, y) as a integers.
-        * @throw invalid_argument if given coordinates are out of board border
-        *        or when pointer at given square is already NULL.
-        */
-        void nullify(const pair<int, int>&);
-
         /**
         * @brief 2d vector that holds all pointers for chess pieces.
         */

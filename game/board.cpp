@@ -16,6 +16,9 @@ namespace Chessboard
         }
     }
 
+    Board::~Board()
+    {}
+
     Chessman::Piece* Board::point_piece(const pair<int, int> &c) {
         log.board_func_head("Board::point_piece", c);
 
