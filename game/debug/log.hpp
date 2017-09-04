@@ -18,7 +18,7 @@ using namespace std;
  */
 namespace Debug
 {
-    static bool verbose = false;
+    static bool f_verbose = false;
 
     /**
      * @brief Logging to stdout and dumping info about objects.
@@ -47,6 +47,12 @@ namespace Debug
         * @return Log object to enable chaining.
         */
         Log& t();
+        /**
+        * @brief Print line in a well formated manner.
+        * @param Line to print.
+        * @return Log object to enable chaining.
+        */
+        Log& l(int);
         /**
         * @brief Print basic info about piece to be logged.
         * @param Name of the function.
@@ -108,6 +114,12 @@ namespace Debug
         * @param Integer to print.
         */
         Log& operator<<(int);
+
+        /**
+        * @brief Turns on or off verbosity of a debug output.
+        * @param Boolean to turn on or off verbosity.
+        */
+        static void verbose(bool);
     };
 }
 
