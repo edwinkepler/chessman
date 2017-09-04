@@ -119,8 +119,8 @@ namespace Chessman
         *         tuple contains coordinates (x, y) as a first pair of ints and
         *         type of a move (Chessman::MOVES) as a third int.
         */
-        const vector<tuple<int, int, int>> list_moves(
-            const vector<vector<Chessman::Piece*>>&);
+        virtual const vector<tuple<int, int, int>> list_moves(
+            const vector<vector<Chessman::Piece*>>&) = 0;
 
     private:
         /**

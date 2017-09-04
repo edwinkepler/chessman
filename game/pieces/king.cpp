@@ -18,7 +18,7 @@ namespace Chessman
         const vector<vector<Chessman::Piece*>>& vb)
     {
         log.piece_func_head("King::identify_move()", 
-            type(), owner(), last_move());
+            type(), owner(), last_move()).coords(last_move(), to).n();
 
         int x1 = last_move().first;
         int y1 = last_move().second;
@@ -28,6 +28,8 @@ namespace Chessman
            (abs(y1 - y2) == 1 && abs(x1 - x2) < 1) ||
            (abs(x1 - x2) == 1 && abs(y1 - y2) == 1))
         {
+            log.t().l(__LINE__);
+            log.info("Normal move. Checking if in capturing zone...").n();
             vector<tuple<int, int, int>> vp;
             // Prevent moving into capturing zone. First we need to find all
             // moves of enemy pieces.
@@ -47,14 +49,18 @@ namespace Chessman
             // Check if desired move is not in a path of capturing.
             for(auto const& t : vp) {
                 if(get<0>(t) == x2 && get<1>(t) == y2) {
+                    log.t().l(__LINE__).info("Path taken, move INVALID.").n();
                     return Chessman::MOVES::INVALID;
                 }
             }
+            log.t().l(__LINE__).info("Path clear, move VALID.").n();
             return Chessman::MOVES::VALID;
         //
         // Check for castling
         //
         } else if(y1 == y2 && abs(x1 - x2) == 2 && !moved()) {
+            log.t().l(__LINE__);
+            log.info("Castling. Checking if in capturing zone...").n();
             vector<tuple<int, int, int>> vp;
             // Prevent moving into capturing zone. First we need to find all
             // moves of enemy pieces.
@@ -80,9 +86,13 @@ namespace Chessman
                     (x2 > x1) ? tmp *= -1 : mod *= 1;
                     if(
                         (get<0>(t) == x2 && get<1>(t) == y2) ||
-                        (get<0>(t) == x2 + (mod * 1) && get<1>(t) == y2 && owner() == 1) ||
-                        (get<0>(t) == x2 + (mod * -1) && get<1>(t) == y2 && owner() == 0)) 
+                        (get<0>(t) == x2 + (mod * 1) && 
+                            get<1>(t) == y2 && owner() == 1) ||
+                        (get<0>(t) == x2 + (mod * -1) && 
+                            get<1>(t) == y2 && owner() == 0)) 
                     {
+                        log.t().l(__LINE__);
+                        log.info("Path taken, move INVALID.").n();
                         return Chessman::MOVES::INVALID;
                     }
                 }
@@ -95,6 +105,8 @@ namespace Chessman
                    !rrook->moved() &&
                    rrook->owner() == owner())
                 {
+                    log.t().l(__LINE__);
+                    log.info("Path clear, Rook can castle, short CASTLING.").n();
                     return Chessman::MOVES::CASTLING;
                 }
             } else if(x2 < x1 && lrook != nullptr) {
@@ -102,13 +114,38 @@ namespace Chessman
                    !lrook->moved() &&
                    lrook->owner() == owner())
                 {
+                    log.t().l(__LINE__);
+                    log.info("Path clear, Rook can castle, short CASTLING.").n();
                     return Chessman::MOVES::CASTLING;
                 }
             } else {
+                log.t().l(__LINE__);
+                log.info("Rook can't castle, move INVALID.").n();
                 return Chessman::MOVES::INVALID;
             }
         } else {
+            log.t().l(__LINE__).info("Move INVALID.").n();
             return Chessman::MOVES::INVALID;
         }
+    }
+
+    const vector<tuple<int, int, int>> King::list_moves(
+        const vector<vector<Chessman::Piece*>>& vb) 
+    {
+        log.piece_func_head("King::list_moves()", 
+            type(), owner(), v_history.back()).n();
+
+        vector<tuple<int, int, int>> vp;
+        for(int i = 1; i <= vb.size(); i++) {
+            for(int j = 1; j <= vb.at(0).size(); j++) {
+                int m = identify_move(make_pair(i, j), vb);
+                if(m != Chessman::MOVES::INVALID) {
+                    log << "\t" << "found move type " << m << " at " 
+                        << "(" << i << ", " << j << ")\n";
+                    vp.push_back(make_tuple(i, j, m));
+                }
+            }
+        }
+        return vp;
     }
 }
