@@ -122,6 +122,11 @@ namespace Chessman
         virtual const vector<tuple<int, int, int>> list_moves(
             const vector<vector<Chessman::Piece*>>&) = 0;
 
+        const int check_straight_lines(
+            int, int, int, int, const vector<vector<Chessman::Piece*>>&);
+        const int check_diagonal_lines(
+            int, int, int, int, const vector<vector<Chessman::Piece*>>&);
+
     private:
         /**
         * @brief Holds owner id (Chessman::OWNER).
