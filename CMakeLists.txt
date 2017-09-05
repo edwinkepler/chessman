@@ -44,3 +44,19 @@ project(chessman-cli)
 
 add_executable(${PROJECT_NAME} chessman-cli/chessman-cli.cpp)
 target_link_libraries(${PROJECT_NAME} chessman_game)
+
+#Game build, not tests, GUI
+project(chessman-qt)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+find_package(Qt5 COMPONENTS Core Gui Widgets Quick Qml REQUIRED)
+
+add_library(qt_gui
+    chessman-qt/src/gamecontrollerobject.cpp
+    chessman-qt/src/logobject.cpp)
+
+add_executable(${PROJECT_NAME} ./chessman-qt/chessman-qt.cpp ./chessman-qt/qml/main.qrc)
+target_link_libraries(${PROJECT_NAME} chessman_game qt_gui Qt5::Gui Qt5::Widgets Qt5::Quick Qt5::Qml)
