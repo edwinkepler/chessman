@@ -10,11 +10,12 @@
 #include <utility>
 
 #include "gamecontroller.hpp"
+#include "debug/log.hpp"
 
 using namespace std;
 
 void print_board(Chessboard::Board* b, vector<string> h) {
-    cout << " ";
+    cout << "\t ";
     vector<char> rank {'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'};
     for(int i = 0; i < 8; ++i) {
         cout << rank.back();
@@ -23,7 +24,7 @@ void print_board(Chessboard::Board* b, vector<string> h) {
     cout << " " << endl;
 
     for(int i = 8; i > 0; --i) {
-        cout << i;
+        cout << "\t" << i;
         for(int j = 1; j <= 8; ++j) {
             if(b->is_sqr_empty(make_pair(j, i))) {
                 cout << ".";
@@ -34,7 +35,7 @@ void print_board(Chessboard::Board* b, vector<string> h) {
         cout << i << endl;
     }
 
-    cout << " ";
+    cout << "\t ";
     rank = {'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'};
     for(int i = 0; i < 8; ++i) {
         cout << rank.back();
@@ -45,21 +46,22 @@ void print_board(Chessboard::Board* b, vector<string> h) {
 
 void print_header() {
     cout << "\033c" << endl << endl;
-    cout << "================== CHESSMAN ==================" << endl;
-    cout << "== v0.1.3 ================= by Edwin Kepler ==" << endl << endl;
+    cout << "= CHESSMAN ================" << endl;
+    cout << "= v0.1.3 ==================" << endl << endl;
 }
 
 void print_footer(int _current) {
     if(_current == 0){
-        cout << "=================== WHITE ====================" << endl;
+        cout << "= WHITE ===================" << endl;
     } else {
-        cout << "=================== BLACK ====================" << endl;
+        cout << "= BLACK ===================" << endl;
     }
-    cout <<     "== Your move (x1 y1 x2 y2): ";
+    cout <<     "= Move (x1 y1 x2 y2): ";
 }
 
 int main(int argc, char *argv[]) {
     unique_ptr<Game::GameController> game {new Game::GameController};
+    Debug::Log::verbose(false);
 
     do {
         int x1, y1, x2, y2;
