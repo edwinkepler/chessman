@@ -9,7 +9,6 @@ namespace Chessman
         c_unicode = _owner ? "\u265D" : "\u2657";
     }
 
-    // https://math.stackexchange.com/a/1566144
     const int Bishop::identify_move(
         const pair<int, int>& to,
         const vector<vector<Chessman::Piece*>>& vb)

@@ -21,25 +21,25 @@ namespace Debug
     class Dump {
     public:
         /**
-        * @brief Print all information about Chessboard::Board.
-        * @param Pointer to Chessboard::Board object.
-        */
+         * @brief Print all information about Chessboard::Board.
+         * @param Pointer to Chessboard::Board object.
+         */
         void board(Chessboard::Board*);
         /**
-        * @brief Print all information about Chessman::Piece.
-        * @param Pointer to Chessman::Piece object.
-        */
+         * @brief Print all information about Chessman::Piece.
+         * @param Pointer to Chessman::Piece object.
+         */
         void piece(Chessman::Piece*);
 
         /**
-        * @brief Print all information about Chessboard::Board.
-        * @param Pointer to Chessboard::Board object.
-        */
+         * @brief Print all information about Chessboard::Board.
+         * @param Pointer to Chessboard::Board object.
+         */
         void operator<<(Chessboard::Board*);
         /**
-        * @brief Print all information about Chessman::Piece.
-        * @param Pointer to Chessman::Piece object.
-        */
+         * @brief Print all information about Chessman::Piece.
+         * @param Pointer to Chessman::Piece object.
+         */
         void operator<<(Chessman::Piece*);
     };
 }

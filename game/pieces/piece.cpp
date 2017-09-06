@@ -46,6 +46,7 @@ namespace Chessman
         return v_history;
     }
 
+    // https://math.stackexchange.com/a/1566144
     const int Piece::check_diagonal_lines(
         int x1, int y1, 
         int x2, int y2, 

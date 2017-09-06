@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright 2017 Edwin Kepler
  * @license MIT
  */
@@ -59,98 +59,107 @@ namespace Chessman
     class Piece {
     public:
         /**
-        * @brief Constructor.
-        * @param owner (Chessman::OWNER) of the piece.
-        * @param coords Starting coordinates.
-        */
+         * @brief Constructor.
+         * @param owner (Chessman::OWNER) of the piece.
+         * @param coords Starting coordinates.
+         */
         Piece(int, pair<int, int>);
         /**
-        * @brief Deconstructor.
-        */
+         * @brief Deconstructor.
+         */
         virtual ~Piece() {};
 
         /**
-        * @brief Returns owner id (Chessman::OWNER).
-        */
+         * @brief Returns owner id (Chessman::OWNER).
+         */
         const int owner();
 
         /**
-        * @brief Returns piece type (Chessman::TYPE).
-        */
+         * @brief Returns piece type (Chessman::TYPE).
+         */
         const int type();
         /**
-        * @brief Returns unicode character representing chess piece.
-        */
+         * @brief Returns unicode character representing chess piece.
+         */
         const char* unicode();
         /**
-        * @brief Adds move coordinates to Piece::v_history vector.
-        * @param pair of coordinates to archive.
-        */
+         * @brief Adds move coordinates to Piece::v_history vector.
+         * @param pair of coordinates to archive.
+         */
         const void add_move(const pair<int, int>&);
         /**
-        * @brief Returns last move coordinates.
-        * @return Last move coordinates.
-        */
+         * @brief Returns last move coordinates.
+         * @return Last move coordinates.
+         */
         const pair<int, int> last_move();
         /**
-        * @brief Sets Piece::f_moved flag to true or false.
-        * @param Defines if piece moved.
-        */
+         * @brief Sets Piece::f_moved flag to true or false.
+         * @param Defines if piece moved.
+         */
         const bool moved();
         /**
-        * @brief Returns Piece::v_history vector of pairs.
-        */
+         * @brief Returns Piece::v_history vector of pairs.
+         */
         const vector<pair<int, int>> history();
 
         /**
-        * @brief Checks if move is valid and if it is it will identify what kind
-        *        of move it is (like capturing, castling etc).
-        * @param pair of coordinates of destination.
-        * @param pointer to the Chessboard::Board.
-        * @return Chessman::MOVES ID of a move.
-        */
+         * @brief Checks if move is valid and if it is it will identify what 
+         *        kind of move it is (like capturing, castling etc).
+         * @param pair of coordinates of destination.
+         * @param pointer to the Chessboard::Board.
+         * @return Chessman::MOVES ID of a move.
+         */
         virtual const int identify_move(
             const pair<int, int>&,
             const vector<vector<Chessman::Piece*>>&) = 0;
         /**
-        * @brief Finds all legal moves for this piece.
-        * @param pointer to the Chessboard::Board.
-        * @return Vector of tuples of all moves except invalids moves. Every
-        *         tuple contains coordinates (x, y) as a first pair of ints and
-        *         type of a move (Chessman::MOVES) as a third int.
-        */
+         * @brief Finds all legal moves for this piece.
+         * @param pointer to the Chessboard::Board.
+         * @return Vector of tuples of all moves except invalids moves. Every
+         *       tuple contains coordinates (x, y) as a first pair of ints and
+         *       type of a move (Chessman::MOVES) as a third int.
+         */
         virtual const vector<tuple<int, int, int>> list_moves(
             const vector<vector<Chessman::Piece*>>&) = 0;
 
+        /**
+         * @brief Chessman::Rook and Chessman::Queen move.
+         * @param x1 coordinate (from).
+         * @param y1 coordinate (from).
+         * @param x2 coordinate (to).
+         * @param y2 coordinate (to).
+         * @param Vector pointers of Chessman::Piece (board). 
+         * @return Chessman::MOVES enum type.
+         */
         const int check_straight_lines(
             int, int, int, int, const vector<vector<Chessman::Piece*>>&);
+        /**
+         * @brief Chessman::Bishop and Chessman::Queen move.
+         * @param x1 coordinate (from).
+         * @param y1 coordinate (from).
+         * @param x2 coordinate (to).
+         * @param y2 coordinate (to).
+         * @param Vector pointers of Chessman::Piece (board). 
+         * @return Chessman::MOVES enum type.
+         */
         const int check_diagonal_lines(
             int, int, int, int, const vector<vector<Chessman::Piece*>>&);
 
     private:
-        /**
-        * @brief Holds owner id (Chessman::OWNER).
-        */
+        /** Holds owner id (Chessman::OWNER). */
         int i_owner;
-        /**
-        * @brief Flag that tells if piece have been moved.
-        */
+        /** Flag that tells if piece have been moved. */
         bool f_moved;
 
     protected:
-        /**
-        * @brief Hold unicode char.
-        */
+        /** Holds unicode char. */
         const char* c_unicode;
-        /**
-        * @brief Holds piece type (Chessman::TYPE).
-        */
+        /** Holds piece type (Chessman::TYPE). */
         int i_type;
-        /**
-        * @brief Vector of moves stored in FILO fashion.
-        */
+        /** Vector of moves stored in FILO fashion. */
         vector<pair<int, int>> v_history;
 
+        /** Logging object. */
         Debug::Log log;
     };
 }
