@@ -2,4 +2,10 @@
     <qresource>
         <file alias="main.qml">main.qml</file>
     </qresource>
+    <qresource prefix="controls">
+        <file alias="Chessboard.qml">controls/Chessboard.qml</file>
+        <file alias="Rank.qml">controls/Rank.qml</file>
+        <file alias="File.qml">controls/File.qml</file>
+        <file alias="Square.qml">controls/Square.qml</file>
+    </qresource>
 </RCC>
