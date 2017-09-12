@@ -7,6 +7,7 @@
 #define GAMECONTROLLER_TEST_HPP
 
 #include <utility>
+#include <vector>
 
 #include "gamecontroller.hpp"
 
@@ -486,6 +487,38 @@ BOOST_AUTO_TEST_CASE(current_player_black)
     BOOST_REQUIRE_EQUAL(1, test_game->current_player());
     delete test_game;
     Debug::Log::test_func_foot("current_player_black");
+}
+
+BOOST_AUTO_TEST_CASE(get_moves_history)
+{
+    Debug::Log::test_func_head("get_moves_history");
+    Game::GameController* test_game = new Game::GameController;
+    test_game->move(make_pair(7, 2), make_pair(7, 4));
+    vector<string> test = {"1. g4"};
+    auto result = test_game->moves_history();
+    BOOST_CHECK_EQUAL_COLLECTIONS(test.begin(), test.end(),
+                                    result.begin(), result.end());
+    delete test_game;
+    Debug::Log::test_func_foot("get_moves_history");
+}
+
+BOOST_AUTO_TEST_CASE(series_of_moves)
+{
+    Debug::Log::test_func_head("series_of_moves");
+    Game::GameController* test_game = new Game::GameController;
+
+    BOOST_FAIL("Last move will fall into infinite loop (#11)");
+
+    test_game->move(make_pair(5, 2), make_pair(5, 4));
+    test_game->move(make_pair(1, 7), make_pair(1, 6));
+    test_game->move(make_pair(6, 1), make_pair(4, 3));
+    test_game->move(make_pair(2, 7), make_pair(2, 6));
+    test_game->move(make_pair(7, 1), make_pair(6, 3));
+    test_game->move(make_pair(3, 7), make_pair(3, 6));
+    test_game->move(make_pair(5, 1), make_pair(7, 1));
+
+    delete test_game;
+    Debug::Log::test_func_foot("series_of_moves");
 }
 
 #endif // GAMECONTROLLER_TEST_HPP

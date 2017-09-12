@@ -51,9 +51,17 @@ void TEST_VECTORS_OF_TUPLES_3(
         BOOST_FAIL("LH != RH");
     }
     for(int i = 0; i < lh.size(); i++) {
-        BOOST_REQUIRE_EQUAL(get<0>(lh.at(i)), get<0>(rh.at(i)));
-        BOOST_REQUIRE_EQUAL(get<1>(lh.at(i)), get<1>(rh.at(i)));
-        BOOST_REQUIRE_EQUAL(get<2>(lh.at(i)), get<2>(rh.at(i)));
+        if( get<0>(lh.at(i)) != get<0>(rh.at(i)) || 
+            get<1>(lh.at(i)) != get<1>(rh.at(i)) || 
+            get<2>(lh.at(i)) != get<2>(rh.at(i)))
+        {
+            cout << "LH != RH" << endl;
+            cout << "LH (after sorting):" << endl;
+            print_vector_of_tuples_3(lh);
+            cout << "RH (after sorting):" << endl;
+            print_vector_of_tuples_3(rh);
+            BOOST_FAIL("LH != RH");
+        }
     }
 }
 

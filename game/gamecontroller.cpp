@@ -103,6 +103,10 @@ namespace Game
         return i_curr_player;
     }
 
+    vector<string> GameController::moves_history() {
+        return hist.moves_list_an();
+    }
+
     int GameController::move(
             const pair<int, int>& from,
             const pair<int, int>& to)
@@ -110,47 +114,102 @@ namespace Game
         auto piece = board->point_piece(from);
         auto move_type = piece->identify_move(to, board->board());
         // Valid move, not effecting other pieces
-        if(move_type == 1) {
-            board->move_piece(from, to);
+        switch(move_type) {
+            // Normal move, not effecting other pieces
+            case 1: {
+                board->move_piece(from, to);
 
-            hist.add_move(
-                Move(move_type, 
-                    0,
-                    from.first, 
-                    from.second, 
-                    to.first, 
-                    to.second, 
-                    piece->type(), 
-                    0, 0));
+                hist.add_move(
+                    Move(move_type, 
+                        0,
+                        from.first, 
+                        from.second, 
+                        to.first, 
+                        to.second, 
+                        piece->type(), 
+                        0, 0));
 
-            i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
-            return move_type;
-        // Valid move, effecting other pieces
-        } else if(move_type == 2 || move_type == 3 || move_type == 4) {
-            board->move_piece(from, to);
+                add_moves_to_pieces(board, piece);
+                i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+                return move_type;
+                break;
+            }
+            // Valid move, capture, effecting other piece
+            case 2: {
+                board->nullify(to);
+                board->move_piece(from, to);
 
-            auto piece_to = board->point_piece(to);
-            hist.add_move(
-                Move(move_type, 
-                    0,
-                    from.first, 
-                    from.second, 
-                    to.first, 
-                    to.second, 
-                    piece->type(), 
-                    piece_to->type(), 
-                    0));
+                auto piece_to = board->point_piece(to);
+                hist.add_move(
+                    Move(move_type, 
+                        2,
+                        from.first, 
+                        from.second, 
+                        to.first, 
+                        to.second, 
+                        piece->type(), 
+                        piece_to->type(), 
+                        0));
 
-            i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
-            return move_type;
-        } else if(move_type == 5 || move_type == 6) {
-            return move_type;
-        } else {
+                add_moves_to_pieces(board, piece);
+                i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+                return move_type;
+                break;
+            }
+            // Valid move, en passant, effecting other piece
+            case 3: {
+                board->nullify(to); // WRONG!!!!! TRANSLATE THIS!!!!!
+                board->move_piece(from, to);
+
+                auto piece_to = board->point_piece(to);
+                hist.add_move(
+                    Move(move_type, 
+                        3,
+                        from.first, 
+                        from.second, 
+                        to.first, 
+                        to.second, 
+                        piece->type(), 
+                        piece_to->type(), 
+                        0));
+
+                add_moves_to_pieces(board, piece);
+                i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+                return move_type;
+                break;
+            }
+            // Valid move, castling, effecting other piece
+            case 4: {
+                // Find Rook, move it
+                // White
+                // if(Helper::greater(to, from, 0) && piece->owner() == 0) {
+                    // board->move_piece(make_pair(8, 1), make_pair(6, 1));
+                // }
+
+                board->move_piece(from, to);
+
+                auto piece_to = board->point_piece(to);
+                hist.add_move(
+                    Move(move_type, 
+                        4,
+                        from.first, 
+                        from.second, 
+                        to.first, 
+                        to.second, 
+                        piece->type(), 
+                        piece_to->type(), 
+                        0));
+
+                add_moves_to_pieces(board, piece);
+                i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+                return move_type;
+                break;
+            }
             // Just to trigger exception throw from board
-            board->move_piece(from, to);
+            default: {
+                board->move_piece(from, to);
+            }             
         }
-
-        return move_type;
     }
 
     int GameController::move(
@@ -219,5 +278,21 @@ namespace Game
     int GameController::promotion() {
         // todo
         i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+    }
+
+    const void GameController::add_moves_to_pieces(
+        Chessboard::Board* b, const Chessman::Piece* p) 
+    {
+        auto v_board = b->board();
+        for(int i = 0; i < v_board.size(); ++i) {
+            for(int j = 0; j < v_board[0].size(); j++) {
+                if(v_board[i][j] != nullptr) {
+                    auto piece = v_board[i][j];
+                    if(piece != p) {
+                        piece->add_move(piece->last_move());
+                    }
+                }
+            }
+        }
     }
 }

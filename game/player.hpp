@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright 2017 Edwin Kepler
  * @license MIT
  */
@@ -29,29 +29,25 @@ namespace Chessplayer
     class Player {
     public:
         /**
-        * @brief Constructor.
-        * @param name of the player.
-        * @param side (Chessplayer::SIDE) of the player.
-        */
+         * @brief Constructor.
+         * @param name of the player.
+         * @param side (Chessplayer::SIDE) of the player.
+         */
         Player(string, int);
 
         /**
-        * @brief Returns name of the player.
-        */
+         * @brief Returns name of the player.
+         */
         string name();
         /**
-        * @brief Returns side (Chessplayer::SIDE) of the player.
-        */
+         * @brief Returns side (Chessplayer::SIDE) of the player.
+         */
         int side();
 
     private:
-        /**
-        * @brief Holds name of the player.
-        */
+        /** Holds name of the player. */
         string s_name;
-        /**
-        * @brief Holds side (Chessplayer::SIDE) of the player.
-        */
+        /** Holds side (Chessplayer::SIDE) of the player. */
         int i_side;
     };
 }

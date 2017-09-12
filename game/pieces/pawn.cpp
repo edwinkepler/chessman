@@ -15,6 +15,9 @@ namespace Chessman
         const pair<int, int>& to,
         const vector<vector<Chessman::Piece*>>& vb)
     {
+        log.piece_func_head("Bishop::identify_move", 
+        type(), owner(), last_move()).coords(last_move(), to).n();
+
         int x1 = last_move().first;
         int y1 = last_move().second;
         int x2 = to.first;
@@ -108,5 +111,25 @@ namespace Chessman
             // If you are here, move is INVALID
             return Chessman::MOVES::INVALID;
         }
+    }
+
+    const vector<tuple<int, int, int>> Pawn::list_moves(
+        const vector<vector<Chessman::Piece*>>& vb) 
+    {
+        log.piece_func_head("Pawn::list_moves()", 
+            type(), owner(), v_history.back()).n();
+
+        vector<tuple<int, int, int>> vp;
+        for(int i = 1; i <= vb.size(); i++) {
+            for(int j = 1; j <= vb.at(0).size(); j++) {
+                int m = identify_move(make_pair(i, j), vb);
+                if(m != Chessman::MOVES::INVALID) {
+                    log << "\t" << "found move type " << m << " at " 
+                        << "(" << i << ", " << j << ")\n";
+                    vp.push_back(make_tuple(i, j, m));
+                }
+            }
+        }
+        return vp;
     }
 }

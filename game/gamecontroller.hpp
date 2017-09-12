@@ -35,71 +35,76 @@ namespace Game
     class GameController {
     public:
         /**
-        * @brief   Constructor
-        * @details Prepare all pieces by placing them on board.
-        */
+         * @brief   Constructor
+         * @details Prepare all pieces by placing them on board.
+         */
         GameController();
         /**
-        * @brief   Decnstructor
-        * @details Delete all pieces, board, players and any other objects
-        *          created during playing the game.
-        */
+         * @brief   Decnstructor
+         * @details Delete all pieces, board, players and any other objects
+         *          created during playing the game.
+         */
         ~GameController();
 
         /**
-        * @brief Returns pointer to Chessman::Board.
-        * @return Pointer to Chessman::Board.
-        */
+         * @brief Returns pointer to Chessman::Board.
+         * @return Pointer to Chessman::Board.
+         */
         Chessboard::Board* chessboard();
         /**
-        * @brief Returns pointer to Chessplayer::Player of a given side.
-        * @param Enum Chessplayer::SIDE.
-        * @return Pointer to Chessplayer::Player.
-        * @throw invalid_argument if argument is not one of Chessplayer::SIDE.
-        */
+         * @brief Returns pointer to Chessplayer::Player of a given side.
+         * @param Enum Chessplayer::SIDE.
+         * @return Pointer to Chessplayer::Player.
+         * @throw invalid_argument if argument is not one of Chessplayer::SIDE.
+         */
         Chessplayer::Player* player(int);
         /**
-        * @brief Returns Chessplayer::SIDE of a player that turn is currently in
-        *        play.
-        * @return Chessplayer::SIDE.
-        */
+         * @brief Returns Chessplayer::SIDE of a player that turn is currently in
+         *        play.
+         * @return Chessplayer::SIDE.
+         */
         int current_player();
         /**
-        * @brief   Will move piece.
-        * @details Move will be identified and if anything but invalid move will
-        *          happen. Pieces are moved on Chessboard::Board and board will
-        *          check if arguments are valid (exception will be thrown if 
-        *          not).
-        * @param Pair of coordinates (x, y) as a integers of moved piece.
-        * @param Pair of destination (x, y) as a integers of a destination.
-        * @return Chessman::MOVE type of the move.
-        */
+         * @brief Return history of moves.
+         * @return Vector of strings containing history of moves.
+         */
+        vector<string> moves_history();
+        /**
+         * @brief   Will move piece.
+         * @details Move will be identified and if anything but invalid move will
+         *          happen. Pieces are moved on Chessboard::Board and board will
+         *          check if arguments are valid (exception will be thrown if 
+         *          not).
+         * @param Pair of coordinates (x, y) as a integers of moved piece.
+         * @param Pair of destination (x, y) as a integers of a destination.
+         * @return Chessman::MOVE type of the move.
+         */
         int move(const pair<int, int>&, const pair<int, int>&);
         /**
-        * @brief   Will move piece.
-        * @details Move will be identified and if anything but invalid move will
-        *          happen. Pieces are moved on Chessboard::Board and board will
-        *          check if arguments are valid (exception will be thrown if 
-        *          not).
-        * @param Pair of coordinates (x, y) as a char and int of moved piece.
-        * @param Pair of destination (x, y) as a char and int of a destination.
-        * @return Chessman::MOVE type of the move.
-        */
+         * @brief   Will move piece.
+         * @details Move will be identified and if anything but invalid move will
+         *          happen. Pieces are moved on Chessboard::Board and board will
+         *          check if arguments are valid (exception will be thrown if 
+         *          not).
+         * @param Pair of coordinates (x, y) as a char and int of moved piece.
+         * @param Pair of destination (x, y) as a char and int of a destination.
+         * @return Chessman::MOVE type of the move.
+         */
         int move(const pair<char, int>&, const pair<char, int>&);
-
         /**
-        * @brief  Checkmate check.
-        * @return Game::MODIFICATION
-        */
+         * @brief  Checkmate check.
+         * @return Game::MODIFICATION
+         */
         const int checkmate();
         /** TODO */
         int promotion();
 
 
     private:
+        const void add_moves_to_pieces(Chessboard::Board*, const Chessman::Piece*);
         /**
-        * @brief Player currently playing his turn.
-        */
+         * @brief Player currently playing his turn.
+         */
         int i_curr_player = 0;
 
         History hist;
