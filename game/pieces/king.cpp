@@ -73,7 +73,7 @@ namespace Chessman
                         if(enemy->owner() != owner() && enemy->type() != type()) {
                             log.t().l(__LINE__);
                             log.info("Found enemy piece. Checking if piece can capture...").n();
-                            auto tv = vb[j - 1][vb.size() - i]->list_moves(vb);
+                            auto tv = enemy->list_moves(vb);
                             sort(tv.begin(), tv.end());
                             merge(vp.begin(), vp.end(),
                                   tv.begin(), tv.end(),
