@@ -90,7 +90,7 @@ namespace Debug
          */
         static void test_func_foot(const string);
 
-        /**v_history.back()
+        /**
          * @brief Print coordinates. Can be chained.
          * @param Pair of coordinates to print.
          * @return Log object to enable chaining.
