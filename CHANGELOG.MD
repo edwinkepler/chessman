@@ -2,6 +2,8 @@
 
 ### Added
 
+- AI::KIPP class
+
 ### Fixed
 
 - Game::GameController loops infinitely on castling #11

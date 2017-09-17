@@ -17,6 +17,7 @@ add_library(chessman_game
     ./game/pieces/rook.cpp
     ./game/player.cpp
     ./game/board.cpp
+    ./game/ai/kipp.cpp
     ./game/gamecontroller.cpp
     ./game/history.cpp
     ./game/debug/log.cpp
