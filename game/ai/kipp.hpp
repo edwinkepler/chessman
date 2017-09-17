@@ -32,7 +32,7 @@ namespace AI
         ~KIPP();
 
     private:
-
+        
     };
 }
 
