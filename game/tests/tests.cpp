@@ -12,4 +12,4 @@
 #include "automated/board_test.hpp"
 #include "automated/gamecontroller_test.hpp"
 
-#include "automated/ai/kipp.hpp"
+#include "automated/ai/kipp_test.hpp"
