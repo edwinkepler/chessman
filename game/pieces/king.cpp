@@ -35,9 +35,10 @@ namespace Chessman
             // moves of enemy pieces.
             for(int i = 1; i <= vb.size(); i++) {
                 for(int j = 1; j <= vb.at(0).size(); j++) {
-                    if(vb[j - 1][vb.size() - i] != nullptr) {
-                        if(vb[j - 1][vb.size() - i]->owner() != owner()) {
-                            auto tv = vb[j - 1][vb.size() - i]->list_moves(vb);
+                    auto piece = vb[j - 1][vb.size() - i];
+                    if(piece != nullptr) {
+                        if(piece->owner() != owner() && piece->type() != 5) {
+                            auto tv = piece->list_moves(vb);
                             sort(tv.begin(), tv.end());
                             merge(vp.begin(), vp.end(),
                                   tv.begin(), tv.end(),

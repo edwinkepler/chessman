@@ -7,6 +7,7 @@
 ### Fixed
 
 - Game::GameController loops infinitely on castling #11
+- Chessman::King loops infinitely on listing moves #13
 
 ## [0.1.2] 2017-09-02
 
