@@ -37,6 +37,7 @@ namespace Chessman
                 for(int j = 1; j <= vb.at(0).size(); j++) {
                     auto piece = vb[j - 1][vb.size() - i];
                     if(piece != nullptr) {
+                        // Exclude king to prevent infinite looping
                         if(piece->owner() != owner() && piece->type() != 5) {
                             auto tv = piece->list_moves(vb);
                             sort(tv.begin(), tv.end());
