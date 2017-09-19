@@ -3,6 +3,7 @@
 ### Added
 
 - AI::KIPP class
+- Saving logs to file in Debug::Log
 
 ### Fixed
 
