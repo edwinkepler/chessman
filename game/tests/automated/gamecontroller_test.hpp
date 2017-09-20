@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "gamecontroller.hpp"
+#include "debug/log.hpp"
 
 #define BOOST_TEST_MAIN
 
@@ -506,8 +507,6 @@ BOOST_AUTO_TEST_CASE(series_of_moves)
 {
     Debug::Log::test_func_head("series_of_moves");
     Game::GameController* test_game = new Game::GameController;
-
-    BOOST_FAIL("Last move will fall into infinite loop (#11)");
 
     test_game->move(make_pair(5, 2), make_pair(5, 4));
     test_game->move(make_pair(1, 7), make_pair(1, 6));

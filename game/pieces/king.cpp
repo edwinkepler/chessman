@@ -35,9 +35,11 @@ namespace Chessman
             // moves of enemy pieces.
             for(int i = 1; i <= vb.size(); i++) {
                 for(int j = 1; j <= vb.at(0).size(); j++) {
-                    if(vb[j - 1][vb.size() - i] != nullptr) {
-                        if(vb[j - 1][vb.size() - i]->owner() != owner()) {
-                            auto tv = vb[j - 1][vb.size() - i]->list_moves(vb);
+                    auto piece = vb[j - 1][vb.size() - i];
+                    if(piece != nullptr) {
+                        // Exclude king to prevent infinite looping
+                        if(piece->owner() != owner() && piece->type() != 5) {
+                            auto tv = piece->list_moves(vb);
                             sort(tv.begin(), tv.end());
                             merge(vp.begin(), vp.end(),
                                   tv.begin(), tv.end(),
@@ -67,8 +69,13 @@ namespace Chessman
             for(int i = 1; i <= vb.size(); i++) {
                 for(int j = 1; j <= vb.at(0).size(); j++) {
                     if(vb[j - 1][vb.size() - i] != nullptr) {
-                        if(vb[j - 1][vb.size() - i]->owner() != owner()) {
-                            auto tv = vb[j - 1][vb.size() - i]->list_moves(vb);
+                        auto enemy = vb[j - 1][vb.size() - i];
+                        // If this is enemy piece and not a enemy King then check for moves.
+                        // Checking for enemy's King moves will end up with recurency.
+                        if(enemy->owner() != owner() && enemy->type() != type()) {
+                            log.t().l(__LINE__);
+                            log.info("Found enemy piece. Checking if piece can capture...").n();
+                            auto tv = enemy->list_moves(vb);
                             sort(tv.begin(), tv.end());
                             merge(vp.begin(), vp.end(),
                                   tv.begin(), tv.end(),

@@ -61,7 +61,9 @@ void print_footer(int _current) {
 
 int main(int argc, char *argv[]) {
     unique_ptr<Game::GameController> game {new Game::GameController};
-    Debug::Log::verbose(false);
+    Debug::Log::verbose_file(true);
+    Debug::Log log;
+    log.datetime_stamp().n();
 
     do {
         int x1, y1, x2, y2;

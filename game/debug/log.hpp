@@ -7,9 +7,12 @@
 #define LOG_HPP
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <utility>
 #include <vector>
+#include <iomanip>
+#include <ctime>
 
 using namespace std;
 
@@ -18,7 +21,9 @@ using namespace std;
  */
 namespace Debug
 {
-    static bool f_verbose = false;
+    static bool f_verbose_stdout = false;
+    static bool f_verbose_file = false;
+    static string s_file_name = "chessman.log";
 
     /**
      * @brief Logging to stdout and dumping info about objects.
@@ -90,7 +95,11 @@ namespace Debug
          */
         static void test_func_foot(const string);
 
-        /**v_history.back()
+        /**
+         * @brief Print current date and time.
+         */
+        Log& datetime_stamp();
+        /**
          * @brief Print coordinates. Can be chained.
          * @param Pair of coordinates to print.
          * @return Log object to enable chaining.
@@ -116,10 +125,21 @@ namespace Debug
         Log& operator<<(int);
 
         /**
-         * @brief Turns on or off verbosity of a debug output.
+         * @brief Sets path for a log file.
+         * @param Path to log file.
+         */
+        void file_path(string);
+
+        /**
+         * @brief Turns on or off verbosity of a debug output to stdout.
          * @param Boolean to turn on or off verbosity.
          */
-        static void verbose(bool);
+        static void verbose_stdout(bool);
+        /**
+         * @brief Turns on or off verbosity of a debug output to a file.
+         * @param Boolean to turn on or off verbosity.
+         */
+        static void verbose_file(bool);
     };
 }
 
