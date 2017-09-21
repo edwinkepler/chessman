@@ -8,6 +8,7 @@
 
 #include <utility>
 #include <vector>
+#include <chrono>
 
 #include <exception>
 
@@ -21,6 +22,8 @@
 #include "player.hpp"
 #include "history.hpp"
 #include "board.hpp"
+
+#include "debug/log.hpp"
 
 /**
  * @brief This namespace contains main interface for game of chess.
@@ -147,6 +150,8 @@ namespace Game
         Chessman::Bishop* bishop_b_2 = new Chessman::Bishop(1, make_pair(6, 8));
         Chessman::Queen* queen_b = new Chessman::Queen(1, make_pair(4, 8));
         Chessman::King* king_b = new Chessman::King(1, make_pair(5, 8));
+
+        Debug::Log log;
     };
 }
 

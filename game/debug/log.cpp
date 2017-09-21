@@ -70,6 +70,23 @@ namespace Debug
         return *this;
     }
 
+    Log& Log::t2() {
+        if(f_verbose_stdout) {
+            cout << "\t\t";
+        }
+        if(f_verbose_file) {
+            ofstream file_log;
+            file_log.open(
+                s_file_name, 
+                ios::binary | 
+                ios_base::app | 
+                ios_base::out);
+            file_log << "\t\t";
+            file_log.close();
+        }
+        return *this;
+    }
+
     Log& Log::l(int _l) {
         if(f_verbose_stdout) {
             cout << "[" << _l << "] ";
@@ -87,9 +104,60 @@ namespace Debug
         return *this;
     }
 
+    Log& Log::func_head(string _f) {
+        if(f_verbose_stdout) {
+            cout << "[" << _f << "][START]\n";
+        }
+        if(f_verbose_file) {
+            ofstream file_log;
+            file_log.open(
+                s_file_name, 
+                ios::binary | 
+                ios_base::app | 
+                ios_base::out);
+            file_log << "[" << _f << "][START]\n";
+            file_log.close();
+        }
+        return *this;
+    }
+
+    Log& Log::func_foot(string _f) {
+        if(f_verbose_stdout) {
+            cout << "[" << _f << "][DONE]\n";
+        }
+        if(f_verbose_file) {
+            ofstream file_log;
+            file_log.open(
+                s_file_name, 
+                ios::binary | 
+                ios_base::app | 
+                ios_base::out);
+            file_log << "[" << _f << "][DONE]\n";
+            file_log.close();
+        }
+        return *this;
+    }
+
+    Log& Log::func_foot(string _f, int _n) {
+        if(f_verbose_stdout) {
+            cout << "[" << _f << "][DONE in " << _n << "ms]\n";
+        }
+        if(f_verbose_file) {
+            ofstream file_log;
+            file_log.open(
+                s_file_name, 
+                ios::binary | 
+                ios_base::app | 
+                ios_base::out);
+            file_log << "[" << _f << "][DONE in " << _n << "ms]\n";
+            file_log.close();
+        }
+        return *this;
+    }
+
     Log& Log::piece_func_head(string _f, int _t, int _o, const pair<int, int>& _c) {
         if(f_verbose_stdout) {
-            cout << "[" << _f << "][type: " 
+            cout << "\t\t[" << _f << "][type: " 
                 << _t << ", owner: " 
                 << _o << ", at: ("
                 << _c.first << ", " << _c.second << ")]\n";
@@ -101,7 +169,7 @@ namespace Debug
                 ios::binary | 
                 ios_base::app | 
                 ios_base::out);
-            file_log << "[" << _f << "][type: " 
+            file_log << "\t\t[" << _f << "][type: " 
                     << _t << ", owner: " 
                     << _o << ", at: ("
                     << _c.first << ", " << _c.second << ")]\n";
@@ -112,7 +180,7 @@ namespace Debug
 
     Log& Log::board_func_head(string _f, const pair<int, int>& _c) {
         if(f_verbose_stdout) {
-            cout << "[" << _f << "][coords: " 
+            cout << "\t\t[" << _f << "][coords: (" 
                 << _c.first << ", " << _c.second << ")]\n";
         }
         if(f_verbose_file) {
@@ -122,7 +190,7 @@ namespace Debug
                 ios::binary | 
                 ios_base::app | 
                 ios_base::out);
-            file_log << "[" << _f << "][coords: " 
+            file_log << "\t\t[" << _f << "][coords: (" 
                     << _c.first << ", " << _c.second << ")]\n";
             file_log.close();
         }
@@ -134,8 +202,8 @@ namespace Debug
         const pair<int, int>& _c2) 
     {
         if(f_verbose_stdout) {
-            cout << "[" << _f << "][from: " 
-                << _c1.first << ", " << _c1.second << "), to: "
+            cout << "\t\t[" << _f << "][from: (" 
+                << _c1.first << ", " << _c1.second << "), to: ("
                 << _c2.first << ", " << _c2.second << ")]\n";
         }
         if(f_verbose_file) {
@@ -145,8 +213,8 @@ namespace Debug
                 ios::binary | 
                 ios_base::app | 
                 ios_base::out);
-            file_log << "[" << _f << "][from: " 
-                    << _c1.first << ", " << _c1.second << "), to: "
+            file_log << "\t\t[" << _f << "][from: (" 
+                    << _c1.first << ", " << _c1.second << "), to: ("
                     << _c2.first << ", " << _c2.second << ")]\n";
             file_log.close();
         }

@@ -111,14 +111,21 @@ namespace Game
             const pair<int, int>& from,
             const pair<int, int>& to)
     {
+        auto started = chrono::high_resolution_clock::now();
+        log.func_head("GameController::move()");
+        log.t().l(__LINE__).info("Chessboard::point_piece()...").n();
         auto piece = board->point_piece(from);
+        log.t().l(__LINE__).info("Piece::identify_move()...").n();
         auto move_type = piece->identify_move(to, board->board());
         // Valid move, not effecting other pieces
         switch(move_type) {
             // Normal move, not effecting other pieces
             case 1: {
+                log.t().l(__LINE__).info("Normal move.").n();
+                log.t().l(__LINE__).info("Chessboard::move_piece()...").n();
                 board->move_piece(from, to);
 
+                log.t().l(__LINE__).info("History::add_move()...").n();
                 hist.add_move(
                     Move(move_type, 
                         0,
@@ -129,8 +136,12 @@ namespace Game
                         piece->type(), 
                         0, 0));
 
+                log.t().l(__LINE__).info("GameController::add_moves_to_pieces()...").n();
                 add_moves_to_pieces(board, piece);
                 i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+                auto done = chrono::high_resolution_clock::now(); // stop the clock
+                log.func_foot("GameController::move()",
+                    chrono::duration_cast<chrono::milliseconds>(done-started).count());
                 return move_type;
                 break;
             }
@@ -178,17 +189,47 @@ namespace Game
                 return move_type;
                 break;
             }
-            // Valid move, castling, effecting other piece
+            // Valid move, castling, affecting other piece
             case 4: {
+                // Move king
+                board->move_piece(from, to);
+                Chessman::Piece* piece_affected;
                 // Find Rook, move it
                 // White
-                // if(Helper::greater(to, from, 0) && piece->owner() == 0) {
-                    // board->move_piece(make_pair(8, 1), make_pair(6, 1));
-                // }
+                if(Helper::greaterx(to, from) && piece->owner() == 0 && i_curr_player == 0) {
+                    auto rook_from = make_pair(8, 1);
+                    auto rook_to = make_pair(6, 1);
+                    if(!board->is_sqr_empty(rook_from) && board->is_sqr_empty(rook_to)) {
+                        board->move_piece(rook_from, rook_to);
+                    }
+                    piece_affected = board->point_piece(rook_to);
+                } 
+                if(!Helper::greaterx(to, from) && piece->owner() == 0 && i_curr_player == 0) {
+                    auto rook_from = make_pair(1, 1);
+                    auto rook_to = make_pair(4, 1);
+                    if(!board->is_sqr_empty(rook_from) && board->is_sqr_empty(rook_to)) {
+                        board->move_piece(rook_from, rook_to);
+                    }
+                    piece_affected = board->point_piece(rook_to);
+                }
+                // Black
+                if(Helper::greaterx(to, from) && piece->owner() == 1 && i_curr_player == 1) {
+                    auto rook_from = make_pair(8, 8);
+                    auto rook_to = make_pair(6, 8);
+                    if(!board->is_sqr_empty(rook_from) && board->is_sqr_empty(rook_to)) {
+                        board->move_piece(rook_from, rook_to);
+                    }
+                    piece_affected = board->point_piece(rook_to);
+                } 
+                if(!Helper::greaterx(to, from) && piece->owner() == 1 && i_curr_player == 1) {
+                    auto rook_from = make_pair(1, 8);
+                    auto rook_to = make_pair(4, 8);
+                    if(!board->is_sqr_empty(rook_from) && board->is_sqr_empty(rook_to)) {
+                        board->move_piece(rook_from, rook_to);
+                    }
+                    piece_affected = board->point_piece(rook_to);
+                }
 
-                board->move_piece(from, to);
-
-                auto piece_to = board->point_piece(to);
                 hist.add_move(
                     Move(move_type, 
                         4,
@@ -197,7 +238,7 @@ namespace Game
                         to.first, 
                         to.second, 
                         piece->type(), 
-                        piece_to->type(), 
+                        piece_affected->type(), 
                         0));
 
                 add_moves_to_pieces(board, piece);
