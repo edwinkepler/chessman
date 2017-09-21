@@ -503,11 +503,10 @@ BOOST_AUTO_TEST_CASE(get_moves_history)
     Debug::Log::test_func_foot("get_moves_history");
 }
 
-BOOST_AUTO_TEST_CASE(series_of_moves)
+BOOST_AUTO_TEST_CASE(series_of_moves_short_castling_white)
 {
     Debug::Log::test_func_head("series_of_moves");
     Game::GameController* test_game = new Game::GameController;
-
     test_game->move(make_pair(5, 2), make_pair(5, 4));
     test_game->move(make_pair(1, 7), make_pair(1, 6));
     test_game->move(make_pair(6, 1), make_pair(4, 3));
@@ -515,9 +514,46 @@ BOOST_AUTO_TEST_CASE(series_of_moves)
     test_game->move(make_pair(7, 1), make_pair(6, 3));
     test_game->move(make_pair(3, 7), make_pair(3, 6));
     test_game->move(make_pair(5, 1), make_pair(7, 1));
-
+    // if moves does't end with throw or segfault then test is ok
+    BOOST_CHECK(true);
     delete test_game;
     Debug::Log::test_func_foot("series_of_moves");
+}
+
+// BOOST_AUTO_TEST_CASE(series_of_moves_long_castling_white)
+// {
+//     Debug::Log::test_func_head("series_of_moves");
+//     Game::GameController* test_game = new Game::GameController;
+//     test_game->move(make_pair(3, 2), make_pair(3, 3));
+//     test_game->move(make_pair(1, 7), make_pair(1, 6));
+//     test_game->move(make_pair(2, 1), make_pair(5, 4));
+//     test_game->move(make_pair(2, 7), make_pair(2, 6));
+//     test_game->move(make_pair(4, 1), make_pair(1, 4));
+//     test_game->move(make_pair(3, 7), make_pair(3, 6));
+//     test_game->move(make_pair(3, 1), make_pair(4, 3));
+//     test_game->move(make_pair(4, 7), make_pair(4, 6));
+//     test_game->move(make_pair(5, 1), make_pair(3, 1));
+//     // if moves does't end with throw or segfault then test is ok
+//     BOOST_CHECK(true);
+//     delete test_game;
+//     Debug::Log::test_func_foot("series_of_moves");
+// }
+
+BOOST_AUTO_TEST_CASE(series_of_moves_short_castling_black)
+{
+    Debug::Log::test_func_head("series_of_moves_short_castling_black");
+    Game::GameController* test_game = new Game::GameController;
+    test_game->move(make_pair(1, 2), make_pair(1, 3));
+    test_game->move(make_pair(7, 7), make_pair(7, 5));
+    test_game->move(make_pair(2, 2), make_pair(2, 3));
+    test_game->move(make_pair(6, 8), make_pair(8, 6));
+    test_game->move(make_pair(3, 2), make_pair(3, 3));
+    test_game->move(make_pair(7, 8), make_pair(6, 6));
+    test_game->move(make_pair(4, 2), make_pair(4, 3));
+    test_game->move(make_pair(5, 8), make_pair(7, 8));
+    BOOST_CHECK(true);
+    delete test_game;
+    Debug::Log::test_func_foot("series_of_moves_short_castling_black");
 }
 
 #endif // GAMECONTROLLER_TEST_HPP

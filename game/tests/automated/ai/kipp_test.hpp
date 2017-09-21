@@ -25,7 +25,8 @@ BOOST_AUTO_TEST_CASE(random_move)
     unique_ptr<Game::GameController> initial {new Game::GameController};
     unique_ptr<Game::GameController> game {new Game::GameController};
     AI::KIPP::compute_move(0, 0, 0, game->chessboard());
-    TEST_BOARD_IF_NOT_EQUAL(initial->chessboard()->board(), game->chessboard()->board());
+    TEST_BOARD_IF_NOT_EQUAL(
+        initial->chessboard()->board(), game->chessboard()->board());
     Debug::Log::test_func_foot("random_move");
 }
 
