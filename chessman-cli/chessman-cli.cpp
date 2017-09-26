@@ -15,7 +15,7 @@
 
 using namespace std;
 
-void print_board(Chessboard::Board* b, vector<string> h) {
+void print_board(shared_ptr<Chessboard::Board> b, vector<string> h) {
     cout << "\t ";
     vector<char> rank {'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'};
     for(int i = 0; i < 8; ++i) {

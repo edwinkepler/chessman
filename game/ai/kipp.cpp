@@ -6,7 +6,7 @@ namespace AI
         int _depth,
         int _side,
         int _time_left,
-        Chessboard::Board* _board)
+        shared_ptr<Chessboard::Board> _board)
     {
         // If depth equals zero then just random some move but prefer capturing. 
         if(_depth == 0) {

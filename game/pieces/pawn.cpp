@@ -13,7 +13,7 @@ namespace Chessman
     // Good luck with that X_X
     const int Pawn::identify_move(
         const pair<int, int>& to,
-        const vector<vector<Chessman::Piece*>>& vb)
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb)
     {
         log.piece_func_head("Pawn::identify_move", 
             type(), owner(), last_move());
@@ -124,7 +124,7 @@ namespace Chessman
     }
 
     const vector<tuple<int, int, int>> Pawn::list_moves(
-        const vector<vector<Chessman::Piece*>>& vb) 
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb) 
     {
         log.piece_func_head("Pawn::list_moves()", 
             type(), owner(), v_history.back()).n();

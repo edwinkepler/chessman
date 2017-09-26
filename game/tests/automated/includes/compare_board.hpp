@@ -14,7 +14,7 @@
 
 using namespace std;
 
-void TEST_BOARD_IF_NOT_EQUAL(vector<vector<Chessman::Piece*>> _lb, vector<vector<Chessman::Piece*>> _rb) {
+void TEST_BOARD_IF_NOT_EQUAL(vector<vector<shared_ptr<Chessman::Piece>>> _lb, vector<vector<shared_ptr<Chessman::Piece>>> _rb) {
     bool equal = true;
     for(int i = 0; i < _lb.size(); ++i) {
         for(int j = 0; j < _lb.size(); ++j) {

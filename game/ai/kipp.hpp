@@ -36,7 +36,7 @@ namespace AI
          * @param Chessboard.
          * @return x1, y1, x2, y2 of a computed move.
          */
-        static const tuple<int, int, int, int> compute_move(int, int, int, Chessboard::Board*);
+        static const tuple<int, int, int, int> compute_move(int, int, int, shared_ptr<Chessboard::Board>);
     };
 }
 

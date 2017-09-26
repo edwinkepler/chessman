@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include <tuple>
+#include <memory>
 
 #include "debug/log.hpp"
 
@@ -111,7 +112,7 @@ namespace Chessman
          */
         virtual const int identify_move(
             const pair<int, int>&,
-            const vector<vector<Chessman::Piece*>>&) = 0;
+            const vector<vector<shared_ptr<Chessman::Piece>>>&) = 0;
         /**
          * @brief Finds all legal moves for this piece.
          * @param pointer to the Chessboard::Board.
@@ -120,7 +121,7 @@ namespace Chessman
          *       type of a move (Chessman::MOVES) as a third int.
          */
         virtual const vector<tuple<int, int, int>> list_moves(
-            const vector<vector<Chessman::Piece*>>&) = 0;
+            const vector<vector<shared_ptr<Chessman::Piece>>>&) = 0;
 
         /**
          * @brief Chessman::Rook and Chessman::Queen move.
@@ -132,7 +133,7 @@ namespace Chessman
          * @return Chessman::MOVES enum type.
          */
         const int check_straight_lines(
-            int, int, int, int, const vector<vector<Chessman::Piece*>>&);
+            int, int, int, int, const vector<vector<shared_ptr<Chessman::Piece>>>&);
         /**
          * @brief Chessman::Bishop and Chessman::Queen move.
          * @param x1 coordinate (from).
@@ -143,7 +144,7 @@ namespace Chessman
          * @return Chessman::MOVES enum type.
          */
         const int check_diagonal_lines(
-            int, int, int, int, const vector<vector<Chessman::Piece*>>&);
+            int, int, int, int, const vector<vector<shared_ptr<Chessman::Piece>>>&);
 
     private:
         /** Holds owner id (Chessman::OWNER). */

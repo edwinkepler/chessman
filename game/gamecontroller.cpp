@@ -44,51 +44,13 @@ namespace Game
     }
 
     GameController::~GameController() {
-        delete board;
-
-        delete play_white;
-        delete play_black;
-
-        delete pawn_w_1;
-        delete pawn_w_2;
-        delete pawn_w_3;
-        delete pawn_w_4;
-        delete pawn_w_5;
-        delete pawn_w_6;
-        delete pawn_w_7;
-        delete pawn_w_8;
-        delete rook_w_1;
-        delete rook_w_2;
-        delete knight_w_1;
-        delete knight_w_2;
-        delete bishop_w_1;
-        delete bishop_w_2;
-        delete queen_w;
-        delete king_w;
-
-        delete pawn_b_1;
-        delete pawn_b_2;
-        delete pawn_b_3;
-        delete pawn_b_4;
-        delete pawn_b_5;
-        delete pawn_b_6;
-        delete pawn_b_7;
-        delete pawn_b_8;
-        delete rook_b_1;
-        delete rook_b_2;
-        delete knight_b_1;
-        delete knight_b_2;
-        delete bishop_b_1;
-        delete bishop_b_2;
-        delete queen_b;
-        delete king_b;
     }
 
-    Chessboard::Board* GameController::chessboard() {
+    shared_ptr<Chessboard::Board> GameController::chessboard() {
         return board;
     }
 
-    Chessplayer::Player* GameController::player(int _side) {
+    shared_ptr<Chessplayer::Player> GameController::player(int _side) {
         if(_side > 1 || _side < 0) {
             throw invalid_argument(
                 "GameController::player(): Argument out of range.");
@@ -193,7 +155,7 @@ namespace Game
             case 4: {
                 // Move king
                 board->move_piece(from, to);
-                Chessman::Piece* piece_affected;
+                shared_ptr<Chessman::Piece> piece_affected;
                 // Find Rook, move it
                 // White
                 if(Helper::greaterx(to, from) && piece->owner() == 0 && i_curr_player == 0) {
@@ -264,7 +226,7 @@ namespace Game
 
     const int GameController::checkmate() {        
         auto vb = chessboard()->board();
-        vector<Chessman::Piece*> vp;
+        vector<shared_ptr<Chessman::Piece>> vp;
         bool cant_move = false;
         int kx, ky;
         // find king
@@ -322,7 +284,7 @@ namespace Game
     }
 
     const void GameController::add_moves_to_pieces(
-        Chessboard::Board* b, const Chessman::Piece* p) 
+        shared_ptr<Chessboard::Board> b, const shared_ptr<Chessman::Piece> p) 
     {
         auto v_board = b->board();
         for(int i = 0; i < v_board.size(); ++i) {

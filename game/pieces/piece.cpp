@@ -51,7 +51,7 @@ namespace Chessman
     const int Piece::check_diagonal_lines(
         int x1, int y1, 
         int x2, int y2, 
-        const vector<vector<Chessman::Piece*>>& vb) 
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb) 
     {
         if(x1 == x2 && y1 == y2) {
             // Just to be sure, invalid from the square piece is standing on
@@ -84,7 +84,7 @@ namespace Chessman
     const int Piece::check_straight_lines(
         int x1, int y1, 
         int x2, int y2, 
-        const vector<vector<Chessman::Piece*>>& vb)
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb)
     {
         if(x1 == x2 && y1 != y2) {
             for(int i = 1; i <= abs(y1 - y2); i++) {
