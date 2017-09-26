@@ -11,7 +11,7 @@ namespace Chessman
 
     const int Knight::identify_move(
         const pair<int, int>& to,
-        const vector<vector<Chessman::Piece*>>& vb)
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb)
     {
         int x1 = last_move().first;
         int y1 = last_move().second;
@@ -38,7 +38,7 @@ namespace Chessman
     }
 
     const vector<tuple<int, int, int>> Knight::list_moves(
-        const vector<vector<Chessman::Piece*>>& vb) 
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb) 
     {
         log.piece_func_head("Knight::list_moves()", 
             type(), owner(), v_history.back()).n();

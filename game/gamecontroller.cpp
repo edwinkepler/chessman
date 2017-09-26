@@ -44,51 +44,13 @@ namespace Game
     }
 
     GameController::~GameController() {
-        delete board;
-
-        delete play_white;
-        delete play_black;
-
-        delete pawn_w_1;
-        delete pawn_w_2;
-        delete pawn_w_3;
-        delete pawn_w_4;
-        delete pawn_w_5;
-        delete pawn_w_6;
-        delete pawn_w_7;
-        delete pawn_w_8;
-        delete rook_w_1;
-        delete rook_w_2;
-        delete knight_w_1;
-        delete knight_w_2;
-        delete bishop_w_1;
-        delete bishop_w_2;
-        delete queen_w;
-        delete king_w;
-
-        delete pawn_b_1;
-        delete pawn_b_2;
-        delete pawn_b_3;
-        delete pawn_b_4;
-        delete pawn_b_5;
-        delete pawn_b_6;
-        delete pawn_b_7;
-        delete pawn_b_8;
-        delete rook_b_1;
-        delete rook_b_2;
-        delete knight_b_1;
-        delete knight_b_2;
-        delete bishop_b_1;
-        delete bishop_b_2;
-        delete queen_b;
-        delete king_b;
     }
 
-    Chessboard::Board* GameController::chessboard() {
+    shared_ptr<Chessboard::Board> GameController::chessboard() {
         return board;
     }
 
-    Chessplayer::Player* GameController::player(int _side) {
+    shared_ptr<Chessplayer::Player> GameController::player(int _side) {
         if(_side > 1 || _side < 0) {
             throw invalid_argument(
                 "GameController::player(): Argument out of range.");
@@ -111,14 +73,21 @@ namespace Game
             const pair<int, int>& from,
             const pair<int, int>& to)
     {
+        auto started = chrono::high_resolution_clock::now();
+        log.func_head("GameController::move()");
+        log.t().l(__LINE__).info("Chessboard::point_piece()...").n();
         auto piece = board->point_piece(from);
+        log.t().l(__LINE__).info("Piece::identify_move()...").n();
         auto move_type = piece->identify_move(to, board->board());
         // Valid move, not effecting other pieces
         switch(move_type) {
             // Normal move, not effecting other pieces
             case 1: {
+                log.t().l(__LINE__).info("Normal move.").n();
+                log.t().l(__LINE__).info("Chessboard::move_piece()...").n();
                 board->move_piece(from, to);
 
+                log.t().l(__LINE__).info("History::add_move()...").n();
                 hist.add_move(
                     Move(move_type, 
                         0,
@@ -129,8 +98,12 @@ namespace Game
                         piece->type(), 
                         0, 0));
 
+                log.t().l(__LINE__).info("GameController::add_moves_to_pieces()...").n();
                 add_moves_to_pieces(board, piece);
                 i_curr_player == 0 ? i_curr_player = 1 : i_curr_player = 0;
+                auto done = chrono::high_resolution_clock::now(); // stop the clock
+                log.func_foot("GameController::move()",
+                    chrono::duration_cast<chrono::milliseconds>(done-started).count());
                 return move_type;
                 break;
             }
@@ -178,17 +151,47 @@ namespace Game
                 return move_type;
                 break;
             }
-            // Valid move, castling, effecting other piece
+            // Valid move, castling, affecting other piece
             case 4: {
+                // Move king
+                board->move_piece(from, to);
+                shared_ptr<Chessman::Piece> piece_affected;
                 // Find Rook, move it
                 // White
-                // if(Helper::greater(to, from, 0) && piece->owner() == 0) {
-                    // board->move_piece(make_pair(8, 1), make_pair(6, 1));
-                // }
+                if(Helper::greaterx(to, from) && piece->owner() == 0 && i_curr_player == 0) {
+                    auto rook_from = make_pair(8, 1);
+                    auto rook_to = make_pair(6, 1);
+                    if(!board->is_sqr_empty(rook_from) && board->is_sqr_empty(rook_to)) {
+                        board->move_piece(rook_from, rook_to);
+                    }
+                    piece_affected = board->point_piece(rook_to);
+                } 
+                if(!Helper::greaterx(to, from) && piece->owner() == 0 && i_curr_player == 0) {
+                    auto rook_from = make_pair(1, 1);
+                    auto rook_to = make_pair(4, 1);
+                    if(!board->is_sqr_empty(rook_from) && board->is_sqr_empty(rook_to)) {
+                        board->move_piece(rook_from, rook_to);
+                    }
+                    piece_affected = board->point_piece(rook_to);
+                }
+                // Black
+                if(Helper::greaterx(to, from) && piece->owner() == 1 && i_curr_player == 1) {
+                    auto rook_from = make_pair(8, 8);
+                    auto rook_to = make_pair(6, 8);
+                    if(!board->is_sqr_empty(rook_from) && board->is_sqr_empty(rook_to)) {
+                        board->move_piece(rook_from, rook_to);
+                    }
+                    piece_affected = board->point_piece(rook_to);
+                } 
+                if(!Helper::greaterx(to, from) && piece->owner() == 1 && i_curr_player == 1) {
+                    auto rook_from = make_pair(1, 8);
+                    auto rook_to = make_pair(4, 8);
+                    if(!board->is_sqr_empty(rook_from) && board->is_sqr_empty(rook_to)) {
+                        board->move_piece(rook_from, rook_to);
+                    }
+                    piece_affected = board->point_piece(rook_to);
+                }
 
-                board->move_piece(from, to);
-
-                auto piece_to = board->point_piece(to);
                 hist.add_move(
                     Move(move_type, 
                         4,
@@ -197,7 +200,7 @@ namespace Game
                         to.first, 
                         to.second, 
                         piece->type(), 
-                        piece_to->type(), 
+                        piece_affected->type(), 
                         0));
 
                 add_moves_to_pieces(board, piece);
@@ -223,7 +226,7 @@ namespace Game
 
     const int GameController::checkmate() {        
         auto vb = chessboard()->board();
-        vector<Chessman::Piece*> vp;
+        vector<shared_ptr<Chessman::Piece>> vp;
         bool cant_move = false;
         int kx, ky;
         // find king
@@ -281,7 +284,7 @@ namespace Game
     }
 
     const void GameController::add_moves_to_pieces(
-        Chessboard::Board* b, const Chessman::Piece* p) 
+        shared_ptr<Chessboard::Board> b, const shared_ptr<Chessman::Piece> p) 
     {
         auto v_board = b->board();
         for(int i = 0; i < v_board.size(); ++i) {

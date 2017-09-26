@@ -34,7 +34,7 @@ namespace Chessman
          */
         const int identify_move(
             const pair<int, int>&,
-            const vector<vector<Chessman::Piece*>>&);
+            const vector<vector<shared_ptr<Chessman::Piece>>>&);
         /**
          * @brief Finds all legal moves for this piece.
          * @param pointer to the Chessboard::Board.
@@ -43,7 +43,7 @@ namespace Chessman
          *         type of a move (Chessman::MOVES) as a third int.
          */
         const vector<tuple<int, int, int>> list_moves(
-            const vector<vector<Chessman::Piece*>>& vb);
+            const vector<vector<shared_ptr<Chessman::Piece>>>& vb);
 
     private:
         /** Holds if pawn was promoted. Initially equals false. */

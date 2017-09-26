@@ -23,7 +23,7 @@ namespace Chessman
     const void Piece::add_move(const pair<int, int>& c) {
         log.piece_func_head("Piece::add_move()",
             type(), owner(), v_history.back());
-        log.t().info("return ").coords(c).n();
+        log.t2().l(__LINE__).info("Return ").coords(c).n();
 
         v_history.push_back(c);
         if(v_history.back() != v_history.at(v_history.size() - 2)) {
@@ -32,9 +32,10 @@ namespace Chessman
     }
 
     const pair<int, int> Piece::last_move() {
-        log.t().piece_func_head("Piece::last_move()", 
+        log.piece_func_head("Piece::last_move()", 
             type(), owner(), v_history.back());
-        log.t().info("return ").coords(v_history.back()).n();
+        log.t2().l(__LINE__).info("Return ").coords(v_history.back()).n();
+
         return v_history.back();
     }
 
@@ -50,7 +51,7 @@ namespace Chessman
     const int Piece::check_diagonal_lines(
         int x1, int y1, 
         int x2, int y2, 
-        const vector<vector<Chessman::Piece*>>& vb) 
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb) 
     {
         if(x1 == x2 && y1 == y2) {
             // Just to be sure, invalid from the square piece is standing on
@@ -83,7 +84,7 @@ namespace Chessman
     const int Piece::check_straight_lines(
         int x1, int y1, 
         int x2, int y2, 
-        const vector<vector<Chessman::Piece*>>& vb)
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb)
     {
         if(x1 == x2 && y1 != y2) {
             for(int i = 1; i <= abs(y1 - y2); i++) {

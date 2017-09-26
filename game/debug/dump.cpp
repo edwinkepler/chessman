@@ -2,7 +2,7 @@
 
 namespace Debug
 {
-    void Dump::board(Chessboard::Board* b) {
+    void Dump::board(shared_ptr<Chessboard::Board> b) {
         cout << endl << "Board dump: " << endl << endl << "\t ";
         vector<char> rank {'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'};
         for(int i = 0; i < 8; ++i) {
@@ -42,7 +42,7 @@ namespace Debug
         }
     }
 
-    void Dump::piece(Chessman::Piece* p) {
+    void Dump::piece(shared_ptr<Chessman::Piece> p) {
         auto pos = p->last_move();
         auto hist = p->history();
         cout << endl << "Piece type: " << p->type()
@@ -58,11 +58,11 @@ namespace Debug
         cout << endl;
     }
 
-    void Dump::operator<<(Chessboard::Board* b) {
+    void Dump::operator<<(shared_ptr<Chessboard::Board> b) {
         board(b);
     }
 
-    void Dump::operator<<(Chessman::Piece* p) {
+    void Dump::operator<<(shared_ptr<Chessman::Piece> p) {
         piece(p);
     }
 }

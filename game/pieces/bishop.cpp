@@ -11,7 +11,7 @@ namespace Chessman
 
     const int Bishop::identify_move(
         const pair<int, int>& to,
-        const vector<vector<Chessman::Piece*>>& vb)
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb)
     {
         log.piece_func_head("Bishop::identify_move", 
         type(), owner(), last_move()).coords(last_move(), to).n();
@@ -24,7 +24,7 @@ namespace Chessman
     }
 
     const vector<tuple<int, int, int>> Bishop::list_moves(
-        const vector<vector<Chessman::Piece*>>& vb) 
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb) 
     {
         log.piece_func_head("Bishop::list_moves()", 
             type(), owner(), v_history.back()).n();

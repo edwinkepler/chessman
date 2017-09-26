@@ -24,23 +24,23 @@ namespace Debug
          * @brief Print all information about Chessboard::Board.
          * @param Pointer to Chessboard::Board object.
          */
-        void board(Chessboard::Board*);
+        void board(shared_ptr<Chessboard::Board>);
         /**
          * @brief Print all information about Chessman::Piece.
          * @param Pointer to Chessman::Piece object.
          */
-        void piece(Chessman::Piece*);
+        void piece(shared_ptr<Chessman::Piece>);
 
         /**
          * @brief Print all information about Chessboard::Board.
          * @param Pointer to Chessboard::Board object.
          */
-        void operator<<(Chessboard::Board*);
+        void operator<<(shared_ptr<Chessboard::Board>);
         /**
          * @brief Print all information about Chessman::Piece.
          * @param Pointer to Chessman::Piece object.
          */
-        void operator<<(Chessman::Piece*);
+        void operator<<(shared_ptr<Chessman::Piece>);
     };
 }
 

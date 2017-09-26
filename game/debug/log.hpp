@@ -23,7 +23,7 @@ namespace Debug
 {
     static bool f_verbose_stdout = false;
     static bool f_verbose_file = false;
-    static string s_file_name = "chessman.log";
+    static string s_file_name = "output.log";
 
     /**
      * @brief Logging to stdout and dumping info about objects.
@@ -53,11 +53,32 @@ namespace Debug
          */
         Log& t();
         /**
+         * @brief Print two tab. Can be chained.
+         * @return Log object to enable chaining.
+         */
+         Log& t2();
+        /**
          * @brief Print line in a well formated manner.
          * @param Line to print.
          * @return Log object to enable chaining.
          */
         Log& l(int);
+        /**
+         * @brief Print START info about function to be logged.
+         * @param Name of a function.
+         */
+        Log& func_head(string);
+        /**
+         * @brief Print STOP info about function to be logged.
+         * @param Name of a function.
+         */
+        Log& func_foot(string);
+        /**
+         * @brief Print STOP info about function to be logged.
+         * @param Name of a function.
+         * @param Time taken to execute function (in ms).
+         */
+        Log& func_foot(string, int);
         /**
          * @brief Print basic info about piece to be logged.
          * @param Name of the function.

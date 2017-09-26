@@ -10,6 +10,7 @@
 #include <chrono>
 #include <tuple>
 #include <algorithm>
+#include <memory>
 
 #include "board.hpp"
 #include "pieces/pawn.hpp"
@@ -29,7 +30,7 @@ void print_commands() {
     cout << "compute - c" << endl << endl;
 }
 
-void print_board(Chessboard::Board* b) {
+void print_board(shared_ptr<Chessboard::Board> b) {
     cout << " ";
     vector<char> rank {'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'};
     for(int i = 0; i < 8; ++i) {
@@ -59,38 +60,38 @@ void print_board(Chessboard::Board* b) {
     cout << " " << endl << endl;
 }
 
-void add(string s, Chessboard::Board* b) {
+void add(string s, shared_ptr<Chessboard::Board> b) {
     int t = (int)s[2] - 48;
     int o = (int)s[4] - 48;
     int x = (int)s[6] - 48;
     int y = (int)s[7] - 48;
     if(t == 0) {
-        Chessman::Pawn* piece = new Chessman::Pawn(o, make_pair(x, y));
+        shared_ptr<Chessman::Pawn> piece {new Chessman::Pawn(o, make_pair(x, y))};
         b->place_piece(make_pair(x, y), piece);
     } else if(t == 1) {
-        Chessman::Rook* rook = new Chessman::Rook(o, make_pair(x, y));
+        shared_ptr<Chessman::Rook> rook {new Chessman::Rook(o, make_pair(x, y))};
         b->place_piece(make_pair(x, y), rook);
     } else if(t == 2) {
-        Chessman::Knight* knight = new Chessman::Knight(o, make_pair(x, y));
+        shared_ptr<Chessman::Knight> knight {new Chessman::Knight(o, make_pair(x, y))};
         b->place_piece(make_pair(x, y), knight);
     } else if(t == 3) {
-        Chessman::Bishop* bishop = new Chessman::Bishop(o, make_pair(x, y));
+        shared_ptr<Chessman::Bishop> bishop {new Chessman::Bishop(o, make_pair(x, y))};
         b->place_piece(make_pair(x, y), bishop);
     } else if(t == 4) {
-        Chessman::Queen* queen = new Chessman::Queen(o, make_pair(x, y));
+        shared_ptr<Chessman::Queen> queen {new Chessman::Queen(o, make_pair(x, y))};
         b->place_piece(make_pair(x, y), queen);
     } else if(t == 5) {
-        Chessman::King* king = new Chessman::King(o, make_pair(x, y));
+        shared_ptr<Chessman::King> king {new Chessman::King(o, make_pair(x, y))};
         b->place_piece(make_pair(x, y), king);
     } else {
         cout << "Wrong piece type." << endl << endl;
     }
 }
 
-void compute(Chessboard::Board* b) {
+void compute(shared_ptr<Chessboard::Board> b) {
     auto t1 = chrono::high_resolution_clock::now();
-    vector<Chessman::Piece*> vw;
-    vector<Chessman::Piece*> vb;
+    vector<shared_ptr<Chessman::Piece>> vw;
+    vector<shared_ptr<Chessman::Piece>> vb;
 
     for(int i = 1; i <= 8; ++i) {
         for(int j = 1; j <= 8; ++j) {
@@ -144,7 +145,7 @@ void compute(Chessboard::Board* b) {
 }
 
 int main() {
-    Chessboard::Board* board = new Chessboard::Board();
+    shared_ptr<Chessboard::Board> board {new Chessboard::Board()};
     while(1) {
         string ln;
         print_commands();

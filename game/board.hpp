@@ -8,7 +8,7 @@
 
 #include <vector>
 #include <utility>
-
+#include <memory>
 #include <exception>
 
 #include "debug/log.hpp"
@@ -47,7 +47,7 @@ namespace Chessboard
          * @param Pair of coordinates (x, y).
          * @return Pointer to Chessman::Piece.
          */
-        Chessman::Piece* point_piece(const pair<int, int>&);
+        shared_ptr<Chessman::Piece> point_piece(const pair<int, int>&);
 
         /**
          * @brief   Will move piece.
@@ -71,7 +71,7 @@ namespace Chessboard
          * @param Chessman::Piece pointer.
          * @throw invalid_argument if given coordinates are out of board border.
          */
-        void place_piece(const pair<int, int>&, Chessman::Piece*);
+        void place_piece(const pair<int, int>&, shared_ptr<Chessman::Piece>);
 
         /**
          * @brief Checks if given square is empty.
@@ -90,9 +90,9 @@ namespace Chessboard
         void nullify(const pair<int, int>&);
         /**
          * @brief Returns 2d vector of a board.
-         * @return vector<vector<Chessman::Piece*>> v_board.
+         * @return vector<vector<shared_ptr<Chessman::Piece>>> v_board.
          */
-        const vector<vector<Chessman::Piece*>> board();
+        const vector<vector<shared_ptr<Chessman::Piece>>> board();
 
     private:
         /**
@@ -103,7 +103,7 @@ namespace Chessboard
          */
         bool is_within_limit(const pair<int, int>&);
         /** 2d vector that holds all pointers for chess pieces. */
-        vector<vector<Chessman::Piece*>> v_board;
+        vector<vector<shared_ptr<Chessman::Piece>>> v_board;
 
         /** Logging object. */
         Debug::Log log;

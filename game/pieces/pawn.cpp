@@ -13,10 +13,11 @@ namespace Chessman
     // Good luck with that X_X
     const int Pawn::identify_move(
         const pair<int, int>& to,
-        const vector<vector<Chessman::Piece*>>& vb)
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb)
     {
-        log.piece_func_head("Bishop::identify_move", 
-        type(), owner(), last_move()).coords(last_move(), to).n();
+        log.piece_func_head("Pawn::identify_move", 
+            type(), owner(), last_move());
+        log.t2().l(__LINE__).info("Move ").coords(last_move(), to).n();
 
         int x1 = last_move().first;
         int y1 = last_move().second;
@@ -32,6 +33,7 @@ namespace Chessman
             // INVALID if already moved and move bigger then two ranks
             if(abs(y2 - y1) == 2 && moved())
             {
+                log.t2().l(__LINE__).info("Move INVALID").n();
                 return Chessman::MOVES::INVALID;
             }
             // INVALID if there is another piece on destination rank
@@ -39,6 +41,7 @@ namespace Chessman
                 int tmp = 0;
                 (owner() == 0) ? tmp += i : tmp -= i;
                 if(vb[y1 - 1 + tmp][vb.size() - x1] != nullptr) {
+                    log.t2().l(__LINE__).info("Move INVALID").n();
                     return Chessman::MOVES::INVALID;
                 }
             }
@@ -49,6 +52,7 @@ namespace Chessman
                 (owner() == 1 &&
                 y2 == 1))
             {
+                log.t2().l(__LINE__).info("PROMOTION").n();
                 return Chessman::MOVES::PROMOTION;
             }
             // If you are here, then move is VALID
@@ -64,11 +68,14 @@ namespace Chessman
                 if( (owner() == 0 && vb[x2].size() == y2) ||
                     (owner() == 1 && y2 == 1))
                 {
+                    log.t2().l(__LINE__).info("CAPTURE and PROMOTION").n();
                     return Chessman::MOVES::PROCAPT;
                 } else {
+                    log.t2().l(__LINE__).info("CAPTURE").n();
                     return Chessman::MOVES::CAPTURE;
                 }
             } else {
+                log.t2().l(__LINE__).info("Move INVALID").n();
                 return Chessman::MOVES::INVALID;
             }
         // En passant white
@@ -86,6 +93,7 @@ namespace Chessman
             if(vb[y1 - 1][vb.size() - x2]->type() == 0) {
                 auto hist = vb[y1 - 1][vb.size() - x2]->history();
                 if(hist.front().second == 7 && hist.back().second == 5) {
+                    log.t2().l(__LINE__).info("EN PASSANT").n();
                     return Chessman::MOVES::EN_PASSANT;
                 }
             }
@@ -104,17 +112,19 @@ namespace Chessman
             if(vb[y1 - 1][vb.size() - x2]->type() == 0) {
                 auto hist = vb[y1 - 1][vb.size() - x2]->history();
                 if(hist.front().second == 2 && hist.back().second == 4) {
+                    log.t2().l(__LINE__).info("EN PASSANT").n();
                     return Chessman::MOVES::EN_PASSANT;
                 }
             }
         } else {
             // If you are here, move is INVALID
+            log.t2().l(__LINE__).info("Move INVALID").n();
             return Chessman::MOVES::INVALID;
         }
     }
 
     const vector<tuple<int, int, int>> Pawn::list_moves(
-        const vector<vector<Chessman::Piece*>>& vb) 
+        const vector<vector<shared_ptr<Chessman::Piece>>>& vb) 
     {
         log.piece_func_head("Pawn::list_moves()", 
             type(), owner(), v_history.back()).n();

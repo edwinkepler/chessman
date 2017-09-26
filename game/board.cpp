@@ -4,7 +4,7 @@ namespace Chessboard
 {
     Board::Board() {
         for(int i = 0; i < 8; i++) {
-            vector<Chessman::Piece*> row;
+            vector<shared_ptr<Chessman::Piece>> row;
             row.resize(8);
             v_board.push_back(row);
         }
@@ -19,15 +19,15 @@ namespace Chessboard
     Board::~Board()
     {}
 
-    Chessman::Piece* Board::point_piece(const pair<int, int> &c) {
-        log.board_func_head("Board::point_piece", c);
+    shared_ptr<Chessman::Piece> Board::point_piece(const pair<int, int> &_coords) {
+        log.board_func_head("Board::point_piece", _coords);
 
-        if(!is_within_limit(c)) {
+        if(!is_within_limit(_coords)) {
             throw invalid_argument("Board::point_piece(): Coords out of range.");
-        } else if(v_board[c.second - 1][v_board.size() - c.first] == nullptr) {
+        } else if(v_board[_coords.second - 1][v_board.size() - _coords.first] == nullptr) {
             throw invalid_argument("Board::getOwner(): Square is empty.");
         } else {
-            return v_board[c.second - 1][v_board.size() - c.first];
+            return shared_ptr<Chessman::Piece>(v_board[_coords.second - 1][v_board.size() - _coords.first]);
         }
     }
 
@@ -48,7 +48,7 @@ namespace Chessboard
         }
     }
 
-    void Board::place_piece(const pair<int, int>& c, Chessman::Piece* piece) {
+    void Board::place_piece(const pair<int, int>& c, shared_ptr<Chessman::Piece> piece) {
         log.board_func_head("Board::place_piece", c);
 
         if(!is_within_limit(c)) {
@@ -86,7 +86,7 @@ namespace Chessboard
         }
     }
 
-    const vector<vector<Chessman::Piece*>> Board::board() {
+    const vector<vector<shared_ptr<Chessman::Piece>>> Board::board() {
         return v_board;
     }
 

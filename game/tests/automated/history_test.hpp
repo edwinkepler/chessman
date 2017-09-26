@@ -11,6 +11,7 @@
 #include <tuple>
 #include <string>
 #include <iostream>
+
 #include "history.hpp"
 
 #define BOOST_TEST_MAIN
